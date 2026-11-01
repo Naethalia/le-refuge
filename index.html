@@ -23,12 +23,37 @@ button:disabled{opacity:.55;cursor:wait}.small{padding:8px 12px;font-size:13px}.
 label{display:block;margin:15px 0 6px;font-weight:bold}input,textarea{font:16px Georgia,serif;width:100%;border:2px solid #d7b4b9;background:#fffaf1;color:#593e54;border-radius:11px;padding:11px}textarea{min-height:100px;resize:vertical}
 .status{min-height:1.5em}.account{margin-top:10px}.section-title{font-style:italic;color:#8e6179}.registration{border-top:1px dashed #cfabb7;margin-top:14px;padding-top:10px}.inline{display:flex;flex-wrap:wrap;align-items:center;gap:7px}.inline input{flex:1;min-width:130px}.inline button{flex:0 0 auto}.footer{text-align:center;color:#fff8ee;text-shadow:0 1px 3px #684c6d;padding-top:25px}
 @media(max-width:750px){.book{grid-template-columns:1fr}.page+.page{border-left:0;border-top:8px solid #cba58f;box-shadow:none}.shell{padding:16px 10px 40px}}
+
+/* Décor immersif inspiré de la maquette validée */
+body{background:#b69abb url("decor-palia.webp") center top / 100% auto no-repeat fixed}
+.hero{height:clamp(150px,17vw,255px);background:transparent;box-shadow:none}
+.shell{max-width:1672px;padding:0 clamp(12px,2vw,34px) 55px;margin:0 auto}
+.top{max-width:760px;margin:0 auto 12px;padding:10px 15px;background:#fff4e9f2;border:2px solid #c69eac;border-radius:18px;box-shadow:0 5px 18px #533d5155}
+.top h1{font-size:clamp(23px,3vw,37px)}.top p{margin:4px 0}.top .account{margin-top:2px}
+.book{margin:10px 0 0 clamp(150px,17vw,280px);border:13px solid #9c6b50;border-radius:23px;box-shadow:0 15px 35px #50314999,0 0 0 4px #e7b999;min-height:560px}
+.page{background:linear-gradient(110deg,#fff2dfeb,#ffeddaee),repeating-linear-gradient(0deg,transparent,transparent 26px,#d4aa9a26 27px);padding:32px clamp(17px,2.5vw,42px);min-height:550px}
+.page h2{font-style:italic;font-size:clamp(24px,2.3vw,35px);color:#754269}
+.page+.page{border-left:7px solid #c39a83}
+.event{background:#fff9efed;border:2px solid #e5b3c6;box-shadow:0 4px 0 #b67e9970,0 7px 17px #7e4d6333}
+button{background:linear-gradient(180deg,#ae76b0,#7e468c);border-color:#683c6f;box-shadow:0 4px 0 #6b426f}
+.wood-nav{position:fixed;left:clamp(8px,1.4vw,24px);top:clamp(330px,35vw,540px);z-index:3;display:grid;gap:12px;width:clamp(128px,15vw,240px)}
+.wood-nav button{margin:0;width:100%;border:3px solid #e2ac7f;background:linear-gradient(160deg,#a46c51,#724334);border-radius:9px;box-shadow:0 5px 0 #54322c,0 7px 13px #402e3e77;text-align:left;font-size:clamp(12px,1.25vw,17px);padding:12px 9px}
+.wood-nav button:focus-visible{outline:3px solid white;outline-offset:3px}
+.wood-nav button[aria-current="page"]{background:linear-gradient(160deg,#ae5c91,#793c7c)}
+.footer{margin-left:clamp(150px,17vw,280px);color:#fffdf2}
+@media(max-width:850px){body{background-size:auto 650px;background-position:center top;background-attachment:scroll}.hero{height:190px}.shell{padding:0 10px 30px}.wood-nav{position:static;width:auto;display:flex;flex-wrap:wrap;justify-content:center;margin:10px 0}.wood-nav button{width:auto;flex:1;min-width:105px}.book{margin:15px 0}.footer{margin-left:0}.top{margin-top:10px}}
+@media(max-width:560px){.hero{height:155px}.page{padding:24px 17px}.book{border-width:8px}.wood-nav button{font-size:12px;padding:9px 7px}}
 </style>
 </head>
 <body>
 <header class="hero" aria-label="Paysage fleuri du Refuge"></header>
 <div class="shell">
-<section class="top"><h1>🌸 Le Refuge 🌸</h1><p>Le carnet enchanté de nos événements à Palia</p>
+<nav class="wood-nav" aria-label="Navigation du Refuge">
+<button type="button" id="nav-evenements" aria-current="page">📅 Événements</button>
+<button type="button" id="nav-mes-evenements">🌸 Mes événements</button>
+<button type="button" id="nav-aide">❔ Aide</button>
+</nav>
+<section class="top"><h1>🌸 Carnet des événements 🌸</h1>
 <div id="account" class="account"><button id="connexion">Se connecter avec Discord</button><span id="profil"></span><button id="deconnexion" hidden>Se déconnecter</button></div>
 <p id="message" class="status" role="status"></p></section>
 <main id="espace-evenements" class="book" hidden>
@@ -65,7 +90,7 @@ async function loadEvents(){
   sb.from("inscriptions").select("id,evenement_id,membre_id,poste")
  ]);
  if(error){list.textContent="Impossible de charger les événements : "+error.message;return}
- events=data||[];list.replaceChildren();if(!events.length){line(list,"Aucun événement pour le moment. 🌸");return}
+ events=(data||[]).filter(e=>!ownOnly||e.createur_id===currentUser.id);list.replaceChildren();if(!events.length){line(list,"Aucun événement pour le moment. 🌸");return}
  if(regError)line(list,"Les inscriptions ne peuvent pas être affichées pour le moment.","muted");
  for(const e of events){
   const card=document.createElement("article");card.className="event";const h=document.createElement("h3");h.textContent="✿ "+e.titre;card.append(h);
@@ -107,5 +132,9 @@ $("formulaire-evenement").addEventListener("submit",async ev=>{
  if(result.error){$("form-message").textContent="Erreur : "+result.error.message;return}
  say(editingId===null?"Ton événement a bien été créé ! 🌸":"Événement modifié ! 🌸");resetForm();await loadEvents();
 });
+let ownOnly=false;
+$("nav-evenements").addEventListener("click",async()=>{ownOnly=false;$("nav-evenements").setAttribute("aria-current","page");$("nav-mes-evenements").removeAttribute("aria-current");await loadEvents();$("espace-evenements").scrollIntoView({behavior:"smooth"})});
+$("nav-mes-evenements").addEventListener("click",async()=>{ownOnly=true;$("nav-mes-evenements").setAttribute("aria-current","page");$("nav-evenements").removeAttribute("aria-current");await loadEvents();$("espace-evenements").scrollIntoView({behavior:"smooth"})});
+$("nav-aide").addEventListener("click",()=>alert("Connecte-toi avec Discord, puis crée un événement dans le carnet. Pour participer à un événement, indique ton poste ou ton rôle et clique sur M'inscrire."));
 refresh();
 </script></body></html>
