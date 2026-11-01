@@ -117,6 +117,54 @@ async function enregistrerEvenement(event) {
   alert("Ton événement a bien été créé ! 🌸");
   document.getElementById("formulaire-evenement").reset();
 }
+  async function afficherEvenements() {
+  const liste = document.getElementById("liste-evenements");
+
+  liste.textContent = "Chargement des événements...";
+
+  const { data: evenements, error } = await clientSupabase
+    .from("evenements")
+    .select("id, titre, description, date_evenement, lieu, createur_pseudo")
+    .order("date_evenement", { ascending: true });
+
+  if (error) {
+    liste.textContent = "Impossible de charger les événements.";
+    return;
+  }
+
+  liste.replaceChildren();
+
+  if (evenements.length === 0) {
+    liste.textContent = "Aucun événement pour le moment. 🌸";
+    return;
+  }
+
+  evenements.forEach(evenement => {
+    const carte = document.createElement("article");
+
+    const titre = document.createElement("h4");
+    titre.textContent = evenement.titre;
+
+    const date = document.createElement("p");
+    date.textContent = "📅 " + new Date(
+      evenement.date_evenement
+    ).toLocaleString("fr-FR");
+
+    const lieu = document.createElement("p");
+    lieu.textContent = "📍 " + (evenement.lieu || "Non précisé");
+
+    const description = document.createElement("p");
+    description.textContent = evenement.description || "";
+
+    const organisateur = document.createElement("p");
+    organisateur.textContent =
+      "🌸 Organisé par " +
+      (evenement.createur_pseudo || "Membre du Refuge");
+
+    carte.append(titre, date, lieu, description, organisateur);
+    liste.appendChild(carte);
+  });
+}
   async function verifierConnexion() {
     const { data: { session }, error } =
       await clientSupabase.auth.getSession();
@@ -139,7 +187,9 @@ async function enregistrerEvenement(event) {
       bouton.hidden = true;
       boutonDeconnexion.hidden = false;
       document.getElementById("espace-evenements").hidden = false;
+      await afficherEvenements();
     } else {
+  
       profil.textContent = "";
       bouton.hidden = false;
       boutonDeconnexion.hidden = true;
