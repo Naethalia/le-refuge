@@ -41,45 +41,47 @@
     <p>Ton petit espace communautaire dédié à Palia.</p>
     <p>Retrouve les activités et les membres du Refuge.</p>
     <button id="connexion">Se connecter avec Discord</button>
-    <p id="message"></p>
+     <p id="message"></p>
   </main>
 
-const SUPABASE_URL = "https://kflrkclmznluxahxttgl.supabase.co";
-const SUPABASE_KEY = "sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3";
+  <script>
+    const SUPABASE_URL = "https://kflrkclmznluxahxttgl.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3";
 
-const bouton = document.getElementById("connexion");
-const message = document.getElementById("message");
+    const bouton = document.getElementById("connexion");
+    const message = document.getElementById("message");
 
-if (!window.supabase || !window.supabase.createClient) {
-  message.textContent = "Impossible de charger le service de connexion. Actualise la page.";
-  bouton.disabled = true;
-} else {
-  const clientSupabase = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
+    if (!window.supabase || !window.supabase.createClient) {
+      message.textContent = "Impossible de charger le service de connexion. Actualise la page.";
+      bouton.disabled = true;
+    } else {
+      const clientSupabase = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
 
-  bouton.addEventListener("click", async () => {
-    message.textContent = "Connexion en cours…";
-    bouton.disabled = true;
+      bouton.addEventListener("click", async () => {
+        message.textContent = "Connexion en cours…";
+        bouton.disabled = true;
 
-    try {
-      const { error } = await clientSupabase.auth.signInWithOAuth({
-        provider: "discord",
-        options: {
-          redirectTo: window.location.href
+        try {
+          const { error } = await clientSupabase.auth.signInWithOAuth({
+            provider: "discord",
+            options: {
+              redirectTo: window.location.href
+            }
+          });
+
+          if (error) {
+            message.textContent = "Erreur : " + error.message;
+            bouton.disabled = false;
+          }
+        } catch (erreur) {
+          message.textContent = "Erreur : " + erreur.message;
+          bouton.disabled = false;
         }
       });
-
-      if (error) {
-        message.textContent = "Erreur : " + error.message;
-        bouton.disabled = false;
-      }
-    } catch (erreur) {
-      message.textContent = "Erreur : " + erreur.message;
-      bouton.disabled = false;
     }
-  });
-}
+  </script>
 </body>
 </html>
