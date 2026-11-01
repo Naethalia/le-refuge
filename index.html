@@ -40,48 +40,81 @@
     <h1>🌸 Bienvenue au Refuge 🌸</h1>
     <p>Ton petit espace communautaire dédié à Palia.</p>
     <p>Retrouve les activités et les membres du Refuge.</p>
-    <button id="connexion">Se connecter avec Discord</button>
-     <p id="message"></p>
+   <button id="connexion">Se connecter avec Discord</button>
+<p id="profil"></p>
+<button id="deconnexion" hidden>Se déconnecter</button>
+<p id="message"></p>
   </main>
 
-  <script>
-    const SUPABASE_URL = "https://kflrkclmznluxahxttgl.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3";
+<script>
+  const SUPABASE_URL = "https://kflrkclmznluxahxttgl.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3";
 
-    const bouton = document.getElementById("connexion");
-    const message = document.getElementById("message");
+  const bouton = document.getElementById("connexion");
+  const boutonDeconnexion = document.getElementById("deconnexion");
+  const profil = document.getElementById("profil");
+  const message = document.getElementById("message");
 
-    if (!window.supabase || !window.supabase.createClient) {
-      message.textContent = "Impossible de charger le service de connexion. Actualise la page.";
-      bouton.disabled = true;
-    } else {
-      const clientSupabase = window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-      );
+  const clientSupabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
-      bouton.addEventListener("click", async () => {
-        message.textContent = "Connexion en cours…";
-        bouton.disabled = true;
+  async function verifierConnexion() {
+    const { data: { session }, error } =
+      await clientSupabase.auth.getSession();
 
-        try {
-          const { error } = await clientSupabase.auth.signInWithOAuth({
-            provider: "discord",
-            options: {
-              redirectTo: window.location.href
-            }
-          });
-
-          if (error) {
-            message.textContent = "Erreur : " + error.message;
-            bouton.disabled = false;
-          }
-        } catch (erreur) {
-          message.textContent = "Erreur : " + erreur.message;
-          bouton.disabled = false;
-        }
-      });
+    if (error) {
+      message.textContent = "Erreur : " + error.message;
+      return;
     }
-  </script>
+
+    if (session) {
+      const utilisateur = session.user;
+      const pseudo =
+        utilisateur.user_metadata.full_name ||
+        utilisateur.user_metadata.name ||
+        utilisateur.user_metadata.user_name ||
+        "Membre du Refuge";
+
+      profil.textContent = "Bienvenue " + pseudo + " ! 🌸";
+      bouton.hidden = true;
+      boutonDeconnexion.hidden = false;
+    } else {
+      profil.textContent = "";
+      bouton.hidden = false;
+      boutonDeconnexion.hidden = true;
+    }
+  }
+
+  bouton.addEventListener("click", async () => {
+    message.textContent = "Connexion en cours…";
+
+    const { error } = await clientSupabase.auth.signInWithOAuth({
+      provider: "discord",
+      options: {
+        redirectTo: "https://naethalia.github.io/le-refuge/"
+      }
+    });
+
+    if (error) {
+      message.textContent = "Erreur : " + error.message;
+    }
+  });
+
+  boutonDeconnexion.addEventListener("click", async () => {
+    const { error } = await clientSupabase.auth.signOut();
+
+    if (error) {
+      message.textContent = "Erreur : " + error.message;
+      return;
+    }
+
+    message.textContent = "Tu es déconnectée.";
+    await verifierConnexion();
+  });
+
+  verifierConnexion();
+</script>
 </body>
 </html>
