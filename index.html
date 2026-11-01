@@ -44,19 +44,27 @@
     <p id="message"></p>
   </main>
 
-  <script>
-    const SUPABASE_URL = "https://kflrkclmznluxahxttgl.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3";
+const SUPABASE_URL = "https://kflrkclmznluxahxttgl.supabase.co";
+const SUPABASE_KEY = "sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3";
 
-    const supabase = window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
+const bouton = document.getElementById("connexion");
+const message = document.getElementById("message");
 
-    document.getElementById("connexion").addEventListener("click", async () => {
-      document.getElementById("message").textContent = "Connexion en cours…";
+if (!window.supabase || !window.supabase.createClient) {
+  message.textContent = "Impossible de charger le service de connexion. Actualise la page.";
+  bouton.disabled = true;
+} else {
+  const clientSupabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
-      const { error } = await supabase.auth.signInWithOAuth({
+  bouton.addEventListener("click", async () => {
+    message.textContent = "Connexion en cours…";
+    bouton.disabled = true;
+
+    try {
+      const { error } = await clientSupabase.auth.signInWithOAuth({
         provider: "discord",
         options: {
           redirectTo: window.location.href
@@ -64,10 +72,14 @@
       });
 
       if (error) {
-        document.getElementById("message").textContent =
-          "Erreur de connexion : " + error.message;
+        message.textContent = "Erreur : " + error.message;
+        bouton.disabled = false;
       }
-    });
-  </script>
+    } catch (erreur) {
+      message.textContent = "Erreur : " + erreur.message;
+      bouton.disabled = false;
+    }
+  });
+}
 </body>
 </html>
