@@ -105,10 +105,12 @@
       profil.textContent = "Bienvenue " + pseudo + " ! 🌸";
       bouton.hidden = true;
       boutonDeconnexion.hidden = false;
+      document.getElementById("espace-evenements").hidden = false;
     } else {
       profil.textContent = "";
       bouton.hidden = false;
       boutonDeconnexion.hidden = true;
+      document.getElementById("espace-evenements").hidden = true;
     }
   }
 
