@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le Carnet Enchanté du Refuge</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Georgia,serif;color:#503d54;background:linear-gradient(#a1b9cb 0%,#f7c9ad 48%,#8fae8b 49%,#517a61 100%);min-height:100vh}
+.sky{position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 76% 24%,#fff1bd 0 5%,transparent 18%),radial-gradient(ellipse at 25% 92%,#315e4b 0 24%,transparent 25%),radial-gradient(ellipse at 90% 98%,#3e7657 0 27%,transparent 28%);z-index:-1}
+header{text-align:center;padding:24px 12px;color:#fff7df;text-shadow:0 3px 8px #594766}
+header h1{font-size:clamp(29px,5vw,54px);margin:0}
+header p{font-size:18px;margin:8px}
+.layout{display:flex;gap:22px;max-width:1150px;margin:10px auto;padding:15px;align-items:flex-start}
+nav{width:210px;flex-shrink:0;background:linear-gradient(100deg,#926242,#c99a69,#865639);border:7px ridge #6c4931;border-radius:17px;padding:18px 12px;box-shadow:5px 10px 20px #354a4088}
+nav h2{color:#fff0c8;text-align:center;font-size:22px}
+nav button{display:block;width:100%;margin:12px 0;padding:13px 7px;background:#f7e6c3;border:2px solid #9b7351;border-radius:9px;color:#654765;font-family:Georgia;font-weight:bold;cursor:pointer}
+nav button:hover{background:#f5d5ed}
+.book{flex:1;display:grid;grid-template-columns:1fr 1fr;background:#e9d3a8;border:13px solid #76513e;border-radius:25px;box-shadow:0 15px 35px #293e4088;min-height:460px;overflow:hidden}
+.page{padding:32px 25px;background:repeating-linear-gradient(#fff5db,#fff5db 33px,#e8d5b4 34px);line-height:1.8}
+.page:first-child{border-right:5px solid #c8a67e}
+.page h2{text-align:center;color:#8e568b;font-size:25px}
+.page p{text-align:center}
+.flower{text-align:center;font-size:38px}
+.mascot{text-align:center;font-size:66px;margin-top:20px;filter:drop-shadow(0 5px 4px #9c7d9b)}
+footer{text-align:center;color:#fff8e6;text-shadow:0 2px 5px #36463b;padding:20px}
+@media(max-width:750px){.layout{flex-direction:column;align-items:stretch}nav{width:100%}.book{grid-template-columns:1fr}.page:first-child{border-right:0;border-bottom:5px solid #c8a67e}}
+</style>
+</head>
+<body>
+<div class="sky"></div>
+<header>
+<h1>✦ Le Carnet Enchanté du Refuge ✦</h1>
+<p>Un petit coin de magie, de rencontres et de souvenirs 🌸</p>
+</header>
+<div class="layout">
+<nav>
+<h2>🌿 Le Refuge</h2>
+<button onclick="ouvrir('accueil')">🏡 Accueil</button>
+<button onclick="ouvrir('evenements')">📅 Événements</button>
+<button onclick="ouvrir('souvenirs')">🌷 Souvenirs</button>
+<button onclick="ouvrir('amis')">💜 Les amis</button>
+</nav>
+<main class="book">
+<section class="page" id="gauche">
+<div class="flower">🌸 ✨ 🌸</div>
+<h2>Bienvenue au Refuge</h2>
+<p>Entre, installe-toi confortablement et laisse la magie opérer...</p>
+<p>Ce carnet garde précieusement les aventures de notre communauté.</p>
+</section>
+<section class="page" id="droite">
+<div class="flower">🦋 🌼 🦋</div>
+<h2>Notre petit monde</h2>
+<p>Des événements, des découvertes et de merveilleux moments à partager.</p>
+<div class="mascot">💜 🦊 💤</div>
+<p><i>Chut... notre petite gardienne fait une sieste !</i></p>
+</section>
+</main>
+</div>
+<footer>🌙 Fait avec magie pour les membres du Refuge 🌙</footer>
+<script>
+function ouvrir(page){
+const titres={accueil:'Bienvenue au Refuge',evenements:'Nos événements',souvenirs:'Nos souvenirs',amis:'Les amis du Refuge'};
+const textes={accueil:'Entre, installe-toi confortablement et laisse la magie opérer...',evenements:'De nouvelles aventures nous attendent !',souvenirs:'Chaque instant partagé devient un précieux souvenir.',amis:'C’est ensemble que notre Refuge prend vie.'};
+document.querySelector('#gauche h2').textContent=titres[page];
+document.querySelector('#gauche p').textContent=textes[page];
+}
+</script>
+</body>
+</html>
