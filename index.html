@@ -1,232 +1,111 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Le Refuge de Palia</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #f8d9ec, #d9c8f5, #c8e8e5);
-      color: #554267;
-    }
-    main {
-      background: rgba(255,255,255,.88);
-      padding: 40px;
-      border-radius: 24px;
-      text-align: center;
-      width: min(85%, 420px);
-      box-shadow: 0 8px 30px #70558a30;
-    }
-    h1 { color: #875a9e; }
-    button {
-      border: 0;
-      border-radius: 14px;
-      padding: 14px 24px;
-      background: #8060a8;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Le Refuge — Carnet des événements</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--prune:#653955;--rose:#a85e85;--paper:#fff0d8;--brown:#785146;--purple:#77518e}
+*{box-sizing:border-box}body{margin:0;font-family:Georgia,serif;color:var(--prune);background:radial-gradient(circle at 20% 25%,#e6c5e6 0,transparent 35%),linear-gradient(145deg,#ba91bf,#f1bdb8 55%,#b2a3d5);min-height:100vh}
+[hidden]{display:none!important}
+.hero{height:clamp(175px,26vw,330px);background:#9d83ba url('banniere-refuge.webp') center top/cover no-repeat;box-shadow:0 8px 20px #60445b66}
+.shell{max-width:1200px;margin:-5px auto 0;padding:24px 20px 60px}
+.top{text-align:center;background:#fff3e0ec;border:3px solid #b78d7c;border-radius:24px;padding:17px;box-shadow:0 6px 15px #583b5144}
+h1{font-size:clamp(30px,5vw,55px);margin:0;color:#81516e}h2{font-size:clamp(25px,3vw,36px);margin:0 0 14px}h3{font-size:24px;margin:0 0 8px}p{line-height:1.5}
+button{font:700 15px Georgia,serif;cursor:pointer;color:white;background:linear-gradient(#a66da9,#754e8e);border:2px solid #69476b;border-radius:13px;padding:12px 18px;box-shadow:0 3px 0 #69476b;margin:5px}
+button:disabled{opacity:.55;cursor:wait}.small{padding:8px 12px;font-size:13px}.danger{background:linear-gradient(#bf7184,#9c455c)}.subtle{background:linear-gradient(#b995a7,#90687c)}
+.book{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:0;border:12px solid #77504b;border-radius:22px;box-shadow:0 15px 38px #4e2b4770;background:#f7dfbf;overflow:hidden}
+.page{padding:30px clamp(17px,3vw,42px);min-width:0;background:radial-gradient(circle at 12% 15%,#fffaf0,transparent 65%),repeating-linear-gradient(0deg,#fff0d9,#fff0d9 24px,#f9e8cf 25px);min-height:470px}
+.page+ .page{border-left:5px solid #cba58f;box-shadow:inset 10px 0 14px #9a706026}
+.decor{text-align:center;color:#bd7295;letter-spacing:7px;margin:15px 0 22px}
+.event{background:#fff9ed;border:2px solid #e2b7b8;border-radius:16px;padding:19px;margin:15px 0;box-shadow:0 4px 12px #986e7422;overflow-wrap:anywhere}
+.event h3{color:#824e7d}.event p{margin:8px 0}.muted{color:#8b6575;font-size:14px}
+label{display:block;margin:15px 0 6px;font-weight:bold}input,textarea{font:16px Georgia,serif;width:100%;border:2px solid #d7b4b9;background:#fffaf1;color:#593e54;border-radius:11px;padding:11px}textarea{min-height:100px;resize:vertical}
+.status{min-height:1.5em}.account{margin-top:10px}.section-title{font-style:italic;color:#8e6179}.registration{border-top:1px dashed #cfabb7;margin-top:14px;padding-top:10px}.inline{display:flex;flex-wrap:wrap;align-items:center;gap:7px}.inline input{flex:1;min-width:130px}.inline button{flex:0 0 auto}.footer{text-align:center;color:#fff8ee;text-shadow:0 1px 3px #684c6d;padding-top:25px}
+@media(max-width:750px){.book{grid-template-columns:1fr}.page+.page{border-left:0;border-top:8px solid #cba58f;box-shadow:none}.shell{padding:16px 10px 40px}}
+</style>
 </head>
 <body>
-  <main>
-    <h1>🌸 Bienvenue au Refuge 🌸</h1>
-    <p>Ton petit espace communautaire dédié à Palia.</p>
-    <p>Retrouve les activités et les membres du Refuge.</p>
-   <button id="connexion">Se connecter avec Discord</button>
-<p id="profil"></p>
-<button id="deconnexion" hidden>Se déconnecter</button>
-<p id="message"></p>
-    <section id="espace-evenements" hidden>
-  <h2>🌸 Les événements du Refuge</h2>
-
-  <h3>Créer un événement</h3>
-
-  <form id="formulaire-evenement">
-    <label for="titre-evenement">Nom de l'événement</label>
-    <input id="titre-evenement" type="text" required>
-
-    <label for="description-evenement">Description</label>
-    <textarea id="description-evenement"></textarea>
-
-    <label for="date-evenement">Date et heure</label>
-    <input id="date-evenement" type="datetime-local" required>
-
-    <label for="lieu-evenement">Lieu</label>
-    <input id="lieu-evenement" type="text">
-
-    <button type="submit">Créer l'événement 🌸</button>
-  </form>
-
-  <h3>Les prochains événements</h3>
-  <div id="liste-evenements"></div>
-</section>
-  </main>
-
+<header class="hero" aria-label="Paysage fleuri du Refuge"></header>
+<div class="shell">
+<section class="top"><h1>🌸 Le Refuge 🌸</h1><p>Le carnet enchanté de nos événements à Palia</p>
+<div id="account" class="account"><button id="connexion">Se connecter avec Discord</button><span id="profil"></span><button id="deconnexion" hidden>Se déconnecter</button></div>
+<p id="message" class="status" role="status"></p></section>
+<main id="espace-evenements" class="book" hidden>
+<section class="page"><h2>📅 Les prochains événements</h2><p class="section-title">Nos jolis rendez-vous, page après page…</p><div class="decor">✿ ─ ♡ ─ ✿</div><div id="liste-evenements" aria-live="polite"></div></section>
+<section class="page"><h2 id="form-title">🪶 Créer un événement</h2><p class="section-title">Écrivons ensemble de nouveaux souvenirs…</p><div class="decor">✿ ─ ♡ ─ ✿</div>
+<form id="formulaire-evenement">
+<label for="titre-evenement">Nom de l'événement *</label><input id="titre-evenement" required maxlength="120">
+<label for="description-evenement">Description</label><textarea id="description-evenement" maxlength="3000"></textarea>
+<label for="date-evenement">Date et heure *</label><input id="date-evenement" type="datetime-local" required>
+<label for="lieu-evenement">Lieu</label><input id="lieu-evenement" maxlength="200" placeholder="Ex. : Kilima">
+<button type="submit" id="save-event">🌸 Créer l'événement</button><button type="button" id="cancel-edit" class="subtle" hidden>Annuler la modification</button>
+</form><p id="form-message" role="status"></p></section>
+</main><footer class="footer">✿ Le Refuge — De jolis moments à partager ✿</footer>
+</div>
 <script>
-  const SUPABASE_URL = "https://kflrkclmznluxahxttgl.supabase.co";
-  const SUPABASE_KEY = "sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3";
-
-  const bouton = document.getElementById("connexion");
-  const boutonDeconnexion = document.getElementById("deconnexion");
-  const profil = document.getElementById("profil");
-  const message = document.getElementById("message");
-
-  const clientSupabase = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
-async function enregistrerEvenement(event) {
-  event.preventDefault();
-
-  const { data: { user }, error: erreurConnexion } =
-    await clientSupabase.auth.getUser();
-
-  if (erreurConnexion || !user) {
-    alert("Tu dois être connecté avec Discord.");
-    return;
-  }
-
-  const titre = document.getElementById("titre-evenement").value.trim();
-  const description = document.getElementById("description-evenement").value.trim();
-  const date = document.getElementById("date-evenement").value;
-  const lieu = document.getElementById("lieu-evenement").value.trim();
-
-  const { error } = await clientSupabase
-    .from("evenements")
-    .insert({
-      titre: titre,
-      description: description,
-      date_evenement: new Date(date).toISOString(),
-      lieu: lieu,
-      createur_id: user.id
-    });
-
-  if (error) {
-    alert("Impossible de créer l'événement : " + error.message);
-    return;
-  }
-
-  alert("Ton événement a bien été créé ! 🌸");
-  document.getElementById("formulaire-evenement").reset();
+const SUPABASE_URL="https://kflrkclmznluxahxttgl.supabase.co";
+const SUPABASE_KEY="sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3";
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const $=id=>document.getElementById(id);
+let currentUser=null,events=[],editingId=null;
+const say=(s)=>{$("message").textContent=s};
+const formatDate=d=>new Date(d).toLocaleString("fr-FR",{dateStyle:"full",timeStyle:"short"});
+function line(parent,content,cls){const p=document.createElement("p");p.textContent=content;if(cls)p.className=cls;parent.append(p);return p}
+function btn(label,fn,cls="small"){const b=document.createElement("button");b.type="button";b.textContent=label;b.className=cls;b.addEventListener("click",fn);return b}
+function resetForm(){editingId=null;$("formulaire-evenement").reset();$("form-title").textContent="🪶 Créer un événement";$("save-event").textContent="🌸 Créer l'événement";$("cancel-edit").hidden=true;$("form-message").textContent=""}
+function editEvent(e){editingId=e.id;$("titre-evenement").value=e.titre;$("description-evenement").value=e.description||"";const dt=new Date(e.date_evenement);const local=new Date(dt.getTime()-dt.getTimezoneOffset()*60000).toISOString().slice(0,16);$("date-evenement").value=local;$("lieu-evenement").value=e.lieu||"";$("form-title").textContent="🪶 Modifier l'événement";$("save-event").textContent="Enregistrer les modifications";$("cancel-edit").hidden=false;$("formulaire-evenement").scrollIntoView({behavior:"smooth",block:"center"})}
+async function deleteEvent(e){if(!confirm("Supprimer définitivement « "+e.titre+" » ?"))return;const {error}=await sb.from("evenements").delete().eq("id",e.id);if(error){say("Suppression impossible : "+error.message);return}say("Événement supprimé.");await loadEvents()}
+async function signUp(e,poste){const {error}=await sb.from("inscriptions").insert({evenement_id:e.id,membre_id:currentUser.id,poste});if(error){say(error.code==="23505"?"Tu es déjà inscrit(e) à ce poste.":"Inscription impossible : "+error.message);return}say("Inscription enregistrée ! 🌸");await loadEvents()}
+async function cancelSignUp(reg){const {error}=await sb.from("inscriptions").delete().eq("id",reg.id).eq("membre_id",currentUser.id);if(error){say("Annulation impossible : "+error.message);return}say("Inscription annulée.");await loadEvents()}
+async function loadEvents(){
+ const list=$("liste-evenements");list.textContent="Chargement des événements…";
+ const [{data,error},{data:regs,error:regError}]=await Promise.all([
+  sb.from("evenements").select("id,titre,description,date_evenement,lieu,createur_id,createur_pseudo").order("date_evenement",{ascending:true}),
+  sb.from("inscriptions").select("id,evenement_id,membre_id,poste")
+ ]);
+ if(error){list.textContent="Impossible de charger les événements : "+error.message;return}
+ events=data||[];list.replaceChildren();if(!events.length){line(list,"Aucun événement pour le moment. 🌸");return}
+ if(regError)line(list,"Les inscriptions ne peuvent pas être affichées pour le moment.","muted");
+ for(const e of events){
+  const card=document.createElement("article");card.className="event";const h=document.createElement("h3");h.textContent="✿ "+e.titre;card.append(h);
+  line(card,"📅 "+formatDate(e.date_evenement));line(card,"📍 "+(e.lieu||"Lieu non précisé"));
+  if(e.description)line(card,e.description);
+  line(card,"🌸 Organisé par "+(e.createur_pseudo||"Membre du Refuge"),"muted");
+  if(e.createur_id===currentUser.id){card.append(btn("✏️ Modifier",()=>editEvent(e)),btn("🗑️ Supprimer",()=>deleteEvent(e),"small danger"))}
+  const box=document.createElement("div");box.className="registration";const title=document.createElement("strong");title.textContent="Participations";box.append(title);
+  const these=(regs||[]).filter(r=>r.evenement_id===e.id);
+  if(these.length){const counts={};for(const r of these)counts[r.poste]=(counts[r.poste]||0)+1;line(box,Object.entries(counts).map(([p,n])=>p+" ("+n+")").join(" · "),"muted")}
+  else line(box,"Pas encore d'inscription.","muted");
+  const own=these.filter(r=>r.membre_id===currentUser.id);
+  for(const r of own){const row=document.createElement("div");row.className="inline";line(row,"Ton poste : "+r.poste,"muted");row.append(btn("Annuler",()=>cancelSignUp(r),"small danger"));box.append(row)}
+  const form=document.createElement("form");form.className="inline";const input=document.createElement("input");input.required=true;input.maxLength=80;input.placeholder="Ton poste / rôle";input.setAttribute("aria-label","Poste ou rôle pour "+e.titre);
+  const submit=document.createElement("button");submit.type="submit";submit.textContent="🌷 M'inscrire";submit.className="small";form.append(input,submit);
+  form.addEventListener("submit",async ev=>{ev.preventDefault();const poste=input.value.trim();if(poste)await signUp(e,poste)});box.append(form);card.append(box);list.append(card);
+ }
 }
-  async function afficherEvenements() {
-  const liste = document.getElementById("liste-evenements");
-
-  liste.textContent = "Chargement des événements...";
-
-  const { data: evenements, error } = await clientSupabase
-    .from("evenements")
-    .select("id, titre, description, date_evenement, lieu, createur_pseudo")
-    .order("date_evenement", { ascending: true });
-
-  if (error) {
-    liste.textContent = "Impossible de charger les événements.";
-    return;
-  }
-
-  liste.replaceChildren();
-
-  if (evenements.length === 0) {
-    liste.textContent = "Aucun événement pour le moment. 🌸";
-    return;
-  }
-
-  evenements.forEach(evenement => {
-    const carte = document.createElement("article");
-
-    const titre = document.createElement("h4");
-    titre.textContent = evenement.titre;
-
-    const date = document.createElement("p");
-    date.textContent = "📅 " + new Date(
-      evenement.date_evenement
-    ).toLocaleString("fr-FR");
-
-    const lieu = document.createElement("p");
-    lieu.textContent = "📍 " + (evenement.lieu || "Non précisé");
-
-    const description = document.createElement("p");
-    description.textContent = evenement.description || "";
-
-    const organisateur = document.createElement("p");
-    organisateur.textContent =
-      "🌸 Organisé par " +
-      (evenement.createur_pseudo || "Membre du Refuge");
-
-    carte.append(titre, date, lieu, description, organisateur);
-    liste.appendChild(carte);
-  });
+async function refresh(){
+ const {data:{session},error}=await sb.auth.getSession();
+ if(error){say("Erreur de connexion : "+error.message);return}
+ currentUser=session?.user||null;$("connexion").hidden=!!currentUser;$("deconnexion").hidden=!currentUser;$("espace-evenements").hidden=!currentUser;
+ if(!currentUser){$("profil").textContent="";resetForm();return}
+ const m=currentUser.user_metadata||{};const pseudo=m.custom_claims?.global_name||m.full_name||m.name||m.user_name||"Membre du Refuge";
+ $("profil").textContent="Bienvenue "+pseudo+" ! 🌸";await loadEvents();
 }
-  async function verifierConnexion() {
-    const { data: { session }, error } =
-      await clientSupabase.auth.getSession();
-
-    if (error) {
-      message.textContent = "Erreur : " + error.message;
-      return;
-    }
-
-    if (session) {
-      const utilisateur = session.user;
- const pseudo =
-  utilisateur.user_metadata.custom_claims?.global_name ||
-  utilisateur.user_metadata.full_name ||
-  utilisateur.user_metadata.name ||
-  utilisateur.user_metadata.user_name ||
-  "Membre du Refuge";
-
-      profil.textContent = "Bienvenue " + pseudo + " ! 🌸";
-      bouton.hidden = true;
-      boutonDeconnexion.hidden = false;
-      document.getElementById("espace-evenements").hidden = false;
-      await afficherEvenements();
-    } else {
-  
-      profil.textContent = "";
-      bouton.hidden = false;
-      boutonDeconnexion.hidden = true;
-      document.getElementById("espace-evenements").hidden = true;
-    }
-  }
-
-  bouton.addEventListener("click", async () => {
-    message.textContent = "Connexion en cours…";
-
-    const { error } = await clientSupabase.auth.signInWithOAuth({
-      provider: "discord",
-      options: {
-        redirectTo: "https://naethalia.github.io/le-refuge/"
-      }
-    });
-
-    if (error) {
-      message.textContent = "Erreur : " + error.message;
-    }
-  });
-
-  boutonDeconnexion.addEventListener("click", async () => {
-    const { error } = await clientSupabase.auth.signOut();
-
-    if (error) {
-      message.textContent = "Erreur : " + error.message;
-      return;
-    }
-
-    message.textContent = "Tu es déconnectée.";
-    await verifierConnexion();
-  });
-document.getElementById("formulaire-evenement")
-  .addEventListener("submit", enregistrerEvenement);
-  verifierConnexion();
-</script>
-
-</body>
-</html>
+$("connexion").addEventListener("click",async()=>{say("Connexion en cours…");const {error}=await sb.auth.signInWithOAuth({provider:"discord",options:{redirectTo:"https://naethalia.github.io/le-refuge/"}});if(error)say("Connexion impossible : "+error.message)});
+$("deconnexion").addEventListener("click",async()=>{const {error}=await sb.auth.signOut();if(error){say("Déconnexion impossible : "+error.message);return}say("Tu es déconnecté(e).");await refresh()});
+$("cancel-edit").addEventListener("click",resetForm);
+$("formulaire-evenement").addEventListener("submit",async ev=>{
+ ev.preventDefault();if(!currentUser)return;
+ const payload={titre:$("titre-evenement").value.trim(),description:$("description-evenement").value.trim(),date_evenement:new Date($("date-evenement").value).toISOString(),lieu:$("lieu-evenement").value.trim()};
+ if(!payload.titre)return;
+ $("save-event").disabled=true;
+ let result;
+ if(editingId!==null)result=await sb.from("evenements").update(payload).eq("id",editingId);
+ else result=await sb.from("evenements").insert({...payload,createur_id:currentUser.id});
+ $("save-event").disabled=false;
+ if(result.error){$("form-message").textContent="Erreur : "+result.error.message;return}
+ say(editingId===null?"Ton événement a bien été créé ! 🌸":"Événement modifié ! 🌸");resetForm();await loadEvents();
+});
+refresh();
+</script></body></html>
