@@ -44,6 +44,30 @@
 <p id="profil"></p>
 <button id="deconnexion" hidden>Se déconnecter</button>
 <p id="message"></p>
+    <section id="espace-evenements" hidden>
+  <h2>🌸 Les événements du Refuge</h2>
+
+  <h3>Créer un événement</h3>
+
+  <form id="formulaire-evenement">
+    <label for="titre-evenement">Nom de l'événement</label>
+    <input id="titre-evenement" type="text" required>
+
+    <label for="description-evenement">Description</label>
+    <textarea id="description-evenement"></textarea>
+
+    <label for="date-evenement">Date et heure</label>
+    <input id="date-evenement" type="datetime-local" required>
+
+    <label for="lieu-evenement">Lieu</label>
+    <input id="lieu-evenement" type="text">
+
+    <button type="submit">Créer l'événement 🌸</button>
+  </form>
+
+  <h3>Les prochains événements</h3>
+  <div id="liste-evenements"></div>
+</section>
   </main>
 
 <script>
