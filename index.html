@@ -71,11 +71,12 @@
 
     if (session) {
       const utilisateur = session.user;
-      const pseudo =
-        utilisateur.user_metadata.full_name ||
-        utilisateur.user_metadata.name ||
-        utilisateur.user_metadata.user_name ||
-        "Membre du Refuge";
+ const pseudo =
+  utilisateur.user_metadata.custom_claims?.global_name ||
+  utilisateur.user_metadata.full_name ||
+  utilisateur.user_metadata.name ||
+  utilisateur.user_metadata.user_name ||
+  "Membre du Refuge";
 
       profil.textContent = "Bienvenue " + pseudo + " ! 🌸";
       bouton.hidden = true;
