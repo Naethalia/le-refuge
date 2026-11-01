@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le Refuge de Palia</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #f8d9ec, #d9c8f5, #c8e8e5);
+      color: #554267;
+    }
+    main {
+      background: rgba(255,255,255,.88);
+      padding: 40px;
+      border-radius: 24px;
+      text-align: center;
+      width: min(85%, 420px);
+      box-shadow: 0 8px 30px #70558a30;
+    }
+    h1 { color: #875a9e; }
+    button {
+      border: 0;
+      border-radius: 14px;
+      padding: 14px 24px;
+      background: #8060a8;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>🌸 Bienvenue au Refuge 🌸</h1>
+    <p>Ton petit espace communautaire dédié à Palia.</p>
+    <p>Retrouve les activités et les membres du Refuge.</p>
+    <button id="connexion">Se connecter avec Discord</button>
+    <p id="message"></p>
+  </main>
+
+  <script>
+    const SUPABASE_URL = "https://kflrkclmznluxahxttgl.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3";
+
+    const supabase = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+    document.getElementById("connexion").addEventListener("click", async () => {
+      document.getElementById("message").textContent = "Connexion en cours…";
+
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "discord",
+        options: {
+          redirectTo: window.location.origin
+        }
+      });
+
+      if (error) {
+        document.getElementById("message").textContent =
+          "Erreur de connexion : " + error.message;
+      }
+    });
+  </script>
+</body>
+</html>
