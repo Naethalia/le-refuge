@@ -83,7 +83,40 @@
     SUPABASE_URL,
     SUPABASE_KEY
   );
+async function enregistrerEvenement(event) {
+  event.preventDefault();
 
+  const { data: { user }, error: erreurConnexion } =
+    await clientSupabase.auth.getUser();
+
+  if (erreurConnexion || !user) {
+    alert("Tu dois être connecté avec Discord.");
+    return;
+  }
+
+  const titre = document.getElementById("titre-evenement").value.trim();
+  const description = document.getElementById("description-evenement").value.trim();
+  const date = document.getElementById("date-evenement").value;
+  const lieu = document.getElementById("lieu-evenement").value.trim();
+
+  const { error } = await clientSupabase
+    .from("evenements")
+    .insert({
+      titre: titre,
+      description: description,
+      date_evenement: new Date(date).toISOString(),
+      lieu: lieu,
+      createur_id: user.id
+    });
+
+  if (error) {
+    alert("Impossible de créer l'événement : " + error.message);
+    return;
+  }
+
+  alert("Ton événement a bien été créé ! 🌸");
+  document.getElementById("formulaire-evenement").reset();
+}
   async function verifierConnexion() {
     const { data: { session }, error } =
       await clientSupabase.auth.getSession();
@@ -140,8 +173,10 @@
     message.textContent = "Tu es déconnectée.";
     await verifierConnexion();
   });
-
+document.getElementById("formulaire-evenement")
+  .addEventListener("submit", enregistrerEvenement);
   verifierConnexion();
 </script>
+
 </body>
 </html>
