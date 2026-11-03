@@ -1,9 +1,9 @@
 <!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Le Refuge · Carnet des événements</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root{--ink:#653853;--plum:#743d79;--pink:#c36e99;--paper:#fff0d8;--wood:#73452f}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:radial-gradient(ellipse at 0% 20%,#ddafce,transparent 38%),radial-gradient(ellipse at 95% 70%,#a68ccf,transparent 45%),#c4a1bf;min-height:100vh}[hidden]{display:none!important}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #d971a8;outline-offset:3px}.hero{position:relative;min-height:205px;background:linear-gradient(180deg,#30204408,#61445c66),url('refuge_banniere_legere.webp') center 38%/cover no-repeat;display:flex;align-items:center;justify-content:center;padding:25px 16px 20px;box-shadow:0 7px 22px #51335145}.hero-title{text-align:center;background:#5c3455c9;border:2px solid #f0c8a2;border-radius:22px;padding:12px 35px;color:#fff0d5;text-shadow:0 2px 5px #442b38;box-shadow:0 8px 24px #2b183f55}.hero-title h1{font-size:clamp(34px,5vw,62px);font-style:italic;font-weight:normal;margin:0}.hero-title p{margin:4px 0;font-size:clamp(15px,2vw,21px);letter-spacing:.08em}.layout{max-width:1460px;margin:24px auto 0;padding:0 20px;display:grid;grid-template-columns:205px minmax(0,1fr);gap:24px}.sidebar{display:flex;flex-direction:column;gap:12px}.wood{border:3px solid #dfb284;border-radius:10px;background:linear-gradient(145deg,#a36c52,#704131);box-shadow:0 5px 0 #543329,0 8px 15px #4c314b4a;color:#fff8e9;font-size:17px;font-weight:bold;text-align:left;padding:15px 13px;min-height:56px;text-shadow:0 1px 3px #3b2830}.wood[aria-current="page"]{background:linear-gradient(140deg,#a85b9e,#763f83)}.account{background:#fff1e1e8;border:2px solid #d6a9a9;border-radius:14px;padding:13px;box-shadow:0 6px 20px #593a5b22;text-align:center}.account span{display:block;margin:8px 0;font-weight:bold}.account button,.primary,.small{border:1px solid #693b69;border-radius:11px;background:linear-gradient(#af70a9,#784484);color:white;padding:10px 14px;font-weight:bold;box-shadow:0 3px 0 #654069}.account button{width:100%;margin:4px 0}.account .secondary,.subtle{background:linear-gradient(#b88c9f,#93687b)}.status{font-size:14px;min-height:0;overflow-wrap:anywhere}.book{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:12px solid #85513d;border-radius:18px 25px 25px 18px;box-shadow:0 0 0 4px #d4a17b,0 15px 30px #57364f70;overflow:hidden;background:#f6dfbd;min-height:650px}.book:after{content:'';position:absolute;top:0;bottom:0;left:calc(50% - 6px);width:12px;background:linear-gradient(90deg,#b98e75,#fff3d9 45%,#c69b81);pointer-events:none;z-index:1}.page{min-width:0;padding:28px clamp(18px,2.7vw,38px) 30px;background:radial-gradient(ellipse at 50% 20%,#fffaf0 0%,#fff0d9 62%,#eed0ae 100%);position:relative}.page:first-child{box-shadow:inset -14px 0 24px #a9795a24}.page:last-child{box-shadow:inset 14px 0 24px #a9795a20}.page:before{content:'❧';position:absolute;right:20px;top:10px;color:#c58ca0;font-size:25px;opacity:.7}.page h2{margin:0;font-size:clamp(22px,2.2vw,31px);font-style:italic;color:#783d68}.rule{height:12px;border-bottom:2px solid #c8869e;position:relative;margin:0 0 18px}.rule:after{content:'✿';position:absolute;right:4px;bottom:-12px;background:#fff2dc;color:#be7195;padding:0 8px}.intro{font-size:14px;font-style:italic;color:#966d77;margin:0 0 14px}.event{border-bottom:1px solid #d5a8a2;padding:13px 0 17px;margin-bottom:12px;overflow-wrap:anywhere}.event h3{font-size:21px;margin:0 0 10px}.event p{margin:7px 0;line-height:1.4}.muted{color:#946d78;font-size:14px}.registration{margin-top:12px;border-top:1px dashed #d9a4b5;padding-top:12px}.inline{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.inline input{flex:1 1 145px;min-width:0}.small{font-size:13px;padding:8px 11px;margin:3px}.danger{background:linear-gradient(#c26c88,#a34b69)}.mascot{display:block;max-width:310px;width:80%;height:auto;margin:8px auto 0}.empty{font-style:italic;text-align:center;color:#946b80;padding:24px 4px}label{display:block;margin:14px 0 6px;font-weight:bold;font-size:15px}input,textarea{width:100%;padding:11px;border:1.5px solid #d6a6aa;border-radius:9px;background:#fffaf4;color:#5c3854;min-width:0;font-size:16px}textarea{min-height:120px;resize:vertical}.fields{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.full{grid-column:1/-1}.actions{margin-top:18px;text-align:center}.primary{font-size:16px;padding:13px 22px}.note{background:#fff9eccc;border:1px dashed #c88ca6;border-radius:12px;padding:17px;line-height:1.5;text-align:center}.footer{text-align:center;color:#fff8ec;text-shadow:0 1px 4px #67485e;padding:24px 15px;font-size:14px}#form-message{font-size:14px}#connexion-note{margin:15px 0}.page-inner{min-height:100%}@media(max-width:1060px){.layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.sidebar .account{grid-column:1/-1;display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}.account button{width:auto}.sidebar .status{grid-column:1/-1}.wood{text-align:center}}@media(max-width:720px){.hero{min-height:155px}.layout{margin:15px auto 0;padding:0 12px}.book{grid-template-columns:1fr;border-width:8px;min-height:0}.book:after{display:none}.page{padding:25px 20px 30px}.page+.page{border-top:8px solid #b98a70}.sidebar{gap:7px}.wood{font-size:13px;padding:10px 6px;min-height:52px}.fields{grid-template-columns:1fr}.hero-title{padding:10px 20px}.mascot{width:75%;max-width:260px}}@media(max-width:390px){.page{padding:20px 14px}.wood{font-size:12px}}
+:root{--ink:#653853;--plum:#743d79;--pink:#c36e99;--paper:#fff0d8;--wood:#73452f}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:radial-gradient(ellipse at 0% 20%,#ddafce,transparent 38%),radial-gradient(ellipse at 95% 70%,#a68ccf,transparent 45%),#c4a1bf;min-height:100vh}[hidden]{display:none!important}button,input,textarea,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #d971a8;outline-offset:3px}.hero{position:relative;min-height:205px;background:linear-gradient(180deg,#30204408,#61445c66),url('../refuge_banniere_legere.webp') center 38%/cover no-repeat;display:flex;align-items:center;justify-content:center;padding:25px 16px 20px;box-shadow:0 7px 22px #51335145}.hero-title{text-align:center;background:#5c3455c9;border:2px solid #f0c8a2;border-radius:22px;padding:12px 35px;color:#fff0d5;text-shadow:0 2px 5px #442b38;box-shadow:0 8px 24px #2b183f55}.hero-title h1{font-size:clamp(34px,5vw,62px);font-style:italic;font-weight:normal;margin:0}.hero-title p{margin:4px 0;font-size:clamp(15px,2vw,21px);letter-spacing:.08em}.layout{max-width:1460px;margin:24px auto 0;padding:0 20px;display:grid;grid-template-columns:205px minmax(0,1fr);gap:24px}.sidebar{display:flex;flex-direction:column;gap:12px}.wood{border:3px solid #dfb284;border-radius:10px;background:linear-gradient(145deg,#a36c52,#704131);box-shadow:0 5px 0 #543329,0 8px 15px #4c314b4a;color:#fff8e9;font-size:17px;font-weight:bold;text-align:left;padding:15px 13px;min-height:56px;text-shadow:0 1px 3px #3b2830}.wood[aria-current="page"]{background:linear-gradient(140deg,#a85b9e,#763f83)}.account{background:#fff1e1e8;border:2px solid #d6a9a9;border-radius:14px;padding:13px;box-shadow:0 6px 20px #593a5b22;text-align:center}.account span{display:block;margin:8px 0;font-weight:bold}.account button,.primary,.small{border:1px solid #693b69;border-radius:11px;background:linear-gradient(#af70a9,#784484);color:white;padding:10px 14px;font-weight:bold;box-shadow:0 3px 0 #654069}.account button{width:100%;margin:4px 0}.account .secondary,.subtle{background:linear-gradient(#b88c9f,#93687b)}.status{font-size:14px;min-height:0;overflow-wrap:anywhere}.book{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:12px solid #85513d;border-radius:18px 25px 25px 18px;box-shadow:0 0 0 4px #d4a17b,0 15px 30px #57364f70;overflow:hidden;background:#f6dfbd;min-height:650px}.book:after{content:'';position:absolute;top:0;bottom:0;left:calc(50% - 6px);width:12px;background:linear-gradient(90deg,#b98e75,#fff3d9 45%,#c69b81);pointer-events:none;z-index:1}.page{min-width:0;padding:28px clamp(18px,2.7vw,38px) 30px;background:radial-gradient(ellipse at 50% 20%,#fffaf0 0%,#fff0d9 62%,#eed0ae 100%);position:relative}.page:first-child{box-shadow:inset -14px 0 24px #a9795a24}.page:last-child{box-shadow:inset 14px 0 24px #a9795a20}.page:before{content:'❧';position:absolute;right:20px;top:10px;color:#c58ca0;font-size:25px;opacity:.7}.page h2{margin:0;font-size:clamp(22px,2.2vw,31px);font-style:italic;color:#783d68}.rule{height:12px;border-bottom:2px solid #c8869e;position:relative;margin:0 0 18px}.rule:after{content:'✿';position:absolute;right:4px;bottom:-12px;background:#fff2dc;color:#be7195;padding:0 8px}.intro{font-size:14px;font-style:italic;color:#966d77;margin:0 0 14px}.event{border-bottom:1px solid #d5a8a2;padding:13px 0 17px;margin-bottom:12px;overflow-wrap:anywhere}.event h3{font-size:21px;margin:0 0 10px}.event p{margin:7px 0;line-height:1.4}.muted{color:#946d78;font-size:14px}.registration{margin-top:12px;border-top:1px dashed #d9a4b5;padding-top:12px}.inline{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.inline input{flex:1 1 145px;min-width:0}.small{font-size:13px;padding:8px 11px;margin:3px}.danger{background:linear-gradient(#c26c88,#a34b69)}.mascot{display:block;max-width:310px;width:80%;height:auto;margin:8px auto 0}.empty{font-style:italic;text-align:center;color:#946b80;padding:24px 4px}label{display:block;margin:14px 0 6px;font-weight:bold;font-size:15px}input,textarea,select{width:100%;padding:11px;border:1.5px solid #d6a6aa;border-radius:9px;background:#fffaf4;color:#5c3854;min-width:0;font-size:16px}textarea{min-height:120px;resize:vertical}.fields{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.full{grid-column:1/-1}.actions{margin-top:18px;text-align:center}.primary{font-size:16px;padding:13px 22px}.note{background:#fff9eccc;border:1px dashed #c88ca6;border-radius:12px;padding:17px;line-height:1.5;text-align:center}.footer{text-align:center;color:#fff8ec;text-shadow:0 1px 4px #67485e;padding:24px 15px;font-size:14px}#form-message{font-size:14px}#connexion-note{margin:15px 0}.page-inner{min-height:100%}@media(max-width:1060px){.layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.sidebar .account{grid-column:1/-1;display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}.account button{width:auto}.sidebar .status{grid-column:1/-1}.wood{text-align:center}}@media(max-width:720px){.hero{min-height:155px}.layout{margin:15px auto 0;padding:0 12px}.book{grid-template-columns:1fr;border-width:8px;min-height:0}.book:after{display:none}.page{padding:25px 20px 30px}.page+.page{border-top:8px solid #b98a70}.sidebar{gap:7px}.wood{font-size:13px;padding:10px 6px;min-height:52px}.fields{grid-template-columns:1fr}.hero-title{padding:10px 20px}.mascot{width:75%;max-width:260px}}@media(max-width:390px){.page{padding:20px 14px}.wood{font-size:12px}}
 
 /* Bannière originale visible, sans panneau de titre superposé */
-.hero{min-height:clamp(160px,18vw,270px);background-image:url('refuge_banniere_legere.webp');background-position:center 43%;background-size:cover;box-shadow:none}
+.hero{min-height:clamp(160px,18vw,270px);background-image:url('../refuge_banniere_legere.webp');background-position:center 43%;background-size:cover;box-shadow:none}
 /* Panneaux en bois sculpté avec relief et clous décoratifs */
 .wood{position:relative;isolation:isolate;border:4px solid #c28b60;border-radius:8px 12px 10px 7px;background:repeating-linear-gradient(0deg,transparent 0 17px,#46271d18 18px 20px),linear-gradient(165deg,#b17a50 0%,#8d533b 46%,#653926 100%);box-shadow:inset 0 2px 1px #f2bd8c,inset 0 -5px 7px #46241775,0 5px 0 #4e3028,0 9px 13px #422c3870;text-shadow:0 2px 2px #3c1f1d;letter-spacing:.01em;padding:17px 18px 17px 25px;transform:rotate(-.6deg);transition:filter .15s,transform .15s}
 .wood:nth-child(2){transform:rotate(.6deg)}.wood:nth-child(3){transform:rotate(-.35deg)}
@@ -33,73 +33,137 @@
 @media(max-width:720px){
  .page:first-child,.page:last-child{box-shadow:inset 0 0 25px #8b552b25,inset 0 12px 17px #a86a3022,inset 0 -14px 20px #8e5a3025}
 }
-</style></head><body><header class="hero" aria-label="Le Refuge — Espace Événements"></header><div class="layout"><aside class="sidebar"><button class="wood" id="nav-evenements" aria-current="page">📅 Événements</button><button class="wood" id="nav-mes-evenements">🌸 Mes événements</button><button class="wood" id="nav-aide">❔ Aide</button><div id="account" class="account"><button id="connexion">Connexion Discord</button><span id="profil"></span><button id="deconnexion" class="secondary" hidden>Se déconnecter</button></div><p id="message" class="status" role="status"></p></aside><main class="book" id="espace-evenements"><section class="page"><h2>📅 Les prochains événements</h2><div class="rule"></div><p class="intro">Nos jolis rendez-vous, page après page…</p><div id="connexion-note" class="note">Connecte-toi avec Discord pour découvrir les événements et participer à la vie du Refuge. 🌸</div><div id="contenu-prive" hidden><div id="liste-evenements" aria-live="polite"></div></div><img class="mascot" src="mascotte_originale_refuge.webp" alt="Notre petite mascotte violette endormie" loading="lazy" width="410" height="240"></section><section class="page"><h2 id="form-title">🪶 Créer un événement</h2><div class="rule"></div><p class="intro">Écrivons ensemble de nouveaux souvenirs…</p><form id="formulaire-evenement"><div class="fields"><div class="full"><label for="titre-evenement">Titre de l'événement *</label><input id="titre-evenement" maxlength="120" placeholder="Ex. : Soirée récolte à Kilima" required></div><div><label for="date-evenement">Date et heure *</label><input id="date-evenement" type="datetime-local" required></div><div><label for="lieu-evenement">Lieu</label><input id="lieu-evenement" maxlength="200" placeholder="Ex. : Kilima"></div><div class="full"><label for="description-evenement">Description</label><textarea id="description-evenement" maxlength="3000" placeholder="Décris ton événement…"></textarea></div></div><div class="actions"><button id="save-event" class="primary" type="submit">🌸 Créer l'événement</button><button id="cancel-edit" type="button" class="small subtle" hidden>Annuler la modification</button></div></form><p id="form-message" role="status"></p></section></main></div><footer class="footer">✿ Le Refuge — De jolis moments à partager ✿</footer><script>
-const SUPABASE_URL="https://kflrkclmznluxahxttgl.supabase.co";
-const SUPABASE_KEY="sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3";
+.cuisine-join{display:inline-block;text-decoration:none;background:linear-gradient(#af70a9,#784484);color:white;border-radius:11px;margin-top:10px;border:1px solid #693b69;box-shadow:0 3px 0 #654069;font-weight:bold}</style></head><body><header class="hero" aria-label="Le Refuge — Espace Événements"></header><div class="layout"><aside class="sidebar"><button class="wood" id="nav-evenements" aria-current="page">📅 Événements</button><button class="wood" id="nav-mes-evenements">🌸 Mes événements</button><button class="wood" id="nav-aide">❔ Aide</button><div id="account" class="account"><button id="connexion">Connexion Discord</button><span id="profil"></span><button id="deconnexion" class="secondary" hidden>Se déconnecter</button></div><p id="message" class="status" role="status"></p></aside><main class="book" id="espace-evenements"><section class="page"><h2 id="events-title">📅 Les prochains événements</h2><div class="rule"></div><p class="intro" id="events-intro">Les soirées cuisine du Refuge, page après page…</p><div id="connexion-note" class="note">Connecte-toi avec Discord pour organiser une soirée cuisine et retrouver les rendez-vous du Refuge. 🌸</div><div id="contenu-prive" hidden><div id="liste-evenements" aria-live="polite"></div></div><img class="mascot" src="../mascotte_originale_refuge.webp" alt="Notre petite mascotte violette endormie" loading="lazy" width="410" height="240"></section><section class="page"><h2 id="form-title">🪶 Organiser une soirée cuisine</h2><div class="rule"></div><p class="intro">Les autres types d’événements seront ajoutés ensuite…</p><form id="formulaire-evenement"><div class="fields"><div class="full"><label for="recette">🍲 Recette *</label><select id="recette" required><option>Sashimi</option><option>Poké Bowl</option><option>Gâteau de fête</option><option>Hamburger de haricots</option><option>Chili végétarien</option><option>Bahari de Muujin</option></select></div><div><label for="date-evenement">📅 Date et heure *</label><input id="date-evenement" type="datetime-local" required></div><div><label for="quantite">🍽️ Nombre de préparations *</label><input id="quantite" type="number" min="1" step="1" value="1" required></div><div class="full"><label for="description-evenement">📝 Petit mot (facultatif)</label><textarea id="description-evenement" maxlength="1000" placeholder="Une soirée gourmande entre amis…"></textarea></div></div><div class="actions"><button id="save-event" class="primary" type="submit">🌸 Créer ma soirée cuisine</button><button id="cancel-edit" class="small subtle" type="button" hidden>Annuler la modification</button></div></form><p id="form-message" role="status"></p></section></main></div><footer class="footer">✿ Le Refuge — De jolis moments à partager ✿</footer><script>
+const SUPABASE_URL='https://kflrkclmznluxahxttgl.supabase.co';
+const SUPABASE_KEY='sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3';
 const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 const $=id=>document.getElementById(id);
-let currentUser=null,events=[],editingId=null;
-const say=(s)=>{$("message").textContent=s};
-const formatDate=d=>new Date(d).toLocaleString("fr-FR",{dateStyle:"full",timeStyle:"short"});
-function line(parent,content,cls){const p=document.createElement("p");p.textContent=content;if(cls)p.className=cls;parent.append(p);return p}
-function btn(label,fn,cls="small"){const b=document.createElement("button");b.type="button";b.textContent=label;b.className=cls;b.addEventListener("click",fn);return b}
-function resetForm(){editingId=null;$("formulaire-evenement").reset();$("form-title").textContent="🪶 Créer un événement";$("save-event").textContent="🌸 Créer l'événement";$("cancel-edit").hidden=true;$("form-message").textContent=""}
-function editEvent(e){editingId=e.id;$("titre-evenement").value=e.titre;$("description-evenement").value=e.description||"";const dt=new Date(e.date_evenement);const local=new Date(dt.getTime()-dt.getTimezoneOffset()*60000).toISOString().slice(0,16);$("date-evenement").value=local;$("lieu-evenement").value=e.lieu||"";$("form-title").textContent="🪶 Modifier l'événement";$("save-event").textContent="Enregistrer les modifications";$("cancel-edit").hidden=false;$("formulaire-evenement").scrollIntoView({behavior:"smooth",block:"center"})}
-async function deleteEvent(e){if(!confirm("Supprimer définitivement « "+e.titre+" » ?"))return;const {error}=await sb.from("evenements").delete().eq("id",e.id);if(error){say("Suppression impossible : "+error.message);return}say("Événement supprimé.");await loadEvents()}
-async function signUp(e,poste){const {error}=await sb.from("inscriptions").insert({evenement_id:e.id,membre_id:currentUser.id,poste});if(error){say(error.code==="23505"?"Tu es déjà inscrit(e) à ce poste.":"Inscription impossible : "+error.message);return}say("Inscription enregistrée ! 🌸");await loadEvents()}
-async function cancelSignUp(reg){const {error}=await sb.from("inscriptions").delete().eq("id",reg.id).eq("membre_id",currentUser.id);if(error){say("Annulation impossible : "+error.message);return}say("Inscription annulée.");await loadEvents()}
+let currentUser=null,allEvenings=[],ownOnly=false,editingId=null;
+const say=s=>{$("message").textContent=s};
+const formatDate=d=>new Date(d).toLocaleString('fr-FR',{dateStyle:'full',timeStyle:'short'});
+function addLine(parent,tag,value,cls){const el=document.createElement(tag);el.textContent=value;if(cls)el.className=cls;parent.append(el);return el;}
+function setView(own){
+ ownOnly=own;
+ $('nav-evenements').toggleAttribute('aria-current',!own);
+ $('nav-mes-evenements').toggleAttribute('aria-current',own);
+ $('events-title').textContent=own?'🌸 Mes événements':'📅 Les prochains événements';
+ $('events-intro').textContent=own?'Les soirées cuisine que tu as organisées.':'Les soirées cuisine du Refuge, page après page…';
+}
+function cancelEdit(){
+ editingId=null;$('formulaire-evenement').reset();
+ $('form-title').textContent='🪶 Organiser une soirée cuisine';
+ $('save-event').textContent='🌸 Créer ma soirée cuisine';
+ $('cancel-edit').hidden=true;
+ $('form-message').textContent='';
+}
+$('cancel-edit').addEventListener('click',cancelEdit);
+function localDateTime(value){
+ const d=new Date(value),pad=n=>String(n).padStart(2,'0');
+ return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
 async function loadEvents(){
- const list=$("liste-evenements");list.textContent="Chargement des événements…";
- const [{data,error},{data:regs,error:regError}]=await Promise.all([
-  sb.from("evenements").select("id,titre,description,date_evenement,lieu,createur_id,createur_pseudo").order("date_evenement",{ascending:true}),
-  sb.from("inscriptions").select("id,evenement_id,membre_id,poste")
- ]);
- if(error){list.textContent="Impossible de charger les événements : "+error.message;return}
- events=(data||[]).filter(e=>!ownOnly||e.createur_id===currentUser.id);list.replaceChildren();if(!events.length){line(list,"Aucun événement pour le moment. 🌸");return}
- if(regError)line(list,"Les inscriptions ne peuvent pas être affichées pour le moment.","muted");
- for(const e of events){
-  const card=document.createElement("article");card.className="event";const h=document.createElement("h3");h.textContent="✿ "+e.titre;card.append(h);
-  line(card,"📅 "+formatDate(e.date_evenement));line(card,"📍 "+(e.lieu||"Lieu non précisé"));
-  if(e.description)line(card,e.description);
-  line(card,"🌸 Organisé par "+(e.createur_pseudo||"Membre du Refuge"),"muted");
-  if(e.createur_id===currentUser.id){card.append(btn("✏️ Modifier",()=>editEvent(e)),btn("🗑️ Supprimer",()=>deleteEvent(e),"small danger"))}
-  const box=document.createElement("div");box.className="registration";const title=document.createElement("strong");title.textContent="Participations";box.append(title);
-  const these=(regs||[]).filter(r=>r.evenement_id===e.id);
-  if(these.length){const counts={};for(const r of these)counts[r.poste]=(counts[r.poste]||0)+1;line(box,Object.entries(counts).map(([p,n])=>p+" ("+n+")").join(" · "),"muted")}
-  else line(box,"Pas encore d'inscription.","muted");
-  const own=these.filter(r=>r.membre_id===currentUser.id);
-  for(const r of own){const row=document.createElement("div");row.className="inline";line(row,"Ton poste : "+r.poste,"muted");row.append(btn("Annuler",()=>cancelSignUp(r),"small danger"));box.append(row)}
-  const form=document.createElement("form");form.className="inline";const input=document.createElement("input");input.required=true;input.maxLength=80;input.placeholder="Ton poste / rôle";input.setAttribute("aria-label","Poste ou rôle pour "+e.titre);
-  const submit=document.createElement("button");submit.type="submit";submit.textContent="🌷 M'inscrire";submit.className="small";form.append(input,submit);
-  form.addEventListener("submit",async ev=>{ev.preventDefault();const poste=input.value.trim();if(poste)await signUp(e,poste)});box.append(form);card.append(box);list.append(card);
+ const list=$("liste-evenements");list.textContent='Chargement des soirées…';
+ const {data,error}=await sb.from('evenements')
+  .select('id,titre,recette,date_evenement,nombre_preparations,description,statut,createur_id,createur_pseudo')
+  .order('date_evenement',{ascending:true}).limit(100);
+ if(error){list.textContent='Impossible de charger les soirées : '+error.message;return;}
+ allEvenings=(data||[]).filter(e=>e.recette && (e.statut===null||e.statut==='ouverte'));
+ const entries=ownOnly?allEvenings.filter(e=>e.createur_id===currentUser?.id):allEvenings;
+ list.replaceChildren();
+ if(!entries.length){addLine(list,'p',ownOnly?'Tu n’as pas encore organisé de soirée cuisine. 🌸':'Aucune soirée cuisine ouverte pour le moment. 🌸','empty');return;}
+ for(const e of entries){
+  const card=document.createElement('article');card.className='event';
+  addLine(card,'h3','✿ '+(e.titre||'Soirée '+e.recette));
+  addLine(card,'p','🍲 Recette : '+e.recette);
+  addLine(card,'p','📅 '+formatDate(e.date_evenement));
+  addLine(card,'p','🍽️ '+e.nombre_preparations+' préparation(s)');
+  if(e.description)addLine(card,'p',e.description);
+  if(ownOnly && e.createur_id===currentUser?.id){
+   const actions=document.createElement('div');actions.className='inline';
+   const edit=document.createElement('button');edit.type='button';edit.className='small';edit.textContent='✏️ Modifier';
+   edit.addEventListener('click',()=>{
+    editingId=e.id;$('recette').value=e.recette;
+    $('date-evenement').value=localDateTime(e.date_evenement);
+    $('quantite').value=e.nombre_preparations||1;
+    $('description-evenement').value=e.description||'';
+    $('form-title').textContent='✏️ Modifier ma soirée cuisine';
+    $('save-event').textContent='💜 Enregistrer les modifications';
+    $('cancel-edit').hidden=false;$('form-message').textContent='';
+    $('formulaire-evenement').scrollIntoView({behavior:'smooth',block:'center'});
+   });
+   const del=document.createElement('button');del.type='button';del.className='small danger';del.textContent='🗑️ Supprimer';
+   del.addEventListener('click',async()=>{
+    if(!confirm('Supprimer définitivement cette soirée et ses inscriptions ?'))return;
+    del.disabled=true;
+    const {data,error}=await sb.from('evenements').delete().eq('id',e.id).eq('createur_id',currentUser.id).select('id');
+    if(error||!data?.length){say('Suppression impossible : '+(error?.message||'Autorisation refusée.'));del.disabled=false;return;}
+    if(editingId===e.id)cancelEdit();say('Soirée supprimée.');await loadEvents();
+   });
+   actions.append(edit,del);card.append(actions);
+  }else{
+   addLine(card,'p','Pour choisir un poste, ouvre cette recette dans la Cuisine Enchantée (connexion à venir).','muted');
+  }
+  const join=document.createElement('a');join.className='small cuisine-join';join.textContent='🍳 Rejoindre la cuisine';join.href='cuisine.html?recette='+encodeURIComponent(e.recette)+'&soiree='+encodeURIComponent(e.id);card.append(join);
+  list.append(card);
  }
 }
+
 async function refresh(){
  const {data:{session},error}=await sb.auth.getSession();
- if(error){say("Erreur de connexion : "+error.message);return}
- currentUser=session?.user||null;$("connexion").hidden=!!currentUser;$("deconnexion").hidden=!currentUser;$("espace-evenements").hidden=false;$("connexion-note").hidden=!!currentUser;$("contenu-prive").hidden=!currentUser;$("formulaire-evenement").querySelectorAll("input,textarea,button").forEach(el=>el.disabled=!currentUser);
- if(!currentUser){$("profil").textContent="";resetForm();return}
- const m=currentUser.user_metadata||{};const pseudo=m.custom_claims?.global_name||m.full_name||m.name||m.user_name||"Membre du Refuge";
- $("profil").textContent="Bienvenue "+pseudo+" ! 🌸";await loadEvents();
+ if(error){say('Erreur de connexion : '+error.message);return;}
+ currentUser=session?.user||null;
+ $('connexion').hidden=!!currentUser;$('deconnexion').hidden=!currentUser;
+ $('connexion-note').hidden=!!currentUser;$('contenu-prive').hidden=!currentUser;
+ $('formulaire-evenement').querySelectorAll('input,select,textarea,button').forEach(el=>el.disabled=!currentUser);
+ if(!currentUser){$('profil').textContent='';return;}
+ const m=currentUser.user_metadata||{};
+ const pseudo=m.custom_claims?.global_name||m.full_name||m.name||m.user_name||'Membre du Refuge';
+ $('profil').textContent='Bienvenue '+pseudo+' ! 🌸';
+ await loadEvents();
 }
-$("connexion").addEventListener("click",async()=>{say("Connexion en cours…");const {error}=await sb.auth.signInWithOAuth({provider:"discord",options:{redirectTo:"https://naethalia.github.io/le-refuge/"}});if(error)say("Connexion impossible : "+error.message)});
-$("deconnexion").addEventListener("click",async()=>{const {error}=await sb.auth.signOut();if(error){say("Déconnexion impossible : "+error.message);return}say("Tu es déconnecté(e).");await refresh()});
-$("cancel-edit").addEventListener("click",resetForm);
-$("formulaire-evenement").addEventListener("submit",async ev=>{
- ev.preventDefault();if(!currentUser)return;
- const payload={titre:$("titre-evenement").value.trim(),description:$("description-evenement").value.trim(),date_evenement:new Date($("date-evenement").value).toISOString(),lieu:$("lieu-evenement").value.trim()};
- if(!payload.titre)return;
- $("save-event").disabled=true;
- let result;
- if(editingId!==null)result=await sb.from("evenements").update(payload).eq("id",editingId);
- else result=await sb.from("evenements").insert({...payload,createur_id:currentUser.id});
- $("save-event").disabled=false;
- if(result.error){$("form-message").textContent="Erreur : "+result.error.message;return}
- say(editingId===null?"Ton événement a bien été créé ! 🌸":"Événement modifié ! 🌸");resetForm();await loadEvents();
+$('connexion').addEventListener('click',async()=>{
+ say('Connexion en cours…');
+ const {error}=await sb.auth.signInWithOAuth({provider:'discord',options:{scopes:'identify email guilds.members.read',redirectTo:window.location.origin+window.location.pathname}});
+ if(error)say('Connexion impossible : '+error.message);
 });
-let ownOnly=false;
-$("nav-evenements").addEventListener("click",async()=>{ownOnly=false;$("nav-evenements").setAttribute("aria-current","page");$("nav-mes-evenements").removeAttribute("aria-current");if(currentUser)await loadEvents();$("espace-evenements").scrollIntoView({behavior:"smooth"})});
-$("nav-mes-evenements").addEventListener("click",async()=>{ownOnly=true;$("nav-mes-evenements").setAttribute("aria-current","page");$("nav-evenements").removeAttribute("aria-current");if(currentUser)await loadEvents();$("espace-evenements").scrollIntoView({behavior:"smooth"})});
-$("nav-aide").addEventListener("click",()=>alert("Connecte-toi avec Discord, puis crée un événement dans le carnet. Pour participer à un événement, indique ton poste ou ton rôle et clique sur M'inscrire."));
+$('deconnexion').addEventListener('click',async()=>{const {error}=await sb.auth.signOut();if(error){say('Déconnexion impossible : '+error.message);return;}say('Tu es déconnecté(e).');await refresh();});
+$('formulaire-evenement').addEventListener('submit',async ev=>{
+ ev.preventDefault();if(!currentUser)return;
+ const date=new Date($('date-evenement').value),quantite=Number($('quantite').value);
+ if(!Number.isFinite(date.getTime())||date.getTime()<=Date.now()||!Number.isSafeInteger(quantite)||quantite<1){$('form-message').textContent='Choisis une date future et un nombre de préparations valide.';return;}
+ const button=$('save-event');button.disabled=true;$('form-message').textContent='Création en cours…';
+ try{
+  const recette=$('recette').value;
+  const metadata=currentUser.user_metadata||{};
+  const pseudo=metadata.custom_claims?.global_name||metadata.full_name||metadata.name||metadata.user_name||'Membre du Refuge';
+  const payload={
+   titre:'Soirée '+recette,
+   recette:recette,
+   nombre_preparations:quantite,
+   date_evenement:date.toISOString(),
+   description:$('description-evenement').value.trim()||null,
+   statut:'ouverte'
+  };
+  if(editingId!==null){
+   const {data,error}=await sb.from('evenements').update(payload)
+    .eq('id',editingId).eq('createur_id',currentUser.id).select('id');
+   if(error)throw error;
+   if(!data?.length)throw new Error('Modification non autorisée ou soirée introuvable.');
+   cancelEdit();$('form-message').textContent='💜 Ta soirée a été modifiée !';
+  }else{
+   const {data,error}=await sb.from('evenements').insert({
+    ...payload,createur_id:currentUser.id,createur_pseudo:pseudo
+   }).select('id').single();
+   if(error)throw error;
+   $('formulaire-evenement').reset();
+   $('form-message').textContent='🎉 Ta soirée cuisine a été créée ! Référence : '+data.id;
+  }
+  await loadEvents();
+ }catch(error){$('form-message').textContent='Création impossible : '+(error.message||error);}
+ finally{button.disabled=false;}
+});
+$('nav-evenements').addEventListener('click',async()=>{setView(false);if(currentUser)await loadEvents();});
+$('nav-mes-evenements').addEventListener('click',async()=>{setView(true);if(currentUser)await loadEvents();});
+$('nav-aide').addEventListener('click',()=>alert('Connecte-toi avec Discord, choisis une recette, une date et le nombre de préparations pour organiser une soirée. Les inscriptions aux postes se font dans la Cuisine Enchantée.'));
 refresh();
 </script></body></html>
