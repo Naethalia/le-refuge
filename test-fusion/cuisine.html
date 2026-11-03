@@ -155,6 +155,14 @@ button:hover{background:linear-gradient(#bd82b7,#85518e)}
 .page h2 {color:#744a77;}
 .book-shell {max-width:900px;}
 #cuisine-status{max-width:850px;margin:12px auto;text-align:center;color:#653853;background:#fff0dce8;border-radius:12px;padding:8px 16px}#cuisine-status:empty{display:none}
+
+/* Bannière décorative séparée du titre : aucune superposition de textes. */
+.site-header{display:block;min-height:0;padding:0;background:none;text-align:center}
+.site-header::before{content:"";display:block;height:100px;background-image:url('https://naethalia.github.io/le-refuge/refuge_banniere_legere.webp');background-repeat:no-repeat;background-size:100% auto;background-position:center top;border-bottom:5px solid #85513d}
+.site-header h1{display:block;width:fit-content;max-width:calc(100% - 24px);margin:18px auto 8px;padding:12px 24px;color:#fff0d5;background:#5c3455;border:2px solid #f0c8a2;border-radius:18px;font:italic clamp(24px,4vw,43px) Georgia,serif;line-height:1.2;text-shadow:0 2px 5px #442b38}
+.site-header p{display:none}
+#cuisine-status{max-width:900px;margin:0 auto;padding:0 12px;text-align:center;color:#704d70}
+@media(max-width:760px){.site-header::before{height:72px;background-size:auto 280px;background-position:center top}.site-header h1{font-size:clamp(23px,6vw,33px);margin-top:14px;padding:11px 15px}}
 </style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script></head><body><a class="top-return" href="https://naethalia.github.io/le-refuge/test-fusion/index.html">← Retour au Carnet des événements</a><header class="site-header"><h1>📖 La Cuisine Enchantée du Refuge 🌸</h1><p>Un soupçon de magie, beaucoup de gourmandise !</p></header><p id="cuisine-status" role="status">Chargement des soirées…</p><main class="book-shell">
 <div class="book" aria-label="Livre de recettes du Refuge">
 <section class="page" data-page="0" aria-label="Page 1 : Bienvenue">
