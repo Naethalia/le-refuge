@@ -33,15 +33,34 @@
 @media(max-width:720px){
  .page:first-child,.page:last-child{box-shadow:inset 0 0 25px #8b552b25,inset 0 12px 17px #a86a3022,inset 0 -14px 20px #8e5a3025}
 }
-</style></head><body><header class="hero" aria-label="Le Refuge — Espace Événements"></header><div class="layout"><aside class="sidebar"><button class="wood" id="nav-evenements" aria-current="page">📅 Événements</button><button class="wood" id="nav-mes-evenements">🌸 Mes événements</button><button class="wood" id="nav-aide">❔ Aide</button><div id="account" class="account"><button id="connexion">Connexion Discord</button><span id="profil"></span><button id="deconnexion" class="secondary" hidden>Se déconnecter</button></div><p id="message" class="status" role="status"></p></aside><main class="book" id="espace-evenements"><section class="page"><h2>📅 Les prochains événements</h2><div class="rule"></div><p class="intro">Les soirées cuisine du Refuge, page après page…</p><div id="connexion-note" class="note">Connecte-toi avec Discord pour organiser une soirée cuisine et retrouver les rendez-vous du Refuge. 🌸</div><div id="contenu-prive" hidden><div id="liste-evenements" aria-live="polite"></div></div><img class="mascot" src="../mascotte_originale_refuge.webp" alt="Notre petite mascotte violette endormie" loading="lazy" width="410" height="240"></section><section class="page"><h2 id="form-title">🪶 Organiser une soirée cuisine</h2><div class="rule"></div><p class="intro">Les autres types d’événements seront ajoutés ensuite…</p><form id="formulaire-evenement"><div class="fields"><div class="full"><label for="recette">🍲 Recette *</label><select id="recette" required><option>Sashimi</option><option>Poké Bowl</option><option>Gâteau de fête</option><option>Hamburger de haricots</option><option>Chili végétarien</option><option>Bahari de Muujin</option></select></div><div><label for="date-evenement">📅 Date et heure *</label><input id="date-evenement" type="datetime-local" required></div><div><label for="quantite">🍽️ Nombre de préparations *</label><input id="quantite" type="number" min="1" step="1" value="1" required></div><div class="full"><label for="description-evenement">📝 Petit mot (facultatif)</label><textarea id="description-evenement" maxlength="1000" placeholder="Une soirée gourmande entre amis…"></textarea></div></div><div class="actions"><button id="save-event" class="primary" type="submit">🌸 Créer ma soirée cuisine</button></div></form><p id="form-message" role="status"></p></section></main></div><footer class="footer">✿ Le Refuge — De jolis moments à partager ✿</footer><script>
+</style></head><body><header class="hero" aria-label="Le Refuge — Espace Événements"></header><div class="layout"><aside class="sidebar"><button class="wood" id="nav-evenements" aria-current="page">📅 Événements</button><button class="wood" id="nav-mes-evenements">🌸 Mes événements</button><button class="wood" id="nav-aide">❔ Aide</button><div id="account" class="account"><button id="connexion">Connexion Discord</button><span id="profil"></span><button id="deconnexion" class="secondary" hidden>Se déconnecter</button></div><p id="message" class="status" role="status"></p></aside><main class="book" id="espace-evenements"><section class="page"><h2 id="events-title">📅 Les prochains événements</h2><div class="rule"></div><p class="intro" id="events-intro">Les soirées cuisine du Refuge, page après page…</p><div id="connexion-note" class="note">Connecte-toi avec Discord pour organiser une soirée cuisine et retrouver les rendez-vous du Refuge. 🌸</div><div id="contenu-prive" hidden><div id="liste-evenements" aria-live="polite"></div></div><img class="mascot" src="../mascotte_originale_refuge.webp" alt="Notre petite mascotte violette endormie" loading="lazy" width="410" height="240"></section><section class="page"><h2 id="form-title">🪶 Organiser une soirée cuisine</h2><div class="rule"></div><p class="intro">Les autres types d’événements seront ajoutés ensuite…</p><form id="formulaire-evenement"><div class="fields"><div class="full"><label for="recette">🍲 Recette *</label><select id="recette" required><option>Sashimi</option><option>Poké Bowl</option><option>Gâteau de fête</option><option>Hamburger de haricots</option><option>Chili végétarien</option><option>Bahari de Muujin</option></select></div><div><label for="date-evenement">📅 Date et heure *</label><input id="date-evenement" type="datetime-local" required></div><div><label for="quantite">🍽️ Nombre de préparations *</label><input id="quantite" type="number" min="1" step="1" value="1" required></div><div class="full"><label for="description-evenement">📝 Petit mot (facultatif)</label><textarea id="description-evenement" maxlength="1000" placeholder="Une soirée gourmande entre amis…"></textarea></div></div><div class="actions"><button id="save-event" class="primary" type="submit">🌸 Créer ma soirée cuisine</button><button id="cancel-edit" class="small subtle" type="button" hidden>Annuler la modification</button></div></form><p id="form-message" role="status"></p></section></main></div><footer class="footer">✿ Le Refuge — De jolis moments à partager ✿</footer><script>
 const SUPABASE_URL='https://kflrkclmznluxahxttgl.supabase.co';
 const SUPABASE_KEY='sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3';
 const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 const $=id=>document.getElementById(id);
-let currentUser=null,allEvenings=[],ownOnly=false;
+let currentUser=null,allEvenings=[],ownOnly=false,editingId=null;
 const say=s=>{$("message").textContent=s};
 const formatDate=d=>new Date(d).toLocaleString('fr-FR',{dateStyle:'full',timeStyle:'short'});
 function addLine(parent,tag,value,cls){const el=document.createElement(tag);el.textContent=value;if(cls)el.className=cls;parent.append(el);return el;}
+function setView(own){
+ ownOnly=own;
+ $('nav-evenements').toggleAttribute('aria-current',!own);
+ $('nav-mes-evenements').toggleAttribute('aria-current',own);
+ $('events-title').textContent=own?'🌸 Mes événements':'📅 Les prochains événements';
+ $('events-intro').textContent=own?'Les soirées cuisine que tu as organisées.':'Les soirées cuisine du Refuge, page après page…';
+}
+function cancelEdit(){
+ editingId=null;$('formulaire-evenement').reset();
+ $('form-title').textContent='🪶 Organiser une soirée cuisine';
+ $('save-event').textContent='🌸 Créer ma soirée cuisine';
+ $('cancel-edit').hidden=true;
+ $('form-message').textContent='';
+}
+$('cancel-edit').addEventListener('click',cancelEdit);
+function localDateTime(value){
+ const d=new Date(value),pad=n=>String(n).padStart(2,'0');
+ return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
 async function loadEvents(){
  const list=$("liste-evenements");list.textContent='Chargement des soirées…';
  const {data,error}=await sb.from('evenements')
@@ -59,7 +78,31 @@ async function loadEvents(){
   addLine(card,'p','📅 '+formatDate(e.date_evenement));
   addLine(card,'p','🍽️ '+e.nombre_preparations+' préparation(s)');
   if(e.description)addLine(card,'p',e.description);
-  addLine(card,'p','Pour choisir un poste, ouvre cette recette dans la Cuisine Enchantée (connexion à venir).','muted');
+  if(ownOnly && e.createur_id===currentUser?.id){
+   const actions=document.createElement('div');actions.className='inline';
+   const edit=document.createElement('button');edit.type='button';edit.className='small';edit.textContent='✏️ Modifier';
+   edit.addEventListener('click',()=>{
+    editingId=e.id;$('recette').value=e.recette;
+    $('date-evenement').value=localDateTime(e.date_evenement);
+    $('quantite').value=e.nombre_preparations||1;
+    $('description-evenement').value=e.description||'';
+    $('form-title').textContent='✏️ Modifier ma soirée cuisine';
+    $('save-event').textContent='💜 Enregistrer les modifications';
+    $('cancel-edit').hidden=false;$('form-message').textContent='';
+    $('formulaire-evenement').scrollIntoView({behavior:'smooth',block:'center'});
+   });
+   const del=document.createElement('button');del.type='button';del.className='small danger';del.textContent='🗑️ Supprimer';
+   del.addEventListener('click',async()=>{
+    if(!confirm('Supprimer définitivement cette soirée et ses inscriptions ?'))return;
+    del.disabled=true;
+    const {data,error}=await sb.from('evenements').delete().eq('id',e.id).eq('createur_id',currentUser.id).select('id');
+    if(error||!data?.length){say('Suppression impossible : '+(error?.message||'Autorisation refusée.'));del.disabled=false;return;}
+    if(editingId===e.id)cancelEdit();say('Soirée supprimée.');await loadEvents();
+   });
+   actions.append(edit,del);card.append(actions);
+  }else{
+   addLine(card,'p','Pour choisir un poste, ouvre cette recette dans la Cuisine Enchantée (connexion à venir).','muted');
+  }
   list.append(card);
  }
 }
@@ -92,24 +135,34 @@ $('formulaire-evenement').addEventListener('submit',async ev=>{
   const recette=$('recette').value;
   const metadata=currentUser.user_metadata||{};
   const pseudo=metadata.custom_claims?.global_name||metadata.full_name||metadata.name||metadata.user_name||'Membre du Refuge';
-  const {data,error}=await sb.from('evenements').insert({
+  const payload={
    titre:'Soirée '+recette,
    recette:recette,
    nombre_preparations:quantite,
    date_evenement:date.toISOString(),
    description:$('description-evenement').value.trim()||null,
-   statut:'ouverte',
-   createur_id:currentUser.id,
-   createur_pseudo:pseudo
-  }).select('id').single();
-  if(error)throw error;
-  $('form-message').textContent='🎉 Ta soirée cuisine a été créée ! Référence : '+data.id;
-  $('formulaire-evenement').reset();await loadEvents();
+   statut:'ouverte'
+  };
+  if(editingId!==null){
+   const {data,error}=await sb.from('evenements').update(payload)
+    .eq('id',editingId).eq('createur_id',currentUser.id).select('id');
+   if(error)throw error;
+   if(!data?.length)throw new Error('Modification non autorisée ou soirée introuvable.');
+   cancelEdit();$('form-message').textContent='💜 Ta soirée a été modifiée !';
+  }else{
+   const {data,error}=await sb.from('evenements').insert({
+    ...payload,createur_id:currentUser.id,createur_pseudo:pseudo
+   }).select('id').single();
+   if(error)throw error;
+   $('formulaire-evenement').reset();
+   $('form-message').textContent='🎉 Ta soirée cuisine a été créée ! Référence : '+data.id;
+  }
+  await loadEvents();
  }catch(error){$('form-message').textContent='Création impossible : '+(error.message||error);}
  finally{button.disabled=false;}
 });
-$('nav-evenements').addEventListener('click',async()=>{ownOnly=false;$('nav-evenements').setAttribute('aria-current','page');$('nav-mes-evenements').removeAttribute('aria-current');if(currentUser)await loadEvents();});
-$('nav-mes-evenements').addEventListener('click',async()=>{ownOnly=true;$('nav-mes-evenements').setAttribute('aria-current','page');$('nav-evenements').removeAttribute('aria-current');if(currentUser)await loadEvents();});
+$('nav-evenements').addEventListener('click',async()=>{setView(false);if(currentUser)await loadEvents();});
+$('nav-mes-evenements').addEventListener('click',async()=>{setView(true);if(currentUser)await loadEvents();});
 $('nav-aide').addEventListener('click',()=>alert('Connecte-toi avec Discord, choisis une recette, une date et le nombre de préparations pour organiser une soirée. Les inscriptions aux postes se font dans la Cuisine Enchantée.'));
 refresh();
 </script></body></html>
