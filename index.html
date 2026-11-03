@@ -12,6 +12,27 @@
 .wood[aria-current="page"]{background:repeating-linear-gradient(0deg,transparent 0 17px,#46271d18 18px 20px),linear-gradient(160deg,#aa6a73,#7a466e 50%,#603653);border-color:#e5b17d}
 .wood:hover{filter:brightness(1.09)}.wood:active{transform:translateY(3px)}
 @media(max-width:720px){.hero{min-height:150px;background-position:center 43%}.wood{padding:12px 11px 12px 17px}.wood:before{left:4px}.wood:after{right:4px}}
+
+/* Patine légère du papier : aucun visuel supplémentaire à télécharger. */
+.page{
+ background:
+  radial-gradient(ellipse at 8% 7%,#9d66301a 0%,transparent 32%),
+  radial-gradient(ellipse at 92% 91%,#8d532b22 0%,transparent 35%),
+  radial-gradient(ellipse at 3% 70%,#b67c3b12 0%,transparent 28%),
+  repeating-linear-gradient(115deg,transparent 0 47px,#986b3210 48px,transparent 50px,transparent 108px),
+  radial-gradient(ellipse at 48% 30%,#fff7e8 0%,#f8e6c9 66%,#e4bf91 100%);
+}
+.page:first-child{
+ box-shadow:inset 14px 0 25px #86512d23,inset -20px 0 27px #8c57301c,inset 0 12px 20px #aa70351c,inset 0 -15px 24px #91592e25;
+}
+.page:last-child{
+ box-shadow:inset -14px 0 25px #86512d23,inset 20px 0 27px #8c57301c,inset 0 12px 20px #aa70351c,inset 0 -15px 24px #91592e25;
+}
+/* Conserve la lisibilité des vrais champs et boutons. */
+.rule:after{background:#f9e7cb}
+@media(max-width:720px){
+ .page:first-child,.page:last-child{box-shadow:inset 0 0 25px #8b552b25,inset 0 12px 17px #a86a3022,inset 0 -14px 20px #8e5a3025}
+}
 </style></head><body><header class="hero" aria-label="Le Refuge — Espace Événements"></header><div class="layout"><aside class="sidebar"><button class="wood" id="nav-evenements" aria-current="page">📅 Événements</button><button class="wood" id="nav-mes-evenements">🌸 Mes événements</button><button class="wood" id="nav-aide">❔ Aide</button><div id="account" class="account"><button id="connexion">Connexion Discord</button><span id="profil"></span><button id="deconnexion" class="secondary" hidden>Se déconnecter</button></div><p id="message" class="status" role="status"></p></aside><main class="book" id="espace-evenements"><section class="page"><h2>📅 Les prochains événements</h2><div class="rule"></div><p class="intro">Nos jolis rendez-vous, page après page…</p><div id="connexion-note" class="note">Connecte-toi avec Discord pour découvrir les événements et participer à la vie du Refuge. 🌸</div><div id="contenu-prive" hidden><div id="liste-evenements" aria-live="polite"></div></div><img class="mascot" src="mascotte_originale_refuge.webp" alt="Notre petite mascotte violette endormie" loading="lazy" width="410" height="240"></section><section class="page"><h2 id="form-title">🪶 Créer un événement</h2><div class="rule"></div><p class="intro">Écrivons ensemble de nouveaux souvenirs…</p><form id="formulaire-evenement"><div class="fields"><div class="full"><label for="titre-evenement">Titre de l'événement *</label><input id="titre-evenement" maxlength="120" placeholder="Ex. : Soirée récolte à Kilima" required></div><div><label for="date-evenement">Date et heure *</label><input id="date-evenement" type="datetime-local" required></div><div><label for="lieu-evenement">Lieu</label><input id="lieu-evenement" maxlength="200" placeholder="Ex. : Kilima"></div><div class="full"><label for="description-evenement">Description</label><textarea id="description-evenement" maxlength="3000" placeholder="Décris ton événement…"></textarea></div></div><div class="actions"><button id="save-event" class="primary" type="submit">🌸 Créer l'événement</button><button id="cancel-edit" type="button" class="small subtle" hidden>Annuler la modification</button></div></form><p id="form-message" role="status"></p></section></main></div><footer class="footer">✿ Le Refuge — De jolis moments à partager ✿</footer><script>
 const SUPABASE_URL="https://kflrkclmznluxahxttgl.supabase.co";
 const SUPABASE_KEY="sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3";
