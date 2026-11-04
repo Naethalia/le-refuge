@@ -177,6 +177,23 @@ body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radia
  .paper,.book .page{padding:clamp(70px,18vw,125px) clamp(29px,8.5vw,65px)!important}
  .book .page p{overflow-wrap:break-word!important}
 }
+
+/* PARCHEMIN STABLE : aucune bande centrale agrandie ou répétée. */
+.paper,.book .page{
+ background-color:#f5dba7!important;
+ background-image:url("/le-refuge/test-fusion/parchemin_haut.webp"),url("/le-refuge/test-fusion/parchemin_bas.webp")!important;
+ background-position:center top,center bottom!important;
+ background-size:100% auto,100% auto!important;
+ background-repeat:no-repeat,no-repeat!important;
+ isolation:isolate;
+}
+/* Bords ombrés continus, sans image étirée ni jonction horizontale */
+.paper::before,.book .page::before{
+ content:""!important;display:block!important;pointer-events:none!important;
+ position:absolute!important;inset:0!important;z-index:0!important;
+ background:linear-gradient(to right,rgba(82,38,35,.46) 0,rgba(142,79,42,.26) 1.2%,rgba(189,118,58,.16) 3%,transparent 9%,transparent 91%,rgba(189,118,58,.16) 97%,rgba(142,79,42,.26) 98.8%,rgba(82,38,35,.46) 100%)!important;
+}
+.paper > *,.book .page > *{position:relative;z-index:1}
 </style>
 </head>
 <body>
