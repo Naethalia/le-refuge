@@ -362,7 +362,7 @@ body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radia
   background-image:none!important;
   border:solid transparent!important;
   border-width:clamp(38px,5vw,72px)!important;
-  border-image-source:url("./parchemin_refuge.webp")!important;
+  border-image-source:url("/le-refuge/test-fusion/parchemin_refuge.webp")!important;
   border-image-slice:210 175 205 175 fill!important;
   border-image-width:clamp(38px,5vw,72px)!important;
   border-image-outset:0!important;
@@ -384,6 +384,22 @@ body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radia
 @media(max-width:700px){
  .paper,.book .page{border-width:30px!important;border-image-width:30px!important}
  .paper,.book .page{padding:8px!important}
+}
+
+/* Ajustements mobiles : illustration lisible et contenu tenu à distance des bords */
+.paper,.book .page{overflow:visible!important}
+.paper > *, .book .page > *{max-width:100%;min-width:0}
+.paper .scene,.book .page .welcome{padding:12px 0!important}
+.paper .mascot{max-width:min(42vw,170px)!important;height:auto!important;object-fit:contain!important;mask-image:radial-gradient(ellipse 67% 67% at 50% 50%,#000 70%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 67% 67% at 50% 50%,#000 70%,transparent 100%)}
+.book .page img:not(.avatar){max-width:100%!important;object-fit:contain!important}
+.book .page .sashimi-illustration,.book .page .poke-illustration{width:min(100%,660px)!important;margin:12px auto 20px!important;display:block!important}
+.book .page .welcome .flower{font-size:22px!important;letter-spacing:0!important}
+@media(max-width:700px){
+ .paper,.book .page{border-width:38px!important;border-image-width:38px!important;padding:10px 6px!important}
+ .paper .scene-text{max-width:100%!important}
+ .book .page .welcome{min-height:350px!important;gap:10px!important}
+ .book .page h2{font-size:clamp(20px,5vw,28px)!important}
+ .book .page p{overflow-wrap:anywhere}
 }
 </style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script></head><body><a class="top-return" href="https://naethalia.github.io/le-refuge/test-fusion/index.html">← Retour au Carnet des événements</a><header class="site-header"><h1><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Z"/><path d="M12 6v14"/></svg> La Cuisine Enchantée du Refuge </h1><p>Un soupçon de magie, beaucoup de gourmandise !</p></header><p id="cuisine-status" role="status">Chargement des soirées…</p><main class="book-shell">
 <div class="book" aria-label="Livre de recettes du Refuge">
