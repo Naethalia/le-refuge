@@ -230,6 +230,22 @@ body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radia
 }
 .paper::before,.book .page::before{display:none!important}
 @media(max-width:700px){.paper,.book .page{padding-left:clamp(38px,10%,70px)!important;padding-right:clamp(38px,10%,70px)!important}}
+
+/* FINITION PARCHEMIN : raccords estompes et textures laterales raccordables. */
+.paper,.book .page{
+ background-color:#f6d6a0!important;
+ background-image:
+  url('/le-refuge/test-fusion/refuge_finition_haut.webp'),
+  url('/le-refuge/test-fusion/refuge_finition_bas.webp'),
+  url('/le-refuge/test-fusion/refuge_finition_gauche.webp'),
+  url('/le-refuge/test-fusion/refuge_finition_droite.webp')!important;
+ background-position:center top,center bottom,left top,right top!important;
+ background-size:100% auto,100% auto,9.27% auto,9.27% auto!important;
+ background-repeat:no-repeat,no-repeat,repeat-y,repeat-y!important;
+}
+@media(max-width:700px){
+ .paper,.book .page{background-size:100% auto,100% auto,9.27% auto,9.27% auto!important}
+}
 </style>
 </head>
 <body>
