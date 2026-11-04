@@ -92,6 +92,24 @@ body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radia
 .illustrated-corner.bl{left:23px;bottom:20px;transform:scaleY(-1)}
 .illustrated-corner.br{right:23px;bottom:20px;transform:scale(-1)}
 @media(max-width:700px){.illustrated-corner{width:25px;height:25px}.illustrated-corner.tl,.illustrated-corner.bl{left:10px}.illustrated-corner.tr,.illustrated-corner.br{right:10px}}
+
+/* Parchemin patiné : usure douce, sans zigzags géométriques. */
+.paper,.book .page{
+ clip-path:none!important;
+ border-radius:14px 19px 13px 20px!important;
+ background:
+ radial-gradient(ellipse 10% 19% at 0% 2%,#96623c65,transparent 100%),
+ radial-gradient(ellipse 14% 10% at 99% 0%,#99643c5b,transparent 100%),
+ radial-gradient(ellipse 13% 14% at 0% 100%,#93603968,transparent 100%),
+ radial-gradient(ellipse 16% 15% at 100% 100%,#8f5c365a,transparent 100%),
+ radial-gradient(ellipse at 80% 68%,#c99c6540,transparent 38%),
+ radial-gradient(ellipse at 32% 26%,#fff6e3,#f3dfbd 68%,#dfbd8c)!important;
+ box-shadow:inset 0 0 23px #80532f4a,inset 0 0 75px #a4713b30!important;
+}
+.book{border:5px solid #9d765d!important;background:#a77d60!important;box-shadow:0 0 0 2px #d5a17e,0 12px 28px #5d354044!important}
+.paper{border:1px solid #b58c6a!important}
+.book .page{outline:1px solid #c29a73;outline-offset:-7px}
+@media(max-width:720px){.book{border-width:3px!important}}
 </style>
 </head>
 <body>
@@ -125,7 +143,7 @@ body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radia
     if(!response.ok)return;
     const events=await response.json();
     if(Array.isArray(events)&&events.some(e=>e.statut===null||e.statut==='ouverte')){
-      fox.src='./renard%20%2B%20papillon.png';
+      fox.src='./renarde%2B%20papillon.png';
       fox.alt='La renarde du Refuge éveillée avec son papillon : une soirée arrive !';
     }
   }catch(_){/* En cas d'accès restreint, conserver la renarde endormie. */}
