@@ -236,7 +236,7 @@ body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radia
  background-color:#f6d6a0!important;
  background-image:
   url('/le-refuge/test-fusion/refuge_finition_haut.webp'),
-  url('/le-refuge/test-fusion/refuge_finition_bas.webp'),
+  url('/le-refuge/test-fusion/refuge_finition_bas_sans_renarde.webp'),
   url('/le-refuge/test-fusion/refuge_finition_gauche.webp'),
   url('/le-refuge/test-fusion/refuge_finition_droite.webp')!important;
  background-position:center top,center bottom,left top,right top!important;
@@ -246,6 +246,11 @@ body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radia
 @media(max-width:700px){
  .paper,.book .page{background-size:100% auto,100% auto,9.27% auto,9.27% auto!important}
 }
+
+/* Renarde dynamique entière, au-dessus du bord inférieur, sans image coupée. */
+.paper .renarde-bas{display:flex;justify-content:flex-start;align-items:flex-end;margin:24px 0 -24px;min-height:155px;position:relative;z-index:2}
+.paper .renarde-bas .mascot{display:block;width:clamp(135px,23vw,245px)!important;max-width:65%!important;height:auto!important;object-fit:contain!important;mask-image:none!important;-webkit-mask-image:none!important}
+@media(max-width:700px){.paper .renarde-bas{margin:18px 0 -8px;min-height:125px}.paper .renarde-bas .mascot{width:clamp(125px,42vw,185px)!important}}
 </style>
 </head>
 <body>
@@ -259,7 +264,7 @@ body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radia
 <h1>Bienvenue au Refuge</h1>
 <p class="lead">Un endroit chaleureux pour se retrouver, partager de belles aventures et cuisiner ensemble dans Palia.</p>
 <div class="flourish" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"/></svg><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10C6 2 3 8 9 12c-8-4-9 4-1 4-3 7 4 9 5 2 5 6 10 0 4-4 8-3 5-10-3-8-1-7-7-9-5-1Z"/><circle cx="12" cy="13" r="1.8"/></svg><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"/></svg></div>
-<div class="scene"><img class="mascot" src="/le-refuge/mascotte_originale_refuge.webp" alt="Notre petite renarde du Refuge, paisiblement endormie" width="205" height="205"><p class="scene-text">Installe-toi confortablement… Notre petit Refuge t'ouvre ses portes. Choisis un chemin pour commencer ta visite !</p></div>
+<div class="scene"><p class="scene-text">Installe-toi confortablement… Notre petit Refuge t'ouvre ses portes. Choisis un chemin pour commencer ta visite !</p></div>
 <nav class="signs" aria-label="Explorer le Refuge">
 <a class="sign" href="index.html"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Z"/><path d="M12 6v14"/></svg><span class="name">Carnet des événements</span></a>
 <a class="sign" href="cuisine.html"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13a4 4 0 0 1-1-7 4 4 0 0 1 7-2 4 4 0 0 1 7 2 4 4 0 0 1-1 7"/><path d="M6 13v7h12v-7M9 16v2m6-2v2"/></svg><span class="name">La Cuisine du Refuge</span></a>
@@ -267,11 +272,12 @@ body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radia
 <a class="sign" href="surprise.html"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2Z"/></svg><span class="name">Surprise en préparation</span></a>
 </nav>
 <p class="smallnote"> Un lieu créé avec douceur pour la communauté du Refuge.</p>
+<div class="renarde-bas"><img class="mascot" src="/le-refuge/mascotte_originale_refuge.webp" alt="Notre petite renarde du Refuge, paisiblement endormie" width="205" height="205"></div>
 </div></main>
 <footer class="footer"> Le Refuge — Site communautaire indépendant de fans de Palia </footer>
 <script>
 (async()=>{
-  const fox=document.querySelector('.scene .mascot');
+  const fox=document.querySelector('.renarde-bas .mascot');
   if(!fox)return;
   try{
     const endpoint='https://kflrkclmznluxahxttgl.supabase.co/rest/v1/evenements?select=date_evenement,statut&date_evenement=gt.'+encodeURIComponent(new Date().toISOString())+'&limit=20';
