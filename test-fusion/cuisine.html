@@ -200,6 +200,20 @@ button:hover{background:linear-gradient(#bd82b7,#85518e)}
 .evenings-panel{border-color:#7b4c30}
 #cuisine-status{color:#70462e}
 @media(max-width:760px){.book .page{box-shadow:inset 0 0 20px #6e421e48,inset 0 0 35px #8c552525}}
+
+/* REFUGE — transformation visuelle marquée, uniquement CSS, sans toucher aux réservations */
+body{background:radial-gradient(ellipse at 15% 12%,#f1d7bd 0,transparent 35%),radial-gradient(ellipse at 90% 75%,#b18b8d 0,transparent 42%),linear-gradient(140deg,#b58e9e,#d4b49e 55%,#987487)!important;color:#543924}
+.book-shell{max-width:960px!important;margin:34px auto 60px!important;padding:0 18px!important}
+.book{max-width:920px!important;border:14px ridge #84502c!important;border-radius:35px 24px 30px 24px!important;background:#b87f4e!important;box-shadow:0 0 0 5px #d8ad72,0 0 0 9px #593622,0 22px 45px #39221d70,inset 0 0 0 4px #e7c48d!important;overflow:hidden}
+.book .page{position:relative;isolation:isolate;padding:clamp(30px,5vw,65px)!important;background:radial-gradient(ellipse at 14% 12%,#a76e362f,transparent 30%),radial-gradient(ellipse at 88% 86%,#7d461f38,transparent 36%),radial-gradient(ellipse at 50% 42%,#f8e7bf 0%,#efd3a0 58%,#c99a62 100%)!important;box-shadow:inset 0 0 20px #5b321f80,inset 0 0 75px #75411f55!important;color:#583b27}
+.book .page::before{content:'❦';position:absolute;top:13px;left:18px;font:42px Georgia,serif;color:#855d39;opacity:.75;pointer-events:none}
+.book .page::after{content:'❦';position:absolute;bottom:13px;right:20px;font:42px Georgia,serif;color:#855d39;opacity:.75;transform:rotate(180deg);pointer-events:none}
+.book .page h2{font-family:Georgia,serif!important;font-style:italic!important;color:#683c28!important;text-shadow:0 1px #fff1d5;border-bottom:2px solid #a87b4c;padding-bottom:14px;margin-bottom:22px!important}
+.site-header h1{background:linear-gradient(135deg,#5b344e,#70465a)!important;border:3px double #e7bd80!important;border-radius:10px 24px!important;box-shadow:0 5px 0 #553529,0 10px 18px #54312455!important;padding:15px 28px!important}
+.top-return{display:block!important;background:#f4e1bc!important;border:2px solid #a87948!important;border-radius:8px!important;box-shadow:0 4px 0 #805333!important;font-family:Georgia,serif;font-weight:bold}
+.book .page .role,.book .page .info,.book .page .poke-step,.book .page .recipe-selection,.book .page .evening-card,.book .page .evening-details,.book .page .evening-post{background:linear-gradient(150deg,#fff5db,#f1d4a4)!important;border:1px solid #af8653!important;border-left:5px solid #9b6b40!important;border-radius:9px!important;box-shadow:0 3px 10px #633b2026!important}
+.book-controls button,.page button{box-shadow:0 3px 0 #67452c55}
+@media(max-width:760px){.book-shell{padding:0 10px!important;margin-top:20px!important}.book{border-width:8px!important;border-radius:19px!important}.book .page{padding:34px 22px!important;box-shadow:inset 0 0 35px #6b3e2860!important}.book .page::before,.book .page::after{font-size:26px;opacity:.5}.site-header h1{padding:10px 14px!important}}
 </style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script></head><body><a class="top-return" href="https://naethalia.github.io/le-refuge/test-fusion/index.html">← Retour au Carnet des événements</a><header class="site-header"><h1>📖 La Cuisine Enchantée du Refuge 🌸</h1><p>Un soupçon de magie, beaucoup de gourmandise !</p></header><p id="cuisine-status" role="status">Chargement des soirées…</p><main class="book-shell">
 <div class="book" aria-label="Livre de recettes du Refuge">
 <section class="page" data-page="0" aria-label="Page 1 : Bienvenue">
