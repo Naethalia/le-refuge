@@ -82,6 +82,23 @@
 .sidebar .wood:before,.sidebar .wood:after{display:block;content:'';position:absolute;top:50%;height:8px;width:8px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe1a5,#9a6b43 58%,#4b2b1d);box-shadow:0 1px 2px #321b17;transform:translateY(-50%);pointer-events:none}
 .sidebar .wood:before{left:9px}.sidebar .wood:after{right:18%}
 @media(max-width:720px){.sidebar .wood:before{left:5px}.sidebar .wood:after{right:17%}.book .page{box-shadow:inset 0 0 21px #70431d66,inset 0 0 38px #8e542a40}}
+
+/* Refuge — harmonisation parchemin légère, sans ressource graphique supplémentaire */
+:root{--refuge-ink:#69432e;--refuge-paper:#f3dfb7;--refuge-edge:#ad7950}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+
+.book{border-color:#7b4c30;box-shadow:0 0 0 3px #d0a272,0 12px 26px #4d302e54}
+.book .page{
+ background:radial-gradient(ellipse 34% 22% at 12% 11%,#85542c20,transparent 88%),
+ radial-gradient(ellipse 27% 20% at 89% 87%,#86512a25,transparent 90%),
+ repeating-linear-gradient(105deg,transparent 0 77px,#87572509 78px,transparent 80px,transparent 159px),
+ radial-gradient(ellipse at 48% 37%,#f9edcf 0%,#eed5a9 67%,#d8af7e 100%);
+ box-shadow:inset 0 0 26px #6e421e55,inset 0 0 55px #8c55252b;
+}
+.book .page h2{color:#70462e}
+.book .page:after{content:'';position:absolute;inset:9px;border:1px solid #9360382a;border-radius:8px;pointer-events:none}
+.book .page .event,.book .page .intro{position:relative;z-index:1}
+@media(max-width:720px){.book .page{box-shadow:inset 0 0 20px #6e421e48,inset 0 0 35px #8c552525}}
 </style></head><body><header class="hero" aria-label="Le Refuge — Espace Événements"></header><div class="layout"><aside class="sidebar"><button class="wood" id="nav-evenements" aria-current="page">📅 Événements</button><button class="wood" id="nav-mes-evenements">🌸 Mes événements</button><button class="wood" id="nav-cuisine">🍳 La Cuisine enchantée</button><button class="wood" id="nav-aide">❔ Aide</button><a class="wood" id="nav-surprise" href="surprise.html">✨ Surprise en préparation</a><div id="account" class="account"><button id="connexion">Connexion Discord</button><span id="profil"></span><button id="deconnexion" class="secondary" hidden>Se déconnecter</button></div><p id="message" class="status" role="status"></p></aside><main class="book" id="espace-evenements"><section class="page" id="page-evenements"><h2 id="events-title">📅 Les prochains événements</h2><div class="rule"></div><p class="intro" id="events-intro">Les soirées cuisine du Refuge, page après page…</p><div id="connexion-note" class="note">Connecte-toi avec Discord pour organiser une soirée cuisine et retrouver les rendez-vous du Refuge. 🌸</div><div id="contenu-prive" hidden><div id="liste-evenements" aria-live="polite"></div></div><img id="event-mascot" class="mascot" src="/le-refuge/mascotte_originale_refuge.webp" alt="Notre petite mascotte violette endormie" loading="lazy" width="410" height="240"></section><section class="page" id="page-cuisine" hidden><h2 id="form-title">🪶 Organiser une soirée cuisine</h2><div class="rule"></div><p class="intro">Prépare ta prochaine soirée gourmande, puis retrouve les recettes et les postes dans notre livre de cuisine.</p><form id="formulaire-evenement"><div class="fields"><div class="full"><label for="recette">🍲 Recette *</label><select id="recette" required><option>Sashimi</option><option>Poké Bowl</option><option>Gâteau de fête</option><option>Hamburger de haricots</option><option>Chili végétarien</option><option>Bahari de Muujin</option></select></div><div><label for="date-evenement">📅 Date et heure *</label><input id="date-evenement" type="datetime-local" required></div><div><label for="quantite">🍽️ Nombre de préparations *</label><input id="quantite" type="number" min="1" step="1" value="1" required></div><div class="full"><label for="description-evenement">📝 Petit mot (facultatif)</label><textarea id="description-evenement" maxlength="1000" placeholder="Une soirée gourmande entre amis…"></textarea></div></div><div class="actions"><button id="save-event" class="primary" type="submit">🌸 Créer ma soirée cuisine</button><button id="cancel-edit" class="small subtle" type="button" hidden>Annuler la modification</button></div></form><p id="form-message" role="status"></p></section></main></div><footer class="footer">✿ Le Refuge — De jolis moments à partager ✿
 
 Site communautaire indépendant, créé par des fans de Palia pour les membres du Refuge. Ce site n'est ni officiel, ni affilié, ni approuvé ou sponsorisé par Singularity 6, le studio à l'origine de Palia. Palia et ses éléments associés appartiennent à leurs ayants droit respectifs.
