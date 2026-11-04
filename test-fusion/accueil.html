@@ -40,27 +40,94 @@ p.lead{font-size:clamp(17px,2.2vw,21px);line-height:1.6;max-width:650px;margin:0
 @media(max-width:650px){.wrap{margin:20px auto 40px;padding:0 12px}.paper{padding:40px 15px 44px;border-width:7px}.scene{flex-direction:column;gap:0}.scene-text{text-align:center;font-size:16px}.signs{gap:12px}.sign{min-height:91px;padding:12px 20px 12px 14px;gap:7px;font-size:clamp(13px,3.4vw,17px)}.sign .emoji{font-size:22px}.sign:before{left:6px}.sign:after{right:16%}.ornament{opacity:.55}.ornament.top-left{top:8px;left:12px}.ornament.top-right{top:8px;right:12px}}
 @media(max-width:390px){.signs{grid-template-columns:1fr}.sign{min-height:77px;font-size:18px}}
 @media(prefers-reduced-motion:reduce){.sign{transition:none}}
+
+/* REFUGE — GRIMOIRE FÉERIQUE, FEUILLES VÉCUES (CSS léger, aucune image nouvelle) */
+:root{--refuge-ink:#684332;--refuge-flower:#9b587f}
+body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radial-gradient(ellipse at 95% 82%,#b99ec7,transparent 48%),#d9b6bd!important}
+.paper,.book .page{
+ background:
+  radial-gradient(ellipse 18% 12% at 2% 2%,#74411e8a,transparent 85%),
+  radial-gradient(ellipse 13% 20% at 99% 4%,#70402083,transparent 95%),
+  radial-gradient(ellipse 20% 12% at 0% 99%,#6c391b8f,transparent 90%),
+  radial-gradient(ellipse 16% 15% at 100% 98%,#71431d80,transparent 90%),
+  radial-gradient(ellipse 23% 9% at 53% 0%,#a56b3459,transparent 90%),
+  radial-gradient(ellipse 13% 20% at 0% 51%,#93592955,transparent 92%),
+  radial-gradient(ellipse 13% 20% at 100% 53%,#9359295c,transparent 92%),
+  radial-gradient(circle at 28% 35%,transparent 0 28px,#8c56212a 30px 33px,transparent 37px),
+  radial-gradient(ellipse at 77% 76%,#aa733c3b,transparent 34%),
+  repeating-linear-gradient(102deg,transparent 0 56px,#8051250b 57px,transparent 60px,transparent 124px),
+  radial-gradient(ellipse at 50% 47%,#fff2d3,#efd4a3 69%,#b57d4c 100%)!important;
+ box-shadow:inset 0 0 34px #74421f99,inset 0 0 105px #8d512e78,0 8px 16px #49302028!important;
+ border:0!important;border-radius:0!important;
+ clip-path:polygon(0.9% 1.4%,5% .4%,10% 1.3%,17% .3%,24% 1.1%,31% .2%,39% 1.2%,47% .2%,55% 1.2%,63% .2%,71% 1.1%,79% .3%,87% 1.3%,94% .3%,99% 1.2%,99.4% 8%,98.9% 17%,99.5% 26%,99% 35%,99.5% 44%,99% 53%,99.5% 62%,99% 71%,99.5% 80%,99% 89%,99.2% 98.8%,94% 99.4%,86% 98.9%,78% 99.6%,70% 98.9%,62% 99.5%,54% 99%,46% 99.6%,38% 99%,30% 99.6%,22% 99%,14% 99.6%,6% 99%,.8% 99.2%,1.2% 90%,.6% 81%,1.1% 72%,.6% 63%,1.2% 54%,.6% 45%,1.2% 36%,.6% 27%,1.2% 18%,.6% 9%)!important;
+}
+.paper{padding:55px clamp(25px,6vw,75px) 70px!important}
+.paper:before{border:0!important;box-shadow:none!important}
+.book{background:#70462f!important;border:12px solid #895538!important;border-radius:23px!important;box-shadow:0 0 0 4px #c89468,0 18px 33px #4b2c3260!important;overflow:visible!important}
+.book .page{padding:clamp(44px,5vw,72px) clamp(24px,5vw,68px)!important}
+.book .page h2,.paper h1{color:#77445c!important}
+.book .page .event{border-bottom:1px dashed #a77769!important}
+@media(max-width:720px){
+ .book{border-width:7px!important}
+ .book .page{padding:40px 20px!important}
+ .paper{padding:44px 20px 54px!important}
+}
+
+/* Illustration finale du Refuge : gravures SVG locales, pas de police emoji. */
+.vicon{width:1.22em;height:1.22em;display:inline-block;vertical-align:-.19em;flex:none;stroke-width:1.65}
+.sign .vicon,.wood .vicon{width:1.65em;height:1.65em;color:#f4d7a7;filter:drop-shadow(0 1px 1px #492c22)}
+.floral-svg{width:100%;height:100%;stroke-width:1.3}
+.ornament{width:clamp(32px,5vw,62px);height:clamp(32px,5vw,62px);font-size:0!important;color:#b26b87!important}
+.ornament.top-right,.ornament.bottom-left{color:#997c60!important}
+.flourish{font-size:0!important;margin:18px auto 24px!important;display:flex;justify-content:center;gap:15px;color:#a76b8b}
+.flourish .floral-svg{width:30px;height:30px}
+.sign .emoji{display:none}
+.book .page::before{content:""!important;font-size:26px!important;color:#aa748a!important}
+.book .page::after{content:""!important;font-size:24px!important;color:#aa748a!important}
+.sign,.sidebar .wood{transition:filter .16s ease}
+@media(max-width:700px){.sign .vicon,.wood .vicon{width:1.4em;height:1.4em}.ornament{width:32px;height:32px}}
+
+.illustrated-corner{position:absolute;pointer-events:none;width:42px;height:42px;opacity:.55;color:#a35c7f;z-index:2}
+.illustrated-corner.tl{left:23px;top:20px}.illustrated-corner.tr{right:23px;top:20px;transform:scaleX(-1)}
+.illustrated-corner.bl{left:23px;bottom:20px;transform:scaleY(-1)}
+.illustrated-corner.br{right:23px;bottom:20px;transform:scale(-1)}
+@media(max-width:700px){.illustrated-corner{width:25px;height:25px}.illustrated-corner.tl,.illustrated-corner.bl{left:10px}.illustrated-corner.tr,.illustrated-corner.br{right:10px}}
 </style>
 </head>
 <body>
 <header class="banner" aria-label="Bannière du Refuge"></header>
-<main class="wrap"><div class="paper">
-<span class="ornament top-left" aria-hidden="true">🌸🌿</span>
-<span class="ornament top-right" aria-hidden="true">🦋</span>
-<span class="ornament bottom-left" aria-hidden="true">✦ 🌿</span>
-<span class="ornament bottom-right" aria-hidden="true">🌸</span>
-<p class="eyebrow">✦ UN PETIT COIN À PART ✦</p>
+<main class="wrap"><div class="paper"><span class="illustrated-corner tl" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"/></svg></span><span class="illustrated-corner tr" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"/></svg></span><span class="illustrated-corner bl" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"/></svg></span><span class="illustrated-corner br" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"/></svg></span>
+<span class="ornament top-left" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10C6 2 3 8 9 12c-8-4-9 4-1 4-3 7 4 9 5 2 5 6 10 0 4-4 8-3 5-10-3-8-1-7-7-9-5-1Z"/><circle cx="12" cy="13" r="1.8"/></svg></span>
+<span class="ornament top-right" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13C7 3 2 4 3 10c0 3 4 4 9 3Zm0 0c5-10 10-9 9-3 0 3-4 4-9 3Zm0 0c-5 2-8 7-5 8 3 1 5-3 5-8Zm0 0c5 2 8 7 5 8-3 1-5-3-5-8Z"/><path d="M12 9v10"/></svg></span>
+<span class="ornament bottom-left" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"/></svg></span>
+<span class="ornament bottom-right" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10C6 2 3 8 9 12c-8-4-9 4-1 4-3 7 4 9 5 2 5 6 10 0 4-4 8-3 5-10-3-8-1-7-7-9-5-1Z"/><circle cx="12" cy="13" r="1.8"/></svg></span>
+<p class="eyebrow"> UN PETIT COIN À PART </p>
 <h1>Bienvenue au Refuge</h1>
 <p class="lead">Un endroit chaleureux pour se retrouver, partager de belles aventures et cuisiner ensemble dans Palia.</p>
-<div class="flourish" aria-hidden="true">❦ ✿ ❦</div>
+<div class="flourish" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"/></svg><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10C6 2 3 8 9 12c-8-4-9 4-1 4-3 7 4 9 5 2 5 6 10 0 4-4 8-3 5-10-3-8-1-7-7-9-5-1Z"/><circle cx="12" cy="13" r="1.8"/></svg><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"/></svg></div>
 <div class="scene"><img class="mascot" src="/le-refuge/mascotte_originale_refuge.webp" alt="Notre petite renarde du Refuge, paisiblement endormie" width="205" height="205"><p class="scene-text">Installe-toi confortablement… Notre petit Refuge t'ouvre ses portes. Choisis un chemin pour commencer ta visite !</p></div>
 <nav class="signs" aria-label="Explorer le Refuge">
-<a class="sign" href="index.html"><span class="emoji" aria-hidden="true">📖</span><span class="name">Carnet des événements</span></a>
-<a class="sign" href="cuisine.html"><span class="emoji" aria-hidden="true">🍳</span><span class="name">La Cuisine du Refuge</span></a>
-<a class="sign" href="index.html"><span class="emoji" aria-hidden="true">🌸</span><span class="name">Mes événements</span></a>
-<a class="sign" href="surprise.html"><span class="emoji" aria-hidden="true">✨</span><span class="name">Surprise en préparation</span></a>
+<a class="sign" href="index.html"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Z"/><path d="M12 6v14"/></svg><span class="name">Carnet des événements</span></a>
+<a class="sign" href="cuisine.html"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13a4 4 0 0 1-1-7 4 4 0 0 1 7-2 4 4 0 0 1 7 2 4 4 0 0 1-1 7"/><path d="M6 13v7h12v-7M9 16v2m6-2v2"/></svg><span class="name">La Cuisine du Refuge</span></a>
+<a class="sign" href="index.html"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-13 4h2m4 0h2m-8 4h2"/></svg><span class="name">Mes événements</span></a>
+<a class="sign" href="surprise.html"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2Z"/></svg><span class="name">Surprise en préparation</span></a>
 </nav>
-<p class="smallnote">🦊 Un lieu créé avec douceur pour la communauté du Refuge.</p>
+<p class="smallnote"> Un lieu créé avec douceur pour la communauté du Refuge.</p>
 </div></main>
-<footer class="footer">✿ Le Refuge — Site communautaire indépendant de fans de Palia ✿</footer>
-</body></html>
+<footer class="footer"> Le Refuge — Site communautaire indépendant de fans de Palia </footer>
+<script>
+(async()=>{
+  const fox=document.querySelector('.scene .mascot');
+  if(!fox)return;
+  try{
+    const endpoint='https://kflrkclmznluxahxttgl.supabase.co/rest/v1/evenements?select=date_evenement,statut&date_evenement=gt.'+encodeURIComponent(new Date().toISOString())+'&limit=20';
+    const response=await fetch(endpoint,{headers:{apikey:'sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3'}});
+    if(!response.ok)return;
+    const events=await response.json();
+    if(Array.isArray(events)&&events.some(e=>e.statut===null||e.statut==='ouverte')){
+      fox.src='./renard%20%2B%20papillon.png';
+      fox.alt='La renarde du Refuge éveillée avec son papillon : une soirée arrive !';
+    }
+  }catch(_){/* En cas d'accès restreint, conserver la renarde endormie. */}
+})();
+</script></body></html>

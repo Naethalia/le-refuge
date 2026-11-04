@@ -8,7 +8,7 @@ body { margin:0; min-height:100vh; font-family:"Trebuchet MS",Arial,sans-serif; 
 .book {display:grid; grid-template-columns:1fr 1fr; min-height:650px; border:9px solid #a878bf; border-radius:25px; box-shadow:0 18px 45px #6e4d793c, inset 0 0 0 3px #e6c58e; background:#e9d4ef; overflow:hidden; position:relative;}
 .book::after {content:""; position:absolute; left:50%; top:0; bottom:0; width:12px; transform:translateX(-50%); background:linear-gradient(90deg,#8e6b9440,#6c4d8050,#fff8ee60); pointer-events:none; z-index:3;}
 .page {min-width:0; padding:26px clamp(15px,2.3vw,36px) 28px; background:radial-gradient(ellipse at 50% 15%,#fffdf5,#fff8e9 74%,#f0e4d6); border:1px solid #e4d0b0; box-shadow:inset 0 0 0 7px #f8f0e9, inset 0 0 0 9px #d6b6e2; position:relative;}
-.page::before {content:"❀  ✦  ❀"; display:block; text-align:center; color:#b184c4; letter-spacing:12px; margin:0 0 13px;}
+.page::before {content:"❀    ❀"; display:block; text-align:center; color:#b184c4; letter-spacing:12px; margin:0 0 13px;}
 .page[hidden] {display:none!important;}
 .page h2 {color:#8754ad; text-align:center; font-size:clamp(22px,2.5vw,31px); margin:8px 0 18px;}
 .page-number {text-align:center; color:#9a79a6; margin-top:25px; font-size:13px;}
@@ -206,8 +206,8 @@ body{background:radial-gradient(ellipse at 15% 12%,#f1d7bd 0,transparent 35%),ra
 .book-shell{max-width:960px!important;margin:34px auto 60px!important;padding:0 18px!important}
 .book{max-width:920px!important;border:14px ridge #84502c!important;border-radius:35px 24px 30px 24px!important;background:#b87f4e!important;box-shadow:0 0 0 5px #d8ad72,0 0 0 9px #593622,0 22px 45px #39221d70,inset 0 0 0 4px #e7c48d!important;overflow:hidden}
 .book .page{position:relative;isolation:isolate;padding:clamp(30px,5vw,65px)!important;background:radial-gradient(ellipse at 14% 12%,#a76e362f,transparent 30%),radial-gradient(ellipse at 88% 86%,#7d461f38,transparent 36%),radial-gradient(ellipse at 50% 42%,#f8e7bf 0%,#efd3a0 58%,#c99a62 100%)!important;box-shadow:inset 0 0 20px #5b321f80,inset 0 0 75px #75411f55!important;color:#583b27}
-.book .page::before{content:'❦';position:absolute;top:13px;left:18px;font:42px Georgia,serif;color:#855d39;opacity:.75;pointer-events:none}
-.book .page::after{content:'❦';position:absolute;bottom:13px;right:20px;font:42px Georgia,serif;color:#855d39;opacity:.75;transform:rotate(180deg);pointer-events:none}
+.book .page::before{content:'';position:absolute;top:13px;left:18px;font:42px Georgia,serif;color:#855d39;opacity:.75;pointer-events:none}
+.book .page::after{content:'';position:absolute;bottom:13px;right:20px;font:42px Georgia,serif;color:#855d39;opacity:.75;transform:rotate(180deg);pointer-events:none}
 .book .page h2{font-family:Georgia,serif!important;font-style:italic!important;color:#683c28!important;text-shadow:0 1px #fff1d5;border-bottom:2px solid #a87b4c;padding-bottom:14px;margin-bottom:22px!important}
 .site-header h1{background:linear-gradient(135deg,#5b344e,#70465a)!important;border:3px double #e7bd80!important;border-radius:10px 24px!important;box-shadow:0 5px 0 #553529,0 10px 18px #54312455!important;padding:15px 28px!important}
 .top-return{display:block!important;background:#f4e1bc!important;border:2px solid #a87948!important;border-radius:8px!important;box-shadow:0 4px 0 #805333!important;font-family:Georgia,serif;font-weight:bold}
@@ -256,12 +256,12 @@ body{background:radial-gradient(ellipse at 15% 12%,#f1d7bd 0,transparent 35%),ra
   box-shadow:inset 0 0 22px #7c4a2a80,inset 0 0 85px #89552d48!important;
 }
 .book .page::before{
-  content:"❧  ✿";
+  content:"  ";
   top:17px!important;left:24px!important;
   font-size:26px!important;color:#a16a6e!important;opacity:.75!important;
 }
 .book .page::after{
-  content:"✿  ❧";
+  content:"  ";
   bottom:17px!important;right:24px!important;
   font-size:26px!important;color:#986487!important;opacity:.7!important;
   transform:none!important;border:0!important;inset:auto 24px 17px auto!important;
@@ -285,30 +285,82 @@ body{background:radial-gradient(ellipse at 15% 12%,#f1d7bd 0,transparent 35%),ra
   .book .page::before,.book .page::after{font-size:19px!important}
 }
 
-</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script></head><body><a class="top-return" href="https://naethalia.github.io/le-refuge/test-fusion/index.html">← Retour au Carnet des événements</a><header class="site-header"><h1>📖 La Cuisine Enchantée du Refuge 🌸</h1><p>Un soupçon de magie, beaucoup de gourmandise !</p></header><p id="cuisine-status" role="status">Chargement des soirées…</p><main class="book-shell">
+
+/* REFUGE — GRIMOIRE FÉERIQUE, FEUILLES VÉCUES (CSS léger, aucune image nouvelle) */
+:root{--refuge-ink:#684332;--refuge-flower:#9b587f}
+body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radial-gradient(ellipse at 95% 82%,#b99ec7,transparent 48%),#d9b6bd!important}
+.paper,.book .page{
+ background:
+  radial-gradient(ellipse 18% 12% at 2% 2%,#74411e8a,transparent 85%),
+  radial-gradient(ellipse 13% 20% at 99% 4%,#70402083,transparent 95%),
+  radial-gradient(ellipse 20% 12% at 0% 99%,#6c391b8f,transparent 90%),
+  radial-gradient(ellipse 16% 15% at 100% 98%,#71431d80,transparent 90%),
+  radial-gradient(ellipse 23% 9% at 53% 0%,#a56b3459,transparent 90%),
+  radial-gradient(ellipse 13% 20% at 0% 51%,#93592955,transparent 92%),
+  radial-gradient(ellipse 13% 20% at 100% 53%,#9359295c,transparent 92%),
+  radial-gradient(circle at 28% 35%,transparent 0 28px,#8c56212a 30px 33px,transparent 37px),
+  radial-gradient(ellipse at 77% 76%,#aa733c3b,transparent 34%),
+  repeating-linear-gradient(102deg,transparent 0 56px,#8051250b 57px,transparent 60px,transparent 124px),
+  radial-gradient(ellipse at 50% 47%,#fff2d3,#efd4a3 69%,#b57d4c 100%)!important;
+ box-shadow:inset 0 0 34px #74421f99,inset 0 0 105px #8d512e78,0 8px 16px #49302028!important;
+ border:0!important;border-radius:0!important;
+ clip-path:polygon(0.9% 1.4%,5% .4%,10% 1.3%,17% .3%,24% 1.1%,31% .2%,39% 1.2%,47% .2%,55% 1.2%,63% .2%,71% 1.1%,79% .3%,87% 1.3%,94% .3%,99% 1.2%,99.4% 8%,98.9% 17%,99.5% 26%,99% 35%,99.5% 44%,99% 53%,99.5% 62%,99% 71%,99.5% 80%,99% 89%,99.2% 98.8%,94% 99.4%,86% 98.9%,78% 99.6%,70% 98.9%,62% 99.5%,54% 99%,46% 99.6%,38% 99%,30% 99.6%,22% 99%,14% 99.6%,6% 99%,.8% 99.2%,1.2% 90%,.6% 81%,1.1% 72%,.6% 63%,1.2% 54%,.6% 45%,1.2% 36%,.6% 27%,1.2% 18%,.6% 9%)!important;
+}
+.paper{padding:55px clamp(25px,6vw,75px) 70px!important}
+.paper:before{border:0!important;box-shadow:none!important}
+.book{background:#70462f!important;border:12px solid #895538!important;border-radius:23px!important;box-shadow:0 0 0 4px #c89468,0 18px 33px #4b2c3260!important;overflow:visible!important}
+.book .page{padding:clamp(44px,5vw,72px) clamp(24px,5vw,68px)!important}
+.book .page h2,.paper h1{color:#77445c!important}
+.book .page .event{border-bottom:1px dashed #a77769!important}
+@media(max-width:720px){
+ .book{border-width:7px!important}
+ .book .page{padding:40px 20px!important}
+ .paper{padding:44px 20px 54px!important}
+}
+
+/* Illustration finale du Refuge : gravures SVG locales, pas de police emoji. */
+.vicon{width:1.22em;height:1.22em;display:inline-block;vertical-align:-.19em;flex:none;stroke-width:1.65}
+.sign .vicon,.wood .vicon{width:1.65em;height:1.65em;color:#f4d7a7;filter:drop-shadow(0 1px 1px #492c22)}
+.floral-svg{width:100%;height:100%;stroke-width:1.3}
+.ornament{width:clamp(32px,5vw,62px);height:clamp(32px,5vw,62px);font-size:0!important;color:#b26b87!important}
+.ornament.top-right,.ornament.bottom-left{color:#997c60!important}
+.flourish{font-size:0!important;margin:18px auto 24px!important;display:flex;justify-content:center;gap:15px;color:#a76b8b}
+.flourish .floral-svg{width:30px;height:30px}
+.sign .emoji{display:none}
+.book .page::before{content:""!important;font-size:26px!important;color:#aa748a!important}
+.book .page::after{content:""!important;font-size:24px!important;color:#aa748a!important}
+.sign,.sidebar .wood{transition:filter .16s ease}
+@media(max-width:700px){.sign .vicon,.wood .vicon{width:1.4em;height:1.4em}.ornament{width:32px;height:32px}}
+
+.illustrated-corner{position:absolute;pointer-events:none;width:42px;height:42px;opacity:.55;color:#a35c7f;z-index:2}
+.illustrated-corner.tl{left:23px;top:20px}.illustrated-corner.tr{right:23px;top:20px;transform:scaleX(-1)}
+.illustrated-corner.bl{left:23px;bottom:20px;transform:scaleY(-1)}
+.illustrated-corner.br{right:23px;bottom:20px;transform:scale(-1)}
+@media(max-width:700px){.illustrated-corner{width:25px;height:25px}.illustrated-corner.tl,.illustrated-corner.bl{left:10px}.illustrated-corner.tr,.illustrated-corner.br{right:10px}}
+</style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script></head><body><a class="top-return" href="https://naethalia.github.io/le-refuge/test-fusion/index.html">← Retour au Carnet des événements</a><header class="site-header"><h1><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Z"/><path d="M12 6v14"/></svg> La Cuisine Enchantée du Refuge </h1><p>Un soupçon de magie, beaucoup de gourmandise !</p></header><p id="cuisine-status" role="status">Chargement des soirées…</p><main class="book-shell">
 <div class="book" aria-label="Livre de recettes du Refuge">
 <section class="page" data-page="0" aria-label="Page 1 : Bienvenue">
-<div class="welcome"><div class="flower">🌸🦊🌸</div>
+<div class="welcome"><div class="flower"></div>
 <h2>Bienvenue dans la Cuisine du Refuge</h2>
 <p>Entre dans notre petit livre de gourmandises enchantées ! Ici, chaque recette est l'occasion de se retrouver, de partager nos ingrédients et de préparer ensemble de jolies soirées dans Palia.</p>
 <p>Choisis une soirée dans le Carnet, puis clique sur « Rejoindre la cuisine » pour ouvrir directement sa recette.</p>
-<p class="signature">Avec une pincée de magie et beaucoup de bonne humeur 💜</p>
+<p class="signature">Avec une pincée de magie et beaucoup de bonne humeur </p>
 
 </div>
 <div class="page-number">— 1 —</div>
 </section>
 <section class="page" data-page="1" aria-label="Page 2 : Sashimi">
 <img src="soiree-sashimi.png" alt="Notre petite renarde violette et Reth pour la soirée Sashimi" class="sashimi-illustration">
-<h2>🍣 Soirée Sashimi</h2>
-<div class="info"><strong>🍣 Sashimi — préparations au choix</strong><p>Sélectionne une soirée Sashimi ci-dessous pour retrouver son nombre de préparations et réserver ton poste.</p><p>Choisissez les postes correspondant à vos ingrédients.</p></div>
+<h2> Soirée Sashimi</h2>
+<div class="info"><strong> Sashimi — préparations au choix</strong><p>Sélectionne une soirée Sashimi ci-dessous pour retrouver son nombre de préparations et réserver ton poste.</p><p>Choisissez les postes correspondant à vos ingrédients.</p></div>
 <div id="discord-connexion" style="text-align:center;margin:20px 0"><span id="cuisine-account"></span></div>
 <div id="recipe-selection-1" class="recipe-selection"></div><div class="postes-cuisine"><div id="roles"></div></div>
-<p class="notice">💜 Les inscriptions sont enregistrées automatiquement. Connectez-vous avec Discord depuis le Carnet pour réserver votre poste de cuisine ! 🦊</p>
+<p class="notice"> Les inscriptions sont enregistrées automatiquement. Connectez-vous avec Discord depuis le Carnet pour réserver votre poste de cuisine ! </p>
 <div class="page-number">— 2 —</div>
 </section>
 <section class="page" data-page="2" aria-label="Page 3 : Poké Bowl">
 <img src="illustration Poké bowl.png" alt="Reth et la renarde violette présentent le Poké Bowl de Palia" class="poke-illustration">
-<h2>🥗 Poké Bowl de Palia</h2>
+<h2> Poké Bowl de Palia</h2>
 <p class="poke-intro">Préparez ensemble le Poké Bowl ! Voici les 11 étapes de la recette, avec les indications d’Over Prep de notre tableau.</p>
 <div id="recipe-selection-2" class="recipe-selection"></div><div class="poke-steps" aria-label="Étapes de préparation du Poké Bowl">
 <article class="poke-step"><h3>1. Mélange 1 (départ)</h3><img class="poke-step-image" src="Vinaigre.png" alt="Illustration de l’étape 1 du Poké Bowl" loading="lazy"><p>1 vinaigre</p><p class="overprep">Over Prep : ❌ Non · 1 personne nécessaire</p></article>
@@ -323,12 +375,12 @@ body{background:radial-gradient(ellipse at 15% 12%,#f1d7bd 0,transparent 35%),ra
 <article class="poke-step"><h3>10. Mélange 2</h3><img class="poke-step-image" src="Mélange divin.png" alt="Illustration de l’étape 10 du Poké Bowl" loading="lazy"><p>Dari moulu + ail + pousse d’épice + racine vivace → mélange divin</p><p class="overprep">Over Prep : ✅ Oui · 1 personne nécessaire</p></article>
 <article class="poke-step"><h3>11. Mélange 1 (final)</h3><img class="poke-step-image" src="Poké Bowl couv.png" alt="Poké Bowl terminé, assemblage final" loading="lazy"><p>Filet + salsa + mélange divin</p><p class="overprep">Over Prep : ❌ Non · 1 personne nécessaire</p></article>
 </div>
-<p class="poke-note">💜 Sélectionne une soirée ci-dessus pour réserver directement ton poste.</p>
+<p class="poke-note"> Sélectionne une soirée ci-dessus pour réserver directement ton poste.</p>
 <div class="page-number">— 3 —</div>
 </section>
 <section class="page" data-page="3" aria-label="Page 4 : Gâteau de fête">
 <img src="illustration gâteau de fête.png" alt="Gâteau de fête de Palia avec notre renarde" class="poke-illustration">
-<h2>🎂 Gâteau de fête</h2>
+<h2> Gâteau de fête</h2>
 <p class="poke-intro">Les 8 étapes de préparation, avec les quantités nécessaires et les indications d’Over Prep.</p>
 <div id="recipe-selection-3" class="recipe-selection"></div><div class="poke-steps" aria-label="Étapes de préparation du Gâteau de fête">
 <article class="poke-step"><h3>1. Plan de préparation (départ)</h3><img class="cake-step-image" src="Gélifié.png" alt="Illustration de l’étape 1 du Gâteau de fête" loading="lazy"><p>1 myrtille</p><p class="overprep">Over Prep : ❌ Non · 1 personne nécessaire</p></article>
@@ -340,12 +392,12 @@ body{background:radial-gradient(ellipse at 15% 12%,#f1d7bd 0,transparent 35%),ra
 <article class="poke-step"><h3>7. Plan de préparation</h3><img class="cake-step-image" src="Gélifié.png" alt="Illustration de l’étape 7 du Gâteau de fête" loading="lazy"><p>1 couche de gâteau + 1 glaçage aux fruits → couche garnie</p><p class="overprep">Over Prep : ✅ Oui · 3 personnes nécessaires</p></article>
 <article class="poke-step"><h3>8. Plan de préparation (final)</h3><img class="cake-step-image" src="gateau_fete_aquarelle.png" alt="Gâteau de fête terminé" loading="lazy"><p>3 couches garnies + 1 glaçage principal</p><p class="overprep">Over Prep : ❌ Non · 1 personne nécessaire</p></article>
 </div>
-<p class="poke-note">💜 Sélectionne une soirée ci-dessus pour réserver directement ton poste.</p>
+<p class="poke-note"> Sélectionne une soirée ci-dessus pour réserver directement ton poste.</p>
 <div class="page-number">— 4 —</div>
 </section>
-<section class="page" data-page="4" aria-label="Page 5 : 🍔 Hamburger de haricots">
-<img src="Illustration Hamburger de Haricots.png" class="poke-illustration" alt="Illustration principale : 🍔 Hamburger de haricots" loading="lazy">
-<h2>🍔 Hamburger de haricots</h2>
+<section class="page" data-page="4" aria-label="Page 5 :  Hamburger de haricots">
+<img src="Illustration Hamburger de Haricots.png" class="poke-illustration" alt="Illustration principale :  Hamburger de haricots" loading="lazy">
+<h2> Hamburger de haricots</h2>
 <p class="poke-intro">14 étapes de préparation, avec les quantités nécessaires et les indications d’Over Prep.</p>
 <div id="recipe-selection-4" class="recipe-selection"></div><div class="poke-steps">
 <article class="poke-step"><h3>1. Plan de préparation 1 (départ)</h3>
@@ -375,15 +427,15 @@ body{background:radial-gradient(ellipse at 15% 12%,#f1d7bd 0,transparent 35%),ra
 <article class="poke-step"><h3>13. Station de mélange</h3>
 <p>1 oignon ciselé + ketchup + ail émincé + mayonnaise → sauce burger</p><p class="overprep">Over Prep : ✅ Oui · 1 personne nécessaire</p></article>
 <article class="poke-step"><h3>14. Plan de préparation 1 (final)</h3>
-<img class="cake-step-image" src="burger_haricots_aquarelle.png" alt="🍔 Hamburger de haricots terminé" loading="lazy">
+<img class="cake-step-image" src="burger_haricots_aquarelle.png" alt=" Hamburger de haricots terminé" loading="lazy">
 <p>Fromage + tomate + oignon + galette + sauce + pain → Burger aux haricots</p><p class="overprep">Over Prep : ❌ Non · 1 personne nécessaire</p></article>
 </div>
-<p class="poke-note">💜 Sélectionne une soirée ci-dessus pour réserver directement ton poste. Les illustrations des autres postes seront ajoutées progressivement.</p>
+<p class="poke-note"> Sélectionne une soirée ci-dessus pour réserver directement ton poste. Les illustrations des autres postes seront ajoutées progressivement.</p>
 <div class="page-number">— 5 —</div>
 </section>
-<section class="page" data-page="5" aria-label="Page 6 : 🌶️ Chili végétarien">
-<img src="Illustration chili végétarien.png" class="poke-illustration" alt="Illustration principale : 🌶️ Chili végétarien" loading="lazy">
-<h2>🌶️ Chili végétarien</h2>
+<section class="page" data-page="5" aria-label="Page 6 :  Chili végétarien">
+<img src="Illustration chili végétarien.png" class="poke-illustration" alt="Illustration principale :  Chili végétarien" loading="lazy">
+<h2> Chili végétarien</h2>
 <p class="poke-intro">15 étapes de préparation, avec les quantités nécessaires et les indications d’Over Prep.</p>
 <div id="recipe-selection-5" class="recipe-selection"></div><div class="poke-steps">
 <article class="poke-step"><h3>1. Cuisinière 1 (départ)</h3>
@@ -415,15 +467,15 @@ body{background:radial-gradient(ellipse at 15% 12%,#f1d7bd 0,transparent 35%),ra
 <article class="poke-step"><h3>14. Station de mélange</h3>
 <p>Mélange de légumes + mélange sauté → mélange de chili</p><p class="overprep">Over Prep : ✅ Oui · 1 personne nécessaire</p></article>
 <article class="poke-step"><h3>15. Cuisinière 1 (final)</h3>
-<img class="cake-step-image" src="chili_vegetarien_aquarelle.png" alt="🌶️ Chili végétarien terminé" loading="lazy">
+<img class="cake-step-image" src="chili_vegetarien_aquarelle.png" alt=" Chili végétarien terminé" loading="lazy">
 <p>Ajouter le mélange de chili et remuer → Chili végétarien</p><p class="overprep">Over Prep : ❌ Non · 1 personne nécessaire</p></article>
 </div>
-<p class="poke-note">💜 Sélectionne une soirée ci-dessus pour réserver directement ton poste. Les illustrations des autres postes seront ajoutées progressivement.</p>
+<p class="poke-note"> Sélectionne une soirée ci-dessus pour réserver directement ton poste. Les illustrations des autres postes seront ajoutées progressivement.</p>
 <div class="page-number">— 6 —</div>
 </section>
-<section class="page" data-page="6" aria-label="Page 7 : 🍲 Bahari de Muujin">
-<img src="Illustration Bahari de Muujin.png" class="poke-illustration" alt="Illustration principale : 🍲 Bahari de Muujin" loading="lazy">
-<h2>🍲 Bahari de Muujin</h2>
+<section class="page" data-page="6" aria-label="Page 7 :  Bahari de Muujin">
+<img src="Illustration Bahari de Muujin.png" class="poke-illustration" alt="Illustration principale :  Bahari de Muujin" loading="lazy">
+<h2> Bahari de Muujin</h2>
 <p class="poke-intro">17 étapes de préparation, avec les quantités nécessaires et les indications d’Over Prep.</p>
 <div id="recipe-selection-6" class="recipe-selection"></div><div class="poke-steps">
 <article class="poke-step"><h3>1. Four (départ)</h3>
@@ -459,10 +511,10 @@ body{background:radial-gradient(ellipse at 15% 12%,#f1d7bd 0,transparent 35%),ra
 <article class="poke-step"><h3>16. Plan de préparation</h3>
 <p>Pâte garnie + 3 muujins grillés + moutarde + 1 œuf → Bahari non cuit</p><p class="overprep">Over Prep : ✅ Oui · 1 personne nécessaire</p></article>
 <article class="poke-step"><h3>17. Four (final)</h3>
-<img class="cake-step-image" src="bahari_muujin_aquarelle.png" alt="🍲 Bahari de Muujin terminé" loading="lazy">
+<img class="cake-step-image" src="bahari_muujin_aquarelle.png" alt=" Bahari de Muujin terminé" loading="lazy">
 <p>Bahari non cuit → Bahari de Muujin</p><p class="overprep">Over Prep : ❌ Non · 1 personne nécessaire</p></article>
 </div>
-<p class="poke-note">💜 Sélectionne une soirée ci-dessus pour réserver directement ton poste. Les illustrations des autres postes seront ajoutées progressivement.</p>
+<p class="poke-note"> Sélectionne une soirée ci-dessus pour réserver directement ton poste. Les illustrations des autres postes seront ajoutées progressivement.</p>
 <div class="page-number">— 7 —</div>
 </section>
 </div>
@@ -531,9 +583,9 @@ if(activeRecipe && requestedEvent)selected[activeRecipe]=requestedEvent;
 showRecipe(activeRecipe?recipePages[activeRecipe]:0);
 
 function text(parent,tag,value,cls){const e=document.createElement(tag);e.textContent=value;if(cls)e.className=cls;parent.append(e);return e}
-function postsFor(recipe){if(recipe==='Sashimi')return [{id:'starter',name:'👑 Starter',ingredient:'Pousses d’épice',limit:1},{id:'poisson',name:'🐟 Poisson',ingredient:'Poisson au choix',limit:1},{id:'riz',name:'🍚 Riz',ingredient:'Riz',limit:null}];const page=document.querySelector(`.page[data-page="${recipePages[recipe]}"]`);return [...page.querySelectorAll('.poke-step')].map((step,i)=>{const n=step.querySelector('h3')?.textContent||`Étape ${i+1}`,ingredient=step.querySelector('p:not(.overprep)')?.textContent||'',count=step.querySelector('.overprep')?.textContent.match(/(\d+) personne/);const overprep=step.querySelector('.overprep')?.textContent||'';const unlimited=/Over\s*Prep\s*:\s*(?:✅\s*)?Oui/i.test(overprep);return {id:`etape_${i+1}`,name:n,ingredient,limit:unlimited?null:(count?Number(count[1]):1)}})}
+function postsFor(recipe){if(recipe==='Sashimi')return [{id:'starter',name:' Starter',ingredient:'Pousses d’épice',limit:1},{id:'poisson',name:' Poisson',ingredient:'Poisson au choix',limit:1},{id:'riz',name:' Riz',ingredient:'Riz',limit:null}];const page=document.querySelector(`.page[data-page="${recipePages[recipe]}"]`);return [...page.querySelectorAll('.poke-step')].map((step,i)=>{const n=step.querySelector('h3')?.textContent||`Étape ${i+1}`,ingredient=step.querySelector('p:not(.overprep)')?.textContent||'',count=step.querySelector('.overprep')?.textContent.match(/(\d+) personne/);const overprep=step.querySelector('.overprep')?.textContent||'';const unlimited=/Over\s*Prep\s*:\s*(?:✅\s*)?Oui/i.test(overprep);return {id:`etape_${i+1}`,name:n,ingredient,limit:unlimited?null:(count?Number(count[1]):1)}})}
 function date(v){return new Date(v).toLocaleString('fr-FR',{dateStyle:'full',timeStyle:'short'})}
-async function load(){const {data:{session},error:authError}=await sb.auth.getSession();user=session?.user||null;$('cuisine-account').textContent=user?'💜 Connecté(e) avec Discord':'💜 Connecte-toi depuis le Carnet pour réserver un poste';const eventQuery=sb.from('evenements').select('id,titre,recette,date_evenement,nombre_preparations,statut');const {data,error}=requestedEvent?await eventQuery.eq('id',requestedEvent):await eventQuery.order('date_evenement',{ascending:true}).limit(100);if(error){$('cuisine-status').textContent='Impossible de charger les soirées : '+error.message;return}events=(data||[]).filter(e=>e.recette&&(e.statut===null||e.statut==='ouverte'));$('cuisine-status').textContent=events.length?'':'Aucune soirée ouverte pour le moment.';await renderAll()}
-async function renderAll(){const v=++version;for(const [recipe,page] of Object.entries(recipePages)){if(activeRecipe && recipe!==activeRecipe)continue;const host=$('recipe-selection-'+page);host.replaceChildren();const list=events.filter(e=>e.recette===recipe);const label=text(host,'label','📅 Choisir une soirée '+recipe);if(!list.length){text(host,'p','Aucune soirée ouverte pour cette recette.');continue}const select=document.createElement('select');label.htmlFor=select.id='choix-'+page;for(const e of list){const option=document.createElement('option');option.value=String(e.id);option.textContent=`${date(e.date_evenement)} · ${e.nombre_preparations} préparations`;select.append(option)}if(!list.some(e=>String(e.id)===selected[recipe]))selected[recipe]=String(list[0].id);select.value=selected[recipe];select.onchange=()=>{selected[recipe]=select.value;renderAll()};host.append(select);const evening=list.find(e=>String(e.id)===selected[recipe]);text(host,'p','🍽️ '+evening.nombre_preparations+' préparations');if(recipe==='Sashimi')$('roles').replaceChildren();else document.querySelectorAll(`.page[data-page="${page}"] .recipe-role-meta`).forEach(x=>x.remove());const {data,error}=await sb.from('inscriptions').select('id,membre_id,poste').eq('evenement_id',evening.id);if(v!==version)return;if(error){text(host,'p','Impossible de lire les inscriptions : '+error.message);continue}await loadMemberProfiles(data);if(v!==version)return;const posts=postsFor(recipe),steps=[...document.querySelectorAll(`.page[data-page="${page}"] .poke-step`)];posts.forEach((post,i)=>{const members=(data||[]).filter(m=>m.poste===post.id),mine=!!user&&members.some(m=>m.membre_id===user.id),full=post.limit!==null&&members.length>=post.limit;let area;if(recipe==='Sashimi'){area=document.createElement('div');area.className='role';$('roles').append(area);text(area,'h3',post.name);const img=document.createElement('img');img.className='image-poste';img.src=({starter:"Pousse d'épice.png",poisson:'Poisson.png',riz:'Riz.png'})[post.id];img.alt=post.name;area.append(img);text(area,'p','À apporter : '+post.ingredient)}else{area=document.createElement('div');area.className='recipe-role-meta';steps[i].append(area)}text(area,'p',post.limit===null?`${members.length} inscrit(s) · places illimitées`:`${members.length} / ${post.limit} place(s)`);if(members.length)showMembers(area,members);const btn=document.createElement('button');btn.type='button';btn.textContent=mine?'Me désinscrire':full?'Poste complet':'Choisir ce poste';btn.disabled=!user||(full&&!mine);if(mine)btn.className='leave';btn.onclick=async()=>{btn.disabled=true;try{if(mine){const ids=members.filter(m=>m.membre_id===user.id).map(m=>m.id);const {error}=await sb.from('inscriptions').delete().in('id',ids).eq('membre_id',user.id);if(error)throw error}else{const {error}=await sb.from('inscriptions').insert({evenement_id:evening.id,membre_id:user.id,poste:post.id});if(error)throw error}await renderAll()}catch(e){alert('Inscription impossible : '+e.message);btn.disabled=false}};area.append(btn)})}}
+async function load(){const {data:{session},error:authError}=await sb.auth.getSession();user=session?.user||null;$('cuisine-account').textContent=user?' Connecté(e) avec Discord':' Connecte-toi depuis le Carnet pour réserver un poste';const eventQuery=sb.from('evenements').select('id,titre,recette,date_evenement,nombre_preparations,statut');const {data,error}=requestedEvent?await eventQuery.eq('id',requestedEvent):await eventQuery.order('date_evenement',{ascending:true}).limit(100);if(error){$('cuisine-status').textContent='Impossible de charger les soirées : '+error.message;return}events=(data||[]).filter(e=>e.recette&&(e.statut===null||e.statut==='ouverte'));$('cuisine-status').textContent=events.length?'':'Aucune soirée ouverte pour le moment.';await renderAll()}
+async function renderAll(){const v=++version;for(const [recipe,page] of Object.entries(recipePages)){if(activeRecipe && recipe!==activeRecipe)continue;const host=$('recipe-selection-'+page);host.replaceChildren();const list=events.filter(e=>e.recette===recipe);const label=text(host,'label',' Choisir une soirée '+recipe);if(!list.length){text(host,'p','Aucune soirée ouverte pour cette recette.');continue}const select=document.createElement('select');label.htmlFor=select.id='choix-'+page;for(const e of list){const option=document.createElement('option');option.value=String(e.id);option.textContent=`${date(e.date_evenement)} · ${e.nombre_preparations} préparations`;select.append(option)}if(!list.some(e=>String(e.id)===selected[recipe]))selected[recipe]=String(list[0].id);select.value=selected[recipe];select.onchange=()=>{selected[recipe]=select.value;renderAll()};host.append(select);const evening=list.find(e=>String(e.id)===selected[recipe]);text(host,'p',' '+evening.nombre_preparations+' préparations');if(recipe==='Sashimi')$('roles').replaceChildren();else document.querySelectorAll(`.page[data-page="${page}"] .recipe-role-meta`).forEach(x=>x.remove());const {data,error}=await sb.from('inscriptions').select('id,membre_id,poste').eq('evenement_id',evening.id);if(v!==version)return;if(error){text(host,'p','Impossible de lire les inscriptions : '+error.message);continue}await loadMemberProfiles(data);if(v!==version)return;const posts=postsFor(recipe),steps=[...document.querySelectorAll(`.page[data-page="${page}"] .poke-step`)];posts.forEach((post,i)=>{const members=(data||[]).filter(m=>m.poste===post.id),mine=!!user&&members.some(m=>m.membre_id===user.id),full=post.limit!==null&&members.length>=post.limit;let area;if(recipe==='Sashimi'){area=document.createElement('div');area.className='role';$('roles').append(area);text(area,'h3',post.name);const img=document.createElement('img');img.className='image-poste';img.src=({starter:"Pousse d'épice.png",poisson:'Poisson.png',riz:'Riz.png'})[post.id];img.alt=post.name;area.append(img);text(area,'p','À apporter : '+post.ingredient)}else{area=document.createElement('div');area.className='recipe-role-meta';steps[i].append(area)}text(area,'p',post.limit===null?`${members.length} inscrit(s) · places illimitées`:`${members.length} / ${post.limit} place(s)`);if(members.length)showMembers(area,members);const btn=document.createElement('button');btn.type='button';btn.textContent=mine?'Me désinscrire':full?'Poste complet':'Choisir ce poste';btn.disabled=!user||(full&&!mine);if(mine)btn.className='leave';btn.onclick=async()=>{btn.disabled=true;try{if(mine){const ids=members.filter(m=>m.membre_id===user.id).map(m=>m.id);const {error}=await sb.from('inscriptions').delete().in('id',ids).eq('membre_id',user.id);if(error)throw error}else{const {error}=await sb.from('inscriptions').insert({evenement_id:evening.id,membre_id:user.id,poste:post.id});if(error)throw error}await renderAll()}catch(e){alert('Inscription impossible : '+e.message);btn.disabled=false}};area.append(btn)})}}
 load();sb.auth.onAuthStateChange(()=>{setTimeout(load,0)});
-</script><footer class="refuge-disclaimer" aria-label="Informations sur le site"><p>✿ Le Refuge — De jolis moments à partager ✿</p><p>Site communautaire indépendant, créé par des fans de Palia pour les membres du Refuge.</p><p>Ce site n'est ni officiel, ni affilié, ni approuvé ou sponsorisé par Singularity 6, le studio à l'origine de Palia.</p><p>Palia et ses éléments associés appartiennent à leurs ayants droit respectifs.</p></footer></body></html>
+</script><footer class="refuge-disclaimer" aria-label="Informations sur le site"><p> Le Refuge — De jolis moments à partager </p><p>Site communautaire indépendant, créé par des fans de Palia pour les membres du Refuge.</p><p>Ce site n'est ni officiel, ni affilié, ni approuvé ou sponsorisé par Singularity 6, le studio à l'origine de Palia.</p><p>Palia et ses éléments associés appartiennent à leurs ayants droit respectifs.</p></footer></body></html>
