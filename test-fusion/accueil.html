@@ -117,7 +117,7 @@ body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radia
   background-image:none!important;
   border:solid transparent!important;
   border-width:clamp(38px,5vw,72px)!important;
-  border-image-source:url("./parchemin_refuge.webp")!important;
+  border-image-source:url("/le-refuge/test-fusion/parchemin_refuge.webp")!important;
   border-image-slice:210 175 205 175 fill!important;
   border-image-width:clamp(38px,5vw,72px)!important;
   border-image-outset:0!important;
@@ -139,6 +139,43 @@ body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radia
 @media(max-width:700px){
  .paper,.book .page{border-width:30px!important;border-image-width:30px!important}
  .paper,.book .page{padding:8px!important}
+}
+
+/* Ajustements mobiles : illustration lisible et contenu tenu à distance des bords */
+.paper,.book .page{overflow:visible!important}
+.paper > *, .book .page > *{max-width:100%;min-width:0}
+.paper .scene,.book .page .welcome{padding:12px 0!important}
+.paper .mascot{max-width:min(42vw,170px)!important;height:auto!important;object-fit:contain!important;mask-image:radial-gradient(ellipse 67% 67% at 50% 50%,#000 70%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 67% 67% at 50% 50%,#000 70%,transparent 100%)}
+.book .page img:not(.avatar){max-width:100%!important;object-fit:contain!important}
+.book .page .sashimi-illustration,.book .page .poke-illustration{width:min(100%,660px)!important;margin:12px auto 20px!important;display:block!important}
+.book .page .welcome .flower{font-size:22px!important;letter-spacing:0!important}
+@media(max-width:700px){
+ .paper,.book .page{border-width:38px!important;border-image-width:38px!important;padding:10px 6px!important}
+ .paper .scene-text{max-width:100%!important}
+ .book .page .welcome{min-height:350px!important;gap:10px!important}
+ .book .page h2{font-size:clamp(20px,5vw,28px)!important}
+ .book .page p{overflow-wrap:anywhere}
+}
+
+/* CORRECTION DES PROPORTIONS : les illustrations ne sont JAMAIS étirées en hauteur.
+   Haut et bas à ratio constant; seule une bande de papier neutre se répète. */
+.paper,.book .page{
+ border:0!important;border-image:none!important;border-radius:0!important;
+ clip-path:none!important;outline:none!important;
+ background-color:#f6dfad!important;
+ background-image:url("/le-refuge/test-fusion/parchemin_haut.webp"),url("/le-refuge/test-fusion/parchemin_bas.webp"),url("/le-refuge/test-fusion/parchemin_milieu.webp")!important;
+ background-position:center top,center bottom,center top!important;
+ background-size:100% auto,100% auto,100% auto!important;
+ background-repeat:no-repeat,no-repeat,repeat-y!important;
+ box-shadow:0 12px 25px #57332b38!important;
+ padding:clamp(90px,16vw,170px) clamp(24px,8vw,110px)!important;
+ min-width:0;overflow:visible!important;
+}
+.book,.book-shell{background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important}
+.paper::before,.paper::after,.book .page::before,.book .page::after{display:none!important}
+@media(max-width:700px){
+ .paper,.book .page{padding:clamp(70px,18vw,125px) clamp(29px,8.5vw,65px)!important}
+ .book .page p{overflow-wrap:break-word!important}
 }
 </style>
 </head>
