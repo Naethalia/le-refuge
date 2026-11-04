@@ -247,10 +247,48 @@ body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radia
  .paper,.book .page{background-size:100% auto,100% auto,9.27% auto,9.27% auto!important}
 }
 
+/* Harmonisation douce des teintes du papier, sans changer les illustrations.
+   Le dégradé est la dernière couche, derrière les quatre images. */
+.paper,.book .page{
+ background-color:#f6d6a0!important;
+ background-image:
+  url('/le-refuge/test-fusion/refuge_finition_haut.webp'),
+  url('/le-refuge/test-fusion/refuge_finition_bas_sans_renarde.webp'),
+  url('/le-refuge/test-fusion/refuge_finition_gauche.webp'),
+  url('/le-refuge/test-fusion/refuge_finition_droite.webp'),
+  linear-gradient(to bottom,#ffda9d 0%,#fbd7a0 20%,#f6d6a0 55%,#f6d5a0 82%,#fccc87 100%)!important;
+ background-position:center top,center bottom,left top,right top,center center!important;
+ background-size:100% auto,100% auto,9.27% auto,9.27% auto,100% 100%!important;
+ background-repeat:no-repeat,no-repeat,repeat-y,repeat-y,no-repeat!important;
+}
+@media(max-width:700px){.paper,.book .page{background-size:100% auto,100% auto,9.27% auto,9.27% auto,100% 100%!important}}
+
 /* Renarde dynamique entière, au-dessus du bord inférieur, sans image coupée. */
 .paper .renarde-bas{display:flex;justify-content:flex-start;align-items:flex-end;margin:24px 0 -24px;min-height:155px;position:relative;z-index:2}
 .paper .renarde-bas .mascot{display:block;width:clamp(135px,23vw,245px)!important;max-width:65%!important;height:auto!important;object-fit:contain!important;mask-image:none!important;-webkit-mask-image:none!important}
 @media(max-width:700px){.paper .renarde-bas{margin:18px 0 -8px;min-height:125px}.paper .renarde-bas .mascot{width:clamp(125px,42vw,185px)!important}}
+
+/* FINITION CENTRALE : même chaleur que les bords du parchemin.
+   Les quatre illustrations originales restent à leur place et sans déformation. */
+.paper{
+  background-color:#f3d29b!important;
+  background-image:
+    url('/le-refuge/test-fusion/refuge_finition_haut.webp'),
+    url('/le-refuge/test-fusion/refuge_finition_bas_sans_renarde.webp'),
+    url('/le-refuge/test-fusion/refuge_finition_gauche.webp'),
+    url('/le-refuge/test-fusion/refuge_finition_droite.webp'),
+    radial-gradient(ellipse at 22% 28%,rgba(255,245,212,.33),transparent 55%),
+    radial-gradient(ellipse at 78% 73%,rgba(184,112,57,.09),transparent 55%),
+    repeating-linear-gradient(97deg,rgba(124,74,37,.018) 0 1px,transparent 1px 17px),
+    linear-gradient(90deg,#edc58a 0%,#f4d39c 12%,#f5d7a4 48%,#f4d39c 88%,#edc58a 100%)!important;
+  background-position:center top,center bottom,left top,right top,center,center,center,center!important;
+  background-size:100% auto,100% auto,9.27% auto,9.27% auto,100% 100%,100% 100%,100% 100%,100% 100%!important;
+  background-repeat:no-repeat,no-repeat,repeat-y,repeat-y,no-repeat,no-repeat,no-repeat,no-repeat!important;
+}
+/* Conserver des marges lisibles sans masquer les déchirures sur petit écran. */
+@media(max-width:700px){
+ .paper{background-size:100% auto,100% auto,9.27% auto,9.27% auto,100% 100%,100% 100%,100% 100%,100% 100%!important}
+}
 </style>
 </head>
 <body>
