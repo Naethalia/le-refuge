@@ -110,6 +110,36 @@ body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radia
 .paper{border:1px solid #b58c6a!important}
 .book .page{outline:1px solid #c29a73;outline-offset:-7px}
 @media(max-width:720px){.book{border-width:3px!important}}
+
+/* VRAI PARCHEMIN ILLUSTRÉ — neuf tranches pour les pages longues */
+.paper,.book .page{
+  background:#f5dfb3!important;
+  background-image:none!important;
+  border:solid transparent!important;
+  border-width:clamp(38px,5vw,72px)!important;
+  border-image-source:url("./parchemin_refuge.webp")!important;
+  border-image-slice:210 175 205 175 fill!important;
+  border-image-width:clamp(38px,5vw,72px)!important;
+  border-image-outset:0!important;
+  border-image-repeat:stretch!important;
+  border-radius:0!important;
+  clip-path:none!important;
+  outline:0!important;
+  box-shadow:0 12px 26px #6a3d4650!important;
+  min-width:0;
+  position:relative;
+}
+.paper{padding:clamp(12px,2.5vw,30px)!important}
+.book .page{padding:clamp(10px,2.4vw,26px)!important;min-height:380px!important}
+.book,.book-shell{background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important}
+.book .page::before,.book .page::after,.paper::before,.paper::after{display:none!important}
+.illustrated-corner,.ornament{display:none!important}
+.book .page h2,.paper h1{color:#76455b!important}
+.page-number{color:#886d65!important}
+@media(max-width:700px){
+ .paper,.book .page{border-width:30px!important;border-image-width:30px!important}
+ .paper,.book .page{padding:8px!important}
+}
 </style>
 </head>
 <body>
