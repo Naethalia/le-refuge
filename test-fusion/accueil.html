@@ -194,6 +194,28 @@ body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radia
  background:linear-gradient(to right,rgba(82,38,35,.46) 0,rgba(142,79,42,.26) 1.2%,rgba(189,118,58,.16) 3%,transparent 9%,transparent 91%,rgba(189,118,58,.16) 97%,rgba(142,79,42,.26) 98.8%,rgba(82,38,35,.46) 100%)!important;
 }
 .paper > *,.book .page > *{position:relative;z-index:1}
+
+/* BORDURES DE PAPIER DÉCHIRÉ — couches indépendantes, sans étirement vertical. */
+.paper,.book .page{
+ background-color:#f5dba7!important;
+ background-image:
+  url("/le-refuge/test-fusion/parchemin_haut_fondu.webp"),
+  url("/le-refuge/test-fusion/parchemin_bas_fondu.webp"),
+  url("/le-refuge/test-fusion/parchemin_bord_gauche.webp"),
+  url("/le-refuge/test-fusion/parchemin_bord_droite.webp")!important;
+ background-position:center top,center bottom,left top,right top!important;
+ background-size:100% auto,100% auto,clamp(42px,6.6vw,90px) 512px,clamp(42px,6.6vw,90px) 512px!important;
+ background-repeat:no-repeat,no-repeat,repeat-y,repeat-y!important;
+ box-shadow:0 12px 25px #57332b38!important;
+}
+.paper::before,.book .page::before{display:none!important}
+@media(max-width:700px){
+ .paper,.book .page{
+  background-size:100% auto,100% auto,42px 512px,42px 512px!important;
+  padding-left:clamp(38px,9vw,65px)!important;
+  padding-right:clamp(38px,9vw,65px)!important;
+ }
+}
 </style>
 </head>
 <body>
