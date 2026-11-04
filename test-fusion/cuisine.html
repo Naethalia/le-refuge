@@ -214,6 +214,77 @@ body{background:radial-gradient(ellipse at 15% 12%,#f1d7bd 0,transparent 35%),ra
 .book .page .role,.book .page .info,.book .page .poke-step,.book .page .recipe-selection,.book .page .evening-card,.book .page .evening-details,.book .page .evening-post{background:linear-gradient(150deg,#fff5db,#f1d4a4)!important;border:1px solid #af8653!important;border-left:5px solid #9b6b40!important;border-radius:9px!important;box-shadow:0 3px 10px #633b2026!important}
 .book-controls button,.page button{box-shadow:0 3px 0 #67452c55}
 @media(max-width:760px){.book-shell{padding:0 10px!important;margin-top:20px!important}.book{border-width:8px!important;border-radius:19px!important}.book .page{padding:34px 22px!important;box-shadow:inset 0 0 35px #6b3e2860!important}.book .page::before,.book .page::after{font-size:26px;opacity:.5}.site-header h1{padding:10px 14px!important}}
+
+/* LE REFUGE — feuilles anciennes, coins usés, magie florale.
+   Habillage CSS uniquement : aucune modification des réservations. */
+.book-shell{max-width:1000px!important}
+.book{
+  padding:clamp(8px,1.5vw,17px)!important;
+  border:0!important;
+  border-radius:25px!important;
+  background:linear-gradient(130deg,#68412e,#9c6747 50%,#5e382b)!important;
+  box-shadow:0 0 0 3px #b78359,0 14px 30px #51332755!important;
+  overflow:visible!important;
+}
+.book .page{
+  --paper:#f5e1b5;
+  margin:0!important;
+  padding:clamp(46px,6vw,75px) clamp(30px,6vw,74px)!important;
+  border:0!important;
+  border-radius:0!important;
+  min-height:500px;
+  background:
+    radial-gradient(ellipse 12% 9% at 4% 7%,#70432850,transparent 100%),
+    radial-gradient(ellipse 14% 13% at 98% 10%,#88532b4a,transparent 100%),
+    radial-gradient(ellipse 15% 16% at 2% 92%,#80502e52,transparent 100%),
+    radial-gradient(ellipse 20% 13% at 96% 94%,#83502c4c,transparent 100%),
+    radial-gradient(circle at 23% 40%,transparent 0 28px,#8c5b2b18 31px 33px,transparent 38px),
+    radial-gradient(ellipse at 74% 67%,#b0783a18,transparent 33%),
+    repeating-linear-gradient(106deg,transparent 0 70px,#946c3410 71px,transparent 74px,transparent 147px),
+    radial-gradient(ellipse at 48% 44%,#fff5d9 0%,#f5dfb5 58%,#dbb783 100%)!important;
+  clip-path:polygon(
+    0.7% 0.9%, 5% 0.2%, 11% 0.8%, 18% 0.1%, 26% 0.7%, 34% 0.3%,
+    42% 0.8%, 51% 0.2%, 59% 0.7%, 67% 0.2%, 76% 0.8%, 84% 0.2%,
+    93% 0.8%, 99.2% 0.4%, 99.6% 6%, 99.1% 14%, 99.7% 23%,
+    99.2% 32%, 99.8% 43%, 99.1% 53%, 99.7% 64%, 99.2% 73%,
+    99.7% 82%, 99.1% 91%, 99.5% 99.1%, 92% 99.6%, 84% 99.1%,
+    76% 99.7%, 68% 99.2%, 60% 99.8%, 51% 99.1%, 43% 99.7%,
+    35% 99.2%, 27% 99.7%, 19% 99.1%, 11% 99.7%, 4% 99.2%,
+    0.5% 99.6%, 0.9% 91%, 0.3% 83%, 0.8% 75%, 0.2% 65%,
+    0.8% 56%, 0.3% 47%, 0.8% 38%, 0.2% 29%, 0.8% 19%, 0.3% 10%
+  )!important;
+  box-shadow:inset 0 0 22px #7c4a2a80,inset 0 0 85px #89552d48!important;
+}
+.book .page::before{
+  content:"❧  ✿";
+  top:17px!important;left:24px!important;
+  font-size:26px!important;color:#a16a6e!important;opacity:.75!important;
+}
+.book .page::after{
+  content:"✿  ❧";
+  bottom:17px!important;right:24px!important;
+  font-size:26px!important;color:#986487!important;opacity:.7!important;
+  transform:none!important;border:0!important;inset:auto 24px 17px auto!important;
+  box-shadow:none!important;
+}
+.book .page h2{
+  color:#774663!important;
+  border-bottom:1px solid #b78b68!important;
+}
+.book .page .role,.book .page .info,.book .page .poke-step,
+.book .page .recipe-selection,.book .page .evening-card,
+.book .page .evening-details,.book .page .evening-post{
+  background:#fff4ddcc!important;
+  border:1px solid #cba780!important;
+  border-left:3px solid #ad7890!important;
+  box-shadow:0 2px 7px #7951311c!important;
+}
+@media(max-width:760px){
+  .book{padding:6px!important;border-radius:14px!important}
+  .book .page{padding:43px 22px!important;clip-path:polygon(1% 0.8%,25% 0.2%,51% 0.9%,75% 0.2%,99% 0.8%,99.5% 25%,99% 50%,99.6% 75%,99% 99%,75% 99.6%,50% 99%,25% 99.6%,1% 99%,0.5% 75%,1% 50%,0.5% 25%)!important}
+  .book .page::before,.book .page::after{font-size:19px!important}
+}
+
 </style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script></head><body><a class="top-return" href="https://naethalia.github.io/le-refuge/test-fusion/index.html">← Retour au Carnet des événements</a><header class="site-header"><h1>📖 La Cuisine Enchantée du Refuge 🌸</h1><p>Un soupçon de magie, beaucoup de gourmandise !</p></header><p id="cuisine-status" role="status">Chargement des soirées…</p><main class="book-shell">
 <div class="book" aria-label="Livre de recettes du Refuge">
 <section class="page" data-page="0" aria-label="Page 1 : Bienvenue">
