@@ -380,6 +380,53 @@ pages.forEach(p=>p.querySelectorAll('img[src]').forEach(img=>{
 }));
 const recipePages={'Sashimi':1,'Poké Bowl':2,'Gâteau de fête':3,'Hamburger de haricots':4,'Chili végétarien':5,'Bahari de Muujin':6};
 let events=[],user=null,version=0;const selected={};
+// Profils visibles : association par identifiant Supabase, sans toucher aux réservations.
+let memberProfiles=new Map();
+function discordProfile(u){
+ const m=u?.user_metadata||{};
+ const discord=u?.identities?.find(i=>i.provider==='discord');
+ const discordId=discord?.id||discord?.identity_data?.provider_id||m.provider_id||m.sub||null;
+ const pseudo=m.custom_claims?.global_name||m.full_name||m.name||m.user_name||'Membre du Refuge';
+ // Un avatar Discord global n'est PAS nécessairement l'avatar propre au serveur.
+ return {auth_user_id:u.id,discord_id:discordId?String(discordId):null,pseudo};
+}
+async function syncOwnProfile(){
+ if(!user)return;
+ const profile=discordProfile(user);
+ // Ne pas écraser un avatar de serveur éventuellement enregistré ailleurs.
+ const {data:existing,error:readError}=await sb.from('membres').select('id,auth_user_id,discord_id,pseudo,avatar_url').eq('auth_user_id',user.id).maybeSingle();
+ if(readError){console.warn('Lecture du profil indisponible :',readError.message);return}
+ const payload={auth_user_id:user.id,pseudo:profile.pseudo};
+ if(profile.discord_id)payload.discord_id=profile.discord_id;
+ const result=existing
+  ?await sb.from('membres').update(payload).eq('auth_user_id',user.id)
+  :await sb.from('membres').insert(payload);
+ if(result.error)console.warn('Enregistrement du profil indisponible :',result.error.message);
+}
+async function loadMemberProfiles(inscriptions){
+ const ids=[...new Set((inscriptions||[]).map(x=>x.membre_id).filter(Boolean))];
+ memberProfiles=new Map();
+ if(!ids.length)return;
+ const {data,error}=await sb.from('membres').select('auth_user_id,pseudo,avatar_url').in('auth_user_id',ids);
+ if(error){console.warn('Profils non disponibles :',error.message);return}
+ for(const p of data||[])memberProfiles.set(p.auth_user_id,p);
+}
+function showMembers(area,members){
+ const list=document.createElement('div');list.className='members';
+ for(const m of members){
+  const profile=memberProfiles.get(m.membre_id);
+  const chip=document.createElement('span');chip.className='member';
+  const name=profile?.pseudo|| (m.membre_id===user?.id?discordProfile(user).pseudo:'Membre du Refuge');
+  if(profile?.avatar_url){
+   try{const url=new URL(profile.avatar_url);if(url.protocol==='https:'){
+    const img=document.createElement('img');img.className='avatar';img.src=url.href;img.alt='';img.loading='lazy';img.referrerPolicy='no-referrer';chip.append(img);
+   }}catch(_e){}
+  }
+  text(chip,'span',name+(m.membre_id===user?.id?' (vous)':''));list.append(chip);
+ }
+ area.append(list);
+}
+
 const activeRecipe=Object.prototype.hasOwnProperty.call(recipePages,requestedRecipe)?requestedRecipe:null;
 if(activeRecipe && requestedEvent)selected[activeRecipe]=requestedEvent;
 showRecipe(activeRecipe?recipePages[activeRecipe]:0);
@@ -387,7 +434,7 @@ showRecipe(activeRecipe?recipePages[activeRecipe]:0);
 function text(parent,tag,value,cls){const e=document.createElement(tag);e.textContent=value;if(cls)e.className=cls;parent.append(e);return e}
 function postsFor(recipe){if(recipe==='Sashimi')return [{id:'starter',name:'👑 Starter',ingredient:'Pousses d’épice',limit:1},{id:'poisson',name:'🐟 Poisson',ingredient:'Poisson au choix',limit:1},{id:'riz',name:'🍚 Riz',ingredient:'Riz',limit:null}];const page=document.querySelector(`.page[data-page="${recipePages[recipe]}"]`);return [...page.querySelectorAll('.poke-step')].map((step,i)=>{const n=step.querySelector('h3')?.textContent||`Étape ${i+1}`,ingredient=step.querySelector('p:not(.overprep)')?.textContent||'',count=step.querySelector('.overprep')?.textContent.match(/(\d+) personne/);const overprep=step.querySelector('.overprep')?.textContent||'';const unlimited=/Over\s*Prep\s*:\s*(?:✅\s*)?Oui/i.test(overprep);return {id:`etape_${i+1}`,name:n,ingredient,limit:unlimited?null:(count?Number(count[1]):1)}})}
 function date(v){return new Date(v).toLocaleString('fr-FR',{dateStyle:'full',timeStyle:'short'})}
-async function load(){const {data:{session},error:authError}=await sb.auth.getSession();user=session?.user||null;$('cuisine-account').textContent=user?'💜 Connecté(e) avec Discord':'💜 Connecte-toi depuis le Carnet pour réserver un poste';const eventQuery=sb.from('evenements').select('id,titre,recette,date_evenement,nombre_preparations,statut');const {data,error}=requestedEvent?await eventQuery.eq('id',requestedEvent):await eventQuery.order('date_evenement',{ascending:true}).limit(100);if(error){$('cuisine-status').textContent='Impossible de charger les soirées : '+error.message;return}events=(data||[]).filter(e=>e.recette&&(e.statut===null||e.statut==='ouverte'));$('cuisine-status').textContent=events.length?'':'Aucune soirée ouverte pour le moment.';await renderAll()}
-async function renderAll(){const v=++version;for(const [recipe,page] of Object.entries(recipePages)){if(activeRecipe && recipe!==activeRecipe)continue;const host=$('recipe-selection-'+page);host.replaceChildren();const list=events.filter(e=>e.recette===recipe);const label=text(host,'label','📅 Choisir une soirée '+recipe);if(!list.length){text(host,'p','Aucune soirée ouverte pour cette recette.');continue}const select=document.createElement('select');label.htmlFor=select.id='choix-'+page;for(const e of list){const option=document.createElement('option');option.value=String(e.id);option.textContent=`${date(e.date_evenement)} · ${e.nombre_preparations} préparations`;select.append(option)}if(!list.some(e=>String(e.id)===selected[recipe]))selected[recipe]=String(list[0].id);select.value=selected[recipe];select.onchange=()=>{selected[recipe]=select.value;renderAll()};host.append(select);const evening=list.find(e=>String(e.id)===selected[recipe]);text(host,'p','🍽️ '+evening.nombre_preparations+' préparations');if(recipe==='Sashimi')$('roles').replaceChildren();else document.querySelectorAll(`.page[data-page="${page}"] .recipe-role-meta`).forEach(x=>x.remove());const {data,error}=await sb.from('inscriptions').select('id,membre_id,poste').eq('evenement_id',evening.id);if(v!==version)return;if(error){text(host,'p','Impossible de lire les inscriptions : '+error.message);continue}const posts=postsFor(recipe),steps=[...document.querySelectorAll(`.page[data-page="${page}"] .poke-step`)];posts.forEach((post,i)=>{const members=(data||[]).filter(m=>m.poste===post.id),mine=!!user&&members.some(m=>m.membre_id===user.id),full=post.limit!==null&&members.length>=post.limit;let area;if(recipe==='Sashimi'){area=document.createElement('div');area.className='role';$('roles').append(area);text(area,'h3',post.name);const img=document.createElement('img');img.className='image-poste';img.src=({starter:"Pousse d'épice.png",poisson:'Poisson.png',riz:'Riz.png'})[post.id];img.alt=post.name;area.append(img);text(area,'p','À apporter : '+post.ingredient)}else{area=document.createElement('div');area.className='recipe-role-meta';steps[i].append(area)}text(area,'p',post.limit===null?`${members.length} inscrit(s) · places illimitées`:`${members.length} / ${post.limit} place(s)`);if(members.length)text(area,'p',members.map(m=>m.membre_id===user?.id?'Vous':'Membre du Refuge').join(' · '));const btn=document.createElement('button');btn.type='button';btn.textContent=mine?'Me désinscrire':full?'Poste complet':'Choisir ce poste';btn.disabled=!user||(full&&!mine);if(mine)btn.className='leave';btn.onclick=async()=>{btn.disabled=true;try{if(mine){const ids=members.filter(m=>m.membre_id===user.id).map(m=>m.id);const {error}=await sb.from('inscriptions').delete().in('id',ids).eq('membre_id',user.id);if(error)throw error}else{const {error}=await sb.from('inscriptions').insert({evenement_id:evening.id,membre_id:user.id,poste:post.id});if(error)throw error}await renderAll()}catch(e){alert('Inscription impossible : '+e.message);btn.disabled=false}};area.append(btn)})}}
+async function load(){const {data:{session},error:authError}=await sb.auth.getSession();user=session?.user||null;$('cuisine-account').textContent=user?'💜 Connecté(e) avec Discord':'💜 Connecte-toi depuis le Carnet pour réserver un poste';const eventQuery=sb.from('evenements').select('id,titre,recette,date_evenement,nombre_preparations,statut');const {data,error}=requestedEvent?await eventQuery.eq('id',requestedEvent):await eventQuery.order('date_evenement',{ascending:true}).limit(100);if(error){$('cuisine-status').textContent='Impossible de charger les soirées : '+error.message;return}events=(data||[]).filter(e=>e.recette&&(e.statut===null||e.statut==='ouverte'));$('cuisine-status').textContent=events.length?'':'Aucune soirée ouverte pour le moment.';if(user)await syncOwnProfile();await renderAll()}
+async function renderAll(){const v=++version;for(const [recipe,page] of Object.entries(recipePages)){if(activeRecipe && recipe!==activeRecipe)continue;const host=$('recipe-selection-'+page);host.replaceChildren();const list=events.filter(e=>e.recette===recipe);const label=text(host,'label','📅 Choisir une soirée '+recipe);if(!list.length){text(host,'p','Aucune soirée ouverte pour cette recette.');continue}const select=document.createElement('select');label.htmlFor=select.id='choix-'+page;for(const e of list){const option=document.createElement('option');option.value=String(e.id);option.textContent=`${date(e.date_evenement)} · ${e.nombre_preparations} préparations`;select.append(option)}if(!list.some(e=>String(e.id)===selected[recipe]))selected[recipe]=String(list[0].id);select.value=selected[recipe];select.onchange=()=>{selected[recipe]=select.value;renderAll()};host.append(select);const evening=list.find(e=>String(e.id)===selected[recipe]);text(host,'p','🍽️ '+evening.nombre_preparations+' préparations');if(recipe==='Sashimi')$('roles').replaceChildren();else document.querySelectorAll(`.page[data-page="${page}"] .recipe-role-meta`).forEach(x=>x.remove());const {data,error}=await sb.from('inscriptions').select('id,membre_id,poste').eq('evenement_id',evening.id);if(v!==version)return;if(error){text(host,'p','Impossible de lire les inscriptions : '+error.message);continue}await loadMemberProfiles(data);if(v!==version)return;const posts=postsFor(recipe),steps=[...document.querySelectorAll(`.page[data-page="${page}"] .poke-step`)];posts.forEach((post,i)=>{const members=(data||[]).filter(m=>m.poste===post.id),mine=!!user&&members.some(m=>m.membre_id===user.id),full=post.limit!==null&&members.length>=post.limit;let area;if(recipe==='Sashimi'){area=document.createElement('div');area.className='role';$('roles').append(area);text(area,'h3',post.name);const img=document.createElement('img');img.className='image-poste';img.src=({starter:"Pousse d'épice.png",poisson:'Poisson.png',riz:'Riz.png'})[post.id];img.alt=post.name;area.append(img);text(area,'p','À apporter : '+post.ingredient)}else{area=document.createElement('div');area.className='recipe-role-meta';steps[i].append(area)}text(area,'p',post.limit===null?`${members.length} inscrit(s) · places illimitées`:`${members.length} / ${post.limit} place(s)`);if(members.length)showMembers(area,members);const btn=document.createElement('button');btn.type='button';btn.textContent=mine?'Me désinscrire':full?'Poste complet':'Choisir ce poste';btn.disabled=!user||(full&&!mine);if(mine)btn.className='leave';btn.onclick=async()=>{btn.disabled=true;try{if(mine){const ids=members.filter(m=>m.membre_id===user.id).map(m=>m.id);const {error}=await sb.from('inscriptions').delete().in('id',ids).eq('membre_id',user.id);if(error)throw error}else{const {error}=await sb.from('inscriptions').insert({evenement_id:evening.id,membre_id:user.id,poste:post.id});if(error)throw error}await renderAll()}catch(e){alert('Inscription impossible : '+e.message);btn.disabled=false}};area.append(btn)})}}
 load();sb.auth.onAuthStateChange(()=>{setTimeout(load,0)});
 </script><footer class="refuge-disclaimer" aria-label="Informations sur le site"><p>✿ Le Refuge — De jolis moments à partager ✿</p><p>Site communautaire indépendant, créé par des fans de Palia pour les membres du Refuge.</p><p>Ce site n'est ni officiel, ni affilié, ni approuvé ou sponsorisé par Singularity 6, le studio à l'origine de Palia.</p><p>Palia et ses éléments associés appartiennent à leurs ayants droit respectifs.</p></footer></body></html>
