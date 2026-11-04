@@ -401,6 +401,27 @@ body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radia
  .book .page h2{font-size:clamp(20px,5vw,28px)!important}
  .book .page p{overflow-wrap:anywhere}
 }
+
+/* CORRECTION DES PROPORTIONS : les illustrations ne sont JAMAIS étirées en hauteur.
+   Haut et bas à ratio constant; seule une bande de papier neutre se répète. */
+.paper,.book .page{
+ border:0!important;border-image:none!important;border-radius:0!important;
+ clip-path:none!important;outline:none!important;
+ background-color:#f6dfad!important;
+ background-image:url("/le-refuge/test-fusion/parchemin_haut.webp"),url("/le-refuge/test-fusion/parchemin_bas.webp"),url("/le-refuge/test-fusion/parchemin_milieu.webp")!important;
+ background-position:center top,center bottom,center top!important;
+ background-size:100% auto,100% auto,100% auto!important;
+ background-repeat:no-repeat,no-repeat,repeat-y!important;
+ box-shadow:0 12px 25px #57332b38!important;
+ padding:clamp(90px,16vw,170px) clamp(24px,8vw,110px)!important;
+ min-width:0;overflow:visible!important;
+}
+.book,.book-shell{background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important}
+.paper::before,.paper::after,.book .page::before,.book .page::after{display:none!important}
+@media(max-width:700px){
+ .paper,.book .page{padding:clamp(70px,18vw,125px) clamp(29px,8.5vw,65px)!important}
+ .book .page p{overflow-wrap:break-word!important}
+}
 </style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script></head><body><a class="top-return" href="https://naethalia.github.io/le-refuge/test-fusion/index.html">← Retour au Carnet des événements</a><header class="site-header"><h1><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Z"/><path d="M12 6v14"/></svg> La Cuisine Enchantée du Refuge </h1><p>Un soupçon de magie, beaucoup de gourmandise !</p></header><p id="cuisine-status" role="status">Chargement des soirées…</p><main class="book-shell">
 <div class="book" aria-label="Livre de recettes du Refuge">
 <section class="page" data-page="0" aria-label="Page 1 : Bienvenue">
