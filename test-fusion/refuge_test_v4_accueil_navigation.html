@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TEST HARMONISATION — Bienvenue au Refuge</title>
+<style>
+:root{--ink:#694c42;--plum:#75466f;--wood:#865235}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font-family:Georgia,'Times New Roman',serif;background:radial-gradient(ellipse at 5% 20%,#d9b9c7 0,transparent 45%),radial-gradient(ellipse at 95% 85%,#b9a2c6 0,transparent 44%),#e5d3d4;min-height:100vh}
+a:focus-visible{outline:4px solid #9c5aa0;outline-offset:5px}
+.banner{height:clamp(150px,23vw,260px);background:url('/le-refuge/refuge_banniere_legere.webp') center 43%/cover no-repeat;border-bottom:6px solid #76513f;box-shadow:0 7px 20px #432c3d38}
+.wrap{max-width:1030px;margin:32px auto 60px;padding:0 20px}
+/* Parchemin ancien : relief et patine en CSS, sans image lourde */
+.paper{position:relative;isolation:isolate;overflow:hidden;text-align:center;padding:50px clamp(20px,5vw,65px) 58px;border:10px solid #86502e;border-radius:35px 22px 42px 28px;box-shadow:0 0 0 4px #d4a06c,0 18px 35px #4b34444b,inset 0 0 36px #713b1c78;background:radial-gradient(ellipse at 12% 15%,#93602d35,transparent 37%),radial-gradient(ellipse at 91% 90%,#7c4a2738,transparent 38%),radial-gradient(circle at 20% 60%,transparent 0 35px,#a77b4012 38px,transparent 42px),repeating-linear-gradient(101deg,transparent 0 84px,#86542c0a 85px,transparent 87px),radial-gradient(ellipse at center,#faebcc,#efd1a0 73%,#c68c52 100%)}
+.paper:before{content:"";position:absolute;inset:8px;border:2px solid #865d3d45;border-radius:24px 12px 32px 18px;box-shadow:inset 0 0 23px #8b4c2370;pointer-events:none}
+.paper>*{position:relative;z-index:1}
+/* Petites décorations fixes et discrètes */
+.ornament{position:absolute;z-index:0;pointer-events:none;user-select:none;line-height:1;opacity:.83;filter:drop-shadow(0 2px 2px #875f5940)}
+.ornament.top-left{top:17px;left:24px;font-size:clamp(24px,4vw,42px);transform:rotate(-16deg)}
+.ornament.top-right{top:24px;right:32px;font-size:clamp(19px,3vw,29px);transform:rotate(14deg)}
+.ornament.bottom-left{bottom:18px;left:25px;font-size:clamp(20px,3vw,29px)}
+.ornament.bottom-right{bottom:17px;right:25px;font-size:clamp(23px,4vw,38px)}
+.eyebrow{font-size:15px;letter-spacing:.16em;color:#96647e;margin:0 0 7px}
+h1{font-weight:normal;font-style:italic;font-size:clamp(35px,6vw,56px);color:#77445d;margin:0 0 12px}
+p.lead{font-size:clamp(17px,2.2vw,21px);line-height:1.6;max-width:650px;margin:0 auto 23px}
+.flourish{color:#a67789;font-size:21px;letter-spacing:8px;margin-bottom:20px}
+.scene{display:flex;align-items:center;justify-content:center;gap:18px;margin:0 auto 24px;max-width:720px}
+.mascot{width:clamp(120px,23vw,205px);height:auto;object-fit:contain;filter:drop-shadow(0 7px 7px #634b4a30)}
+.scene-text{max-width:360px;text-align:left;font-size:17px;line-height:1.6;font-style:italic}
+.signs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 26px;max-width:750px;margin:25px auto 10px}
+.sign{position:relative;min-height:100px;display:flex;align-items:center;justify-content:center;gap:14px;padding:18px 34px 18px 22px;clip-path:polygon(0 5%,86% 3%,100% 50%,86% 97%,0 95%,4% 50%);background:repeating-linear-gradient(175deg,transparent 0 5px,#3e231729 6px 8px,transparent 9px 21px,#e4b9832b 22px 24px,transparent 25px 38px),linear-gradient(165deg,#c18a57,#95613e 38%,#72452e 75%,#5b3527);box-shadow:inset 0 4px 3px #efc595,inset 0 -7px 8px #3c241c;color:#fff2d9;text-decoration:none;text-shadow:0 2px 3px #351f1d;font-size:clamp(17px,2.3vw,23px);font-weight:bold;line-height:1.22;transition:filter .15s,translate .15s;filter:drop-shadow(2px 5px 2px #563c3560)}
+.sign:nth-child(even){background:repeating-linear-gradient(175deg,transparent 0 5px,#3e231729 6px 8px,transparent 9px 21px,#e4b9832b 22px 24px,transparent 25px 38px),linear-gradient(165deg,#bb8254,#8b5438 55%,#603925)}
+.sign:before,.sign:after{content:"";position:absolute;top:50%;width:9px;height:9px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff1c6,#a87a50 56%,#452a21);box-shadow:0 1px 2px #2d1916;transform:translateY(-50%)}
+.sign:before{left:13px}.sign:after{right:17%}
+.sign:hover{filter:brightness(1.13) drop-shadow(2px 5px 2px #563c3560);translate:0 -2px}
+.sign .emoji{font-size:29px;flex:none}.sign .name{max-width:210px}
+.smallnote{font-size:14px;color:#856c68;margin:25px 0 0}
+.footer{text-align:center;padding:0 20px 24px;color:#674d61;font-size:14px}
+@media(max-width:650px){.wrap{margin:20px auto 40px;padding:0 12px}.paper{padding:40px 15px 44px;border-width:7px}.scene{flex-direction:column;gap:0}.scene-text{text-align:center;font-size:16px}.signs{gap:12px}.sign{min-height:91px;padding:12px 20px 12px 14px;gap:7px;font-size:clamp(13px,3.4vw,17px)}.sign .emoji{font-size:22px}.sign:before{left:6px}.sign:after{right:16%}.ornament{opacity:.55}.ornament.top-left{top:8px;left:12px}.ornament.top-right{top:8px;right:12px}}
+@media(max-width:390px){.signs{grid-template-columns:1fr}.sign{min-height:77px;font-size:18px}}
+@media(prefers-reduced-motion:reduce){.sign{transition:none}}
+
+/* REFUGE — GRIMOIRE FÉERIQUE, FEUILLES VÉCUES (CSS léger, aucune image nouvelle) */
+:root{--refuge-ink:#684332;--refuge-flower:#9b587f}
+body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radial-gradient(ellipse at 95% 82%,#b99ec7,transparent 48%),#d9b6bd!important}
+.paper,.book .page{
+ background:
+  radial-gradient(ellipse 18% 12% at 2% 2%,#74411e8a,transparent 85%),
+  radial-gradient(ellipse 13% 20% at 99% 4%,#70402083,transparent 95%),
+  radial-gradient(ellipse 20% 12% at 0% 99%,#6c391b8f,transparent 90%),
+  radial-gradient(ellipse 16% 15% at 100% 98%,#71431d80,transparent 90%),
+  radial-gradient(ellipse 23% 9% at 53% 0%,#a56b3459,transparent 90%),
+  radial-gradient(ellipse 13% 20% at 0% 51%,#93592955,transparent 92%),
+  radial-gradient(ellipse 13% 20% at 100% 53%,#9359295c,transparent 92%),
+  radial-gradient(circle at 28% 35%,transparent 0 28px,#8c56212a 30px 33px,transparent 37px),
+  radial-gradient(ellipse at 77% 76%,#aa733c3b,transparent 34%),
+  repeating-linear-gradient(102deg,transparent 0 56px,#8051250b 57px,transparent 60px,transparent 124px),
+  radial-gradient(ellipse at 50% 47%,#fff2d3,#efd4a3 69%,#b57d4c 100%)!important;
+ box-shadow:inset 0 0 34px #74421f99,inset 0 0 105px #8d512e78,0 8px 16px #49302028!important;
+ border:0!important;border-radius:0!important;
+ clip-path:polygon(0.9% 1.4%,5% .4%,10% 1.3%,17% .3%,24% 1.1%,31% .2%,39% 1.2%,47% .2%,55% 1.2%,63% .2%,71% 1.1%,79% .3%,87% 1.3%,94% .3%,99% 1.2%,99.4% 8%,98.9% 17%,99.5% 26%,99% 35%,99.5% 44%,99% 53%,99.5% 62%,99% 71%,99.5% 80%,99% 89%,99.2% 98.8%,94% 99.4%,86% 98.9%,78% 99.6%,70% 98.9%,62% 99.5%,54% 99%,46% 99.6%,38% 99%,30% 99.6%,22% 99%,14% 99.6%,6% 99%,.8% 99.2%,1.2% 90%,.6% 81%,1.1% 72%,.6% 63%,1.2% 54%,.6% 45%,1.2% 36%,.6% 27%,1.2% 18%,.6% 9%)!important;
+}
+.paper{padding:55px clamp(25px,6vw,75px) 70px!important}
+.paper:before{border:0!important;box-shadow:none!important}
+.book{background:#70462f!important;border:12px solid #895538!important;border-radius:23px!important;box-shadow:0 0 0 4px #c89468,0 18px 33px #4b2c3260!important;overflow:visible!important}
+.book .page{padding:clamp(44px,5vw,72px) clamp(24px,5vw,68px)!important}
+.book .page h2,.paper h1{color:#77445c!important}
+.book .page .event{border-bottom:1px dashed #a77769!important}
+@media(max-width:720px){
+ .book{border-width:7px!important}
+ .book .page{padding:40px 20px!important}
+ .paper{padding:44px 20px 54px!important}
+}
+
+/* Illustration finale du Refuge : gravures SVG locales, pas de police emoji. */
+.vicon{width:1.22em;height:1.22em;display:inline-block;vertical-align:-.19em;flex:none;stroke-width:1.65}
+.sign .vicon,.wood .vicon{width:1.65em;height:1.65em;color:#f4d7a7;filter:drop-shadow(0 1px 1px #492c22)}
+.floral-svg{width:100%;height:100%;stroke-width:1.3}
+.ornament{width:clamp(32px,5vw,62px);height:clamp(32px,5vw,62px);font-size:0!important;color:#b26b87!important}
+.ornament.top-right,.ornament.bottom-left{color:#997c60!important}
+.flourish{font-size:0!important;margin:18px auto 24px!important;display:flex;justify-content:center;gap:15px;color:#a76b8b}
+.flourish .floral-svg{width:30px;height:30px}
+.sign .emoji{display:none}
+.book .page::before{content:""!important;font-size:26px!important;color:#aa748a!important}
+.book .page::after{content:""!important;font-size:24px!important;color:#aa748a!important}
+.sign,.sidebar .wood{transition:filter .16s ease}
+@media(max-width:700px){.sign .vicon,.wood .vicon{width:1.4em;height:1.4em}.ornament{width:32px;height:32px}}
+
+.illustrated-corner{position:absolute;pointer-events:none;width:42px;height:42px;opacity:.55;color:#a35c7f;z-index:2}
+.illustrated-corner.tl{left:23px;top:20px}.illustrated-corner.tr{right:23px;top:20px;transform:scaleX(-1)}
+.illustrated-corner.bl{left:23px;bottom:20px;transform:scaleY(-1)}
+.illustrated-corner.br{right:23px;bottom:20px;transform:scale(-1)}
+@media(max-width:700px){.illustrated-corner{width:25px;height:25px}.illustrated-corner.tl,.illustrated-corner.bl{left:10px}.illustrated-corner.tr,.illustrated-corner.br{right:10px}}
+
+/* Parchemin patiné : usure douce, sans zigzags géométriques. */
+.paper,.book .page{
+ clip-path:none!important;
+ border-radius:14px 19px 13px 20px!important;
+ background:
+ radial-gradient(ellipse 10% 19% at 0% 2%,#96623c65,transparent 100%),
+ radial-gradient(ellipse 14% 10% at 99% 0%,#99643c5b,transparent 100%),
+ radial-gradient(ellipse 13% 14% at 0% 100%,#93603968,transparent 100%),
+ radial-gradient(ellipse 16% 15% at 100% 100%,#8f5c365a,transparent 100%),
+ radial-gradient(ellipse at 80% 68%,#c99c6540,transparent 38%),
+ radial-gradient(ellipse at 32% 26%,#fff6e3,#f3dfbd 68%,#dfbd8c)!important;
+ box-shadow:inset 0 0 23px #80532f4a,inset 0 0 75px #a4713b30!important;
+}
+.book{border:5px solid #9d765d!important;background:#a77d60!important;box-shadow:0 0 0 2px #d5a17e,0 12px 28px #5d354044!important}
+.paper{border:1px solid #b58c6a!important}
+.book .page{outline:1px solid #c29a73;outline-offset:-7px}
+@media(max-width:720px){.book{border-width:3px!important}}
+
+/* VRAI PARCHEMIN ILLUSTRÉ — neuf tranches pour les pages longues */
+.paper,.book .page{
+  background:#f5dfb3!important;
+  background-image:none!important;
+  border:solid transparent!important;
+  border-width:clamp(38px,5vw,72px)!important;
+  border-image-source:url("/le-refuge/test-fusion/parchemin_refuge.webp")!important;
+  border-image-slice:210 175 205 175 fill!important;
+  border-image-width:clamp(38px,5vw,72px)!important;
+  border-image-outset:0!important;
+  border-image-repeat:stretch!important;
+  border-radius:0!important;
+  clip-path:none!important;
+  outline:0!important;
+  box-shadow:0 12px 26px #6a3d4650!important;
+  min-width:0;
+  position:relative;
+}
+.paper{padding:clamp(12px,2.5vw,30px)!important}
+.book .page{padding:clamp(10px,2.4vw,26px)!important;min-height:380px!important}
+.book,.book-shell{background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important}
+.book .page::before,.book .page::after,.paper::before,.paper::after{display:none!important}
+.illustrated-corner,.ornament{display:none!important}
+.book .page h2,.paper h1{color:#76455b!important}
+.page-number{color:#886d65!important}
+@media(max-width:700px){
+ .paper,.book .page{border-width:30px!important;border-image-width:30px!important}
+ .paper,.book .page{padding:8px!important}
+}
+
+/* Ajustements mobiles : illustration lisible et contenu tenu à distance des bords */
+.paper,.book .page{overflow:visible!important}
+.paper > *, .book .page > *{max-width:100%;min-width:0}
+.paper .scene,.book .page .welcome{padding:12px 0!important}
+.paper .mascot{max-width:min(42vw,170px)!important;height:auto!important;object-fit:contain!important;mask-image:radial-gradient(ellipse 67% 67% at 50% 50%,#000 70%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 67% 67% at 50% 50%,#000 70%,transparent 100%)}
+.book .page img:not(.avatar){max-width:100%!important;object-fit:contain!important}
+.book .page .sashimi-illustration,.book .page .poke-illustration{width:min(100%,660px)!important;margin:12px auto 20px!important;display:block!important}
+.book .page .welcome .flower{font-size:22px!important;letter-spacing:0!important}
+@media(max-width:700px){
+ .paper,.book .page{border-width:38px!important;border-image-width:38px!important;padding:10px 6px!important}
+ .paper .scene-text{max-width:100%!important}
+ .book .page .welcome{min-height:350px!important;gap:10px!important}
+ .book .page h2{font-size:clamp(20px,5vw,28px)!important}
+ .book .page p{overflow-wrap:anywhere}
+}
+
+/* CORRECTION DES PROPORTIONS : les illustrations ne sont JAMAIS étirées en hauteur.
+   Haut et bas à ratio constant; seule une bande de papier neutre se répète. */
+.paper,.book .page{
+ border:0!important;border-image:none!important;border-radius:0!important;
+ clip-path:none!important;outline:none!important;
+ background-color:#f6dfad!important;
+ background-image:url("/le-refuge/test-fusion/parchemin_haut.webp"),url("/le-refuge/test-fusion/parchemin_bas.webp"),url("/le-refuge/test-fusion/parchemin_milieu_sans_rayures.webp")!important;
+ background-position:center top,center bottom,center center!important;
+ background-size:100% auto,100% auto,100% 100%!important;
+ background-repeat:no-repeat,no-repeat,no-repeat!important;
+ box-shadow:0 12px 25px #57332b38!important;
+ padding:clamp(90px,16vw,170px) clamp(24px,8vw,110px)!important;
+ min-width:0;overflow:visible!important;
+}
+.book,.book-shell{background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important}
+.paper::before,.paper::after,.book .page::before,.book .page::after{display:none!important}
+@media(max-width:700px){
+ .paper,.book .page{padding:clamp(70px,18vw,125px) clamp(29px,8.5vw,65px)!important}
+ .book .page p{overflow-wrap:break-word!important}
+}
+
+/* PARCHEMIN STABLE : aucune bande centrale agrandie ou répétée. */
+.paper,.book .page{
+ background-color:#f5dba7!important;
+ background-image:url("/le-refuge/test-fusion/parchemin_haut.webp"),url("/le-refuge/test-fusion/parchemin_bas.webp")!important;
+ background-position:center top,center bottom!important;
+ background-size:100% auto,100% auto!important;
+ background-repeat:no-repeat,no-repeat!important;
+ isolation:isolate;
+}
+/* Bords ombrés continus, sans image étirée ni jonction horizontale */
+.paper::before,.book .page::before{
+ content:""!important;display:block!important;pointer-events:none!important;
+ position:absolute!important;inset:0!important;z-index:0!important;
+ background:linear-gradient(to right,rgba(82,38,35,.46) 0,rgba(142,79,42,.26) 1.2%,rgba(189,118,58,.16) 3%,transparent 9%,transparent 91%,rgba(189,118,58,.16) 97%,rgba(142,79,42,.26) 98.8%,rgba(82,38,35,.46) 100%)!important;
+}
+.paper > *,.book .page > *{position:relative;z-index:1}
+
+/* BORDURES DE PAPIER DÉCHIRÉ — couches indépendantes, sans étirement vertical. */
+.paper,.book .page{
+ background-color:#f5dba7!important;
+ background-image:
+  url("/le-refuge/test-fusion/parchemin_haut_fondu.webp"),
+  url("/le-refuge/test-fusion/parchemin_bas_fondu.webp"),
+  url("/le-refuge/test-fusion/parchemin_bord_gauche.webp"),
+  url("/le-refuge/test-fusion/parchemin_bord_droite.webp")!important;
+ background-position:center top,center bottom,left top,right top!important;
+ background-size:100% auto,100% auto,clamp(42px,6.6vw,90px) 512px,clamp(42px,6.6vw,90px) 512px!important;
+ background-repeat:no-repeat,no-repeat,repeat-y,repeat-y!important;
+ box-shadow:0 12px 25px #57332b38!important;
+}
+.paper::before,.book .page::before{display:none!important}
+@media(max-width:700px){
+ .paper,.book .page{
+  background-size:100% auto,100% auto,42px 512px,42px 512px!important;
+  padding-left:clamp(38px,9vw,65px)!important;
+  padding-right:clamp(38px,9vw,65px)!important;
+ }
+}
+
+/* NOUVEAU PARCHEMIN : images extraites de la même illustration validée. */
+.paper,.book .page{
+ background-color:#f6d6a0!important;
+ background-image:url('/le-refuge/test-fusion/refuge_vieilli_haut.webp'),url('/le-refuge/test-fusion/refuge_vieilli_bas.webp'),url('/le-refuge/test-fusion/refuge_vieilli_gauche.webp'),url('/le-refuge/test-fusion/refuge_vieilli_droite.webp')!important;
+ background-position:center top,center bottom,left top,right top!important;
+ background-size:100% auto,100% auto,clamp(45px,9.27%,155px) 340px,clamp(45px,9.27%,155px) 340px!important;
+ background-repeat:no-repeat,no-repeat,repeat-y,repeat-y!important;
+ box-shadow:0 12px 25px #57332b38!important;
+ padding-left:clamp(45px,11%,150px)!important;
+ padding-right:clamp(45px,11%,150px)!important;
+}
+.paper::before,.book .page::before{display:none!important}
+@media(max-width:700px){.paper,.book .page{padding-left:clamp(38px,10%,70px)!important;padding-right:clamp(38px,10%,70px)!important}}
+
+/* FINITION PARCHEMIN : raccords estompes et textures laterales raccordables. */
+.paper,.book .page{
+ background-color:#f6d6a0!important;
+ background-image:
+  url('/le-refuge/test-fusion/refuge_finition_haut.webp'),
+  url('/le-refuge/test-fusion/refuge_finition_bas_sans_renarde.webp'),
+  url('/le-refuge/test-fusion/refuge_finition_gauche.webp'),
+  url('/le-refuge/test-fusion/refuge_finition_droite.webp')!important;
+ background-position:center top,center bottom,left top,right top!important;
+ background-size:100% auto,100% auto,9.27% auto,9.27% auto!important;
+ background-repeat:no-repeat,no-repeat,repeat-y,repeat-y!important;
+}
+@media(max-width:700px){
+ .paper,.book .page{background-size:100% auto,100% auto,9.27% auto,9.27% auto!important}
+}
+
+/* Harmonisation douce des teintes du papier, sans changer les illustrations.
+   Le dégradé est la dernière couche, derrière les quatre images. */
+.paper,.book .page{
+ background-color:#f6d6a0!important;
+ background-image:
+  url('/le-refuge/test-fusion/refuge_finition_haut.webp'),
+  url('/le-refuge/test-fusion/refuge_finition_bas_sans_renarde.webp'),
+  url('/le-refuge/test-fusion/refuge_finition_gauche.webp'),
+  url('/le-refuge/test-fusion/refuge_finition_droite.webp'),
+  linear-gradient(to bottom,#ffda9d 0%,#fbd7a0 20%,#f6d6a0 55%,#f6d5a0 82%,#fccc87 100%)!important;
+ background-position:center top,center bottom,left top,right top,center center!important;
+ background-size:100% auto,100% auto,9.27% auto,9.27% auto,100% 100%!important;
+ background-repeat:no-repeat,no-repeat,repeat-y,repeat-y,no-repeat!important;
+}
+@media(max-width:700px){.paper,.book .page{background-size:100% auto,100% auto,9.27% auto,9.27% auto,100% 100%!important}}
+
+/* Renarde dynamique entière, au-dessus du bord inférieur, sans image coupée. */
+.paper .renarde-bas{display:flex;justify-content:flex-start;align-items:flex-end;margin:24px 0 -24px;min-height:155px;position:relative;z-index:2}
+.paper .renarde-bas .mascot{display:block;width:clamp(135px,23vw,245px)!important;max-width:65%!important;height:auto!important;object-fit:contain!important;mask-image:none!important;-webkit-mask-image:none!important}
+@media(max-width:700px){.paper .renarde-bas{margin:18px 0 -8px;min-height:125px}.paper .renarde-bas .mascot{width:clamp(125px,42vw,185px)!important}}
+
+
+/* FINITION STABLE : quatre bordures illustrées, sans image encodée
+   ni texture agrandie. Le centre reste uni et proche des bords. */
+.paper {
+  background-color: #f6d6a0 !important;
+  background-image:
+    url('/le-refuge/test-fusion/refuge_finition_haut.webp'),
+    url('/le-refuge/test-fusion/refuge_finition_bas_sans_renarde.webp'),
+    url('/le-refuge/test-fusion/refuge_finition_gauche.webp'),
+    url('/le-refuge/test-fusion/refuge_finition_droite.webp'),
+    linear-gradient(90deg,
+      #eec38c 0%, #f6d6a0 10%, #f6d6a0 90%, #eec38c 100%) !important;
+  background-position: center top, center bottom, left top, right top, center !important;
+  background-size: 100% auto, 100% auto, 9.27% auto, 9.27% auto, 100% 100% !important;
+  background-repeat: no-repeat, no-repeat, repeat-y, repeat-y, no-repeat !important;
+  box-shadow: 0 12px 25px #57332b38 !important;
+}
+.paper .flourish svg,
+.paper .illustrated-corner svg,
+.paper .ornament svg {
+  max-width: 32px !important;
+  max-height: 32px !important;
+}
+@media (max-width: 700px) {
+  .paper {
+    background-size: 100% auto, 100% auto, 9.27% auto, 9.27% auto, 100% 100% !important;
+  }
+}
+
+/* LABORATOIRE REFUGE 05-11 — harmonisation légère, sans changer la logique. */
+:root { --refuge-test-ink:#684633; --refuge-test-paper:#f3d7a5; }
+body { background:radial-gradient(ellipse at 7% 15%,#e4bfd0,transparent 48%),radial-gradient(ellipse at 92% 85%,#bba1c8,transparent 48%),#d8b5c3 !important; }
+/* Papier chaud et patiné, sans répétition de bordure illustrée. */
+.paper { background-color:#f2d5a5 !important; background-image:url('/le-refuge/test-fusion/refuge_finition_haut.webp'),url('/le-refuge/test-fusion/refuge_finition_bas_sans_renarde.webp'),url('/le-refuge/test-fusion/refuge_finition_gauche.webp'),url('/le-refuge/test-fusion/refuge_finition_droite.webp'),linear-gradient(90deg,#eac08b 0%,#f3d7a5 11%,#f3d7a5 89%,#eac08b 100%) !important; background-position:center top,center bottom,left top,right top,center !important; background-size:100% auto,100% auto,9.27% auto,9.27% auto,100% 100% !important; background-repeat:no-repeat,no-repeat,repeat-y,repeat-y,no-repeat !important; }
+@media(max-width:700px){.paper{background-size:100% auto,100% auto,9.27% auto,9.27% auto,100% 100% !important}}
+
+.refuge-arabesque{display:block!important;max-width:480px;margin:16px auto 24px!important}.refuge-arabesque svg{display:block;width:100%!important;height:auto!important;max-height:70px!important}</style>
+</head>
+<body>
+<header class="banner" aria-label="Bannière du Refuge"></header>
+<main class="wrap"><div class="paper"><span class="illustrated-corner tl" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"/></svg></span><span class="illustrated-corner tr" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"/></svg></span><span class="illustrated-corner bl" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"/></svg></span><span class="illustrated-corner br" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"/></svg></span>
+<span class="ornament top-left" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10C6 2 3 8 9 12c-8-4-9 4-1 4-3 7 4 9 5 2 5 6 10 0 4-4 8-3 5-10-3-8-1-7-7-9-5-1Z"/><circle cx="12" cy="13" r="1.8"/></svg></span>
+<span class="ornament top-right" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13C7 3 2 4 3 10c0 3 4 4 9 3Zm0 0c5-10 10-9 9-3 0 3-4 4-9 3Zm0 0c-5 2-8 7-5 8 3 1 5-3 5-8Zm0 0c5 2 8 7 5 8-3 1-5-3-5-8Z"/><path d="M12 9v10"/></svg></span>
+<span class="ornament bottom-left" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"/></svg></span>
+<span class="ornament bottom-right" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10C6 2 3 8 9 12c-8-4-9 4-1 4-3 7 4 9 5 2 5 6 10 0 4-4 8-3 5-10-3-8-1-7-7-9-5-1Z"/><circle cx="12" cy="13" r="1.8"/></svg></span>
+<p class="eyebrow"> UN PETIT COIN À PART </p>
+<h1>Bienvenue au Refuge</h1>
+<p class="lead">Un endroit chaleureux pour se retrouver, partager de belles aventures et cuisiner ensemble dans Palia.</p>
+<div class="flourish refuge-arabesque" aria-hidden="true"><svg viewBox="0 0 600 70" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#a75c81" stroke-width="2.4" stroke-linecap="round"><path d="M10 35 Q65 5 112 35 T214 35 Q244 35 266 35 M590 35 Q535 5 488 35 T386 35 Q356 35 334 35"/><path d="M120 34 Q107 7 89 15 Q94 36 120 34 M155 35 Q144 57 126 51 Q130 34 155 35 M195 35 Q184 12 166 18 Q172 36 195 35 M480 34 Q493 7 511 15 Q506 36 480 34 M445 35 Q456 57 474 51 Q470 34 445 35 M405 35 Q416 12 434 18 Q428 36 405 35"/><path d="M300 27 C278 6 265 31 291 37 C267 41 284 64 300 46 C316 64 333 41 309 37 C335 31 322 6 300 27Z" fill="#b96b91" stroke="none"/><circle cx="300" cy="36" r="6" fill="#f6d4a0" stroke="none"/></svg></div>
+<div class="scene"><p class="scene-text">Installe-toi confortablement… Notre petit Refuge t'ouvre ses portes. Choisis un chemin pour commencer ta visite !</p></div>
+<nav class="signs" aria-label="Explorer le Refuge">
+<a class="sign" href="refuge_test_v11_navigation_carnet.html"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Z"/><path d="M12 6v14"/></svg><span class="name">Carnet des événements</span></a>
+<a class="sign" href="refuge_test_v13_cuisine.html"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13a4 4 0 0 1-1-7 4 4 0 0 1 7-2 4 4 0 0 1 7 2 4 4 0 0 1-1 7"/><path d="M6 13v7h12v-7M9 16v2m6-2v2"/></svg><span class="name">La Cuisine du Refuge</span></a>
+<a class="sign" href="refuge_test_v11_navigation_carnet.html"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-13 4h2m4 0h2m-8 4h2"/></svg><span class="name">Mes événements</span></a>
+<a class="sign" href="#surprise-a-venir" title="Surprise en préparation"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2Z"/></svg><span class="name">Surprise en préparation</span></a>
+</nav>
+<p class="smallnote"> Un lieu créé avec douceur pour la communauté du Refuge.</p>
+<div class="renarde-bas"><img class="mascot" src="/le-refuge/mascotte_originale_refuge.webp" alt="Notre petite renarde du Refuge, paisiblement endormie" width="205" height="205"></div>
+</div></main>
+<footer class="footer"> Le Refuge — Site communautaire indépendant de fans de Palia </footer>
+<script>
+(async()=>{
+  const fox=document.querySelector('.renarde-bas .mascot');
+  if(!fox)return;
+  try{
+    const endpoint='https://kflrkclmznluxahxttgl.supabase.co/rest/v1/evenements?select=date_evenement,statut&date_evenement=gt.'+encodeURIComponent(new Date().toISOString())+'&limit=20';
+    const response=await fetch(endpoint,{headers:{apikey:'sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3'}});
+    if(!response.ok)return;
+    const events=await response.json();
+    if(Array.isArray(events)&&events.some(e=>e.statut===null||e.statut==='ouverte')){
+      fox.src='./renarde%2B%20papillon.png';
+      fox.alt='La renarde du Refuge éveillée avec son papillon : une soirée arrive !';
+    }
+  }catch(_){/* En cas d'accès restreint, conserver la renarde endormie. */}
+})();
+</script></body></html>
