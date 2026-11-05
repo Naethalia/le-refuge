@@ -1,11 +1,9 @@
 <!doctype html>
 <html lang="fr">
 <head>
- <link rel="icon" type="image/png" href="/le-refuge/f2d95be6-9edc-4f91-b05f-9eaf0c74203e.png">
-<link rel="apple-touch-icon" href="/le-refuge/f2d95be6-9edc-4f91-b05f-9eaf0c74203e.png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bienvenue au Refuge</title>
+<title>TEST HARMONISATION — Bienvenue au Refuge</title>
 <style>
 :root{--ink:#694c42;--plum:#75466f;--wood:#865235}
 *{box-sizing:border-box}
@@ -306,7 +304,19 @@ body { background:radial-gradient(ellipse at 7% 15%,#e4bfd0,transparent 48%),rad
 .paper { background-color:#f2d5a5 !important; background-image:url('/le-refuge/test-fusion/refuge_finition_haut.webp'),url('/le-refuge/test-fusion/refuge_finition_bas_sans_renarde.webp'),url('/le-refuge/test-fusion/refuge_finition_gauche.webp'),url('/le-refuge/test-fusion/refuge_finition_droite.webp'),linear-gradient(90deg,#eac08b 0%,#f3d7a5 11%,#f3d7a5 89%,#eac08b 100%) !important; background-position:center top,center bottom,left top,right top,center !important; background-size:100% auto,100% auto,9.27% auto,9.27% auto,100% 100% !important; background-repeat:no-repeat,no-repeat,repeat-y,repeat-y,no-repeat !important; }
 @media(max-width:700px){.paper{background-size:100% auto,100% auto,9.27% auto,9.27% auto,100% 100% !important}}
 
-.refuge-arabesque{display:block!important;max-width:480px;margin:16px auto 24px!important}.refuge-arabesque svg{display:block;width:100%!important;height:auto!important;max-height:70px!important}</style>
+.refuge-arabesque{display:block!important;max-width:480px;margin:16px auto 24px!important}.refuge-arabesque svg{display:block;width:100%!important;height:auto!important;max-height:70px!important}
+/* Ajustements mobiles ciblés : arabesque lisible et clous hors du texte. */
+.paper .refuge-arabesque svg {
+  width:100% !important;
+  max-width:none !important;
+  height:auto !important;
+  max-height:none !important;
+}
+@media (max-width:700px) {
+  .paper .refuge-arabesque {width:min(100%,360px);margin:12px auto 22px!important}
+  .sign:after {display:none!important}
+}
+</style>
 </head>
 <body>
 <header class="banner" aria-label="Bannière du Refuge"></header>

@@ -409,6 +409,7 @@ const $=id=>document.getElementById(id);
 let currentUser=null,allEvenings=[],ownOnly=false,editingId=null;
 const say=s=>{$("message").textContent=s};
 const formatDate=d=>new Date(d).toLocaleString('fr-FR',{dateStyle:'full',timeStyle:'short'});
+const soireeEncoreAccessible=e=>{const debut=new Date(e.date_evenement).getTime();return Number.isFinite(debut)&&Date.now()<debut+60*60*1000;};
 function addLine(parent,tag,value,cls){const el=document.createElement(tag);el.textContent=value;if(cls)el.className=cls;parent.append(el);return el;}
 function setView(own){
  ownOnly=own;
@@ -435,8 +436,8 @@ async function loadEvents(){
   .select('id,titre,recette,date_evenement,nombre_preparations,description,statut,createur_id,createur_pseudo')
   .order('date_evenement',{ascending:true}).limit(100);
  if(error){list.textContent='Impossible de charger les soirées : '+error.message;return;}
- allEvenings=(data||[]).filter(e=>e.recette && (e.statut===null||e.statut==='ouverte'));
- const hasUpcoming=allEvenings.some(e=>e.date_evenement && new Date(e.date_evenement).getTime()>Date.now());
+ allEvenings=(data||[]).filter(e=>e.recette && (e.statut===null||e.statut==='ouverte') && soireeEncoreAccessible(e));
+ const hasUpcoming=allEvenings.length>0;
  const mascot=$('event-mascot');
  mascot.src=hasUpcoming?'/le-refuge/test-fusion/renarde%2B%20papillon.png':'/le-refuge/mascotte_originale_refuge.webp';
  mascot.alt=hasUpcoming?'Notre renarde éveillée avec son papillon':'Notre petite mascotte violette endormie';
@@ -545,4 +546,7 @@ $('nav-evenements').addEventListener('click',async()=>{showArea('events');setVie
 $('nav-mes-evenements').addEventListener('click',async()=>{showArea('events');setView(true);if(currentUser)await loadEvents();});
 $('nav-aide').addEventListener('click',()=>alert('Connecte-toi avec Discord, puis ouvre le panneau Cuisine enchantée pour organiser une soirée. Pour choisir un poste, utilise le bouton Rejoindre la cuisine sur la soirée.'));
 refresh();
+
+// Actualise les listes sans supprimer les soirées enregistrées.
+setInterval(()=>{if(currentUser&&!document.hidden)loadEvents();},30000);
 </script></body></html>
