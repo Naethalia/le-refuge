@@ -1,0 +1,396 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TEST HARMONISATION — Le Refuge · Carnet des événements</title><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--ink:#653853;--plum:#743d79;--pink:#c36e99;--paper:#fff0d8;--wood:#73452f}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Georgia,'Times New Roman',serif;color:var(--ink);background:radial-gradient(ellipse at 0% 20%,#ddafce,transparent 38%),radial-gradient(ellipse at 95% 70%,#a68ccf,transparent 45%),#c4a1bf;min-height:100vh}[hidden]{display:none!important}button,input,textarea,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #d971a8;outline-offset:3px}.hero{position:relative;min-height:205px;background:linear-gradient(180deg,#30204408,#61445c66),url('/le-refuge/refuge_banniere_legere.webp') center 38%/cover no-repeat;display:flex;align-items:center;justify-content:center;padding:25px 16px 20px;box-shadow:0 7px 22px #51335145}.hero-title{text-align:center;background:#5c3455c9;border:2px solid #f0c8a2;border-radius:22px;padding:12px 35px;color:#fff0d5;text-shadow:0 2px 5px #442b38;box-shadow:0 8px 24px #2b183f55}.hero-title h1{font-size:clamp(34px,5vw,62px);font-style:italic;font-weight:normal;margin:0}.hero-title p{margin:4px 0;font-size:clamp(15px,2vw,21px);letter-spacing:.08em}.layout{max-width:1460px;margin:24px auto 0;padding:0 20px;display:grid;grid-template-columns:205px minmax(0,1fr);gap:24px}.sidebar{display:flex;flex-direction:column;gap:12px}.wood{border:3px solid #dfb284;border-radius:10px;background:linear-gradient(145deg,#a36c52,#704131);box-shadow:0 5px 0 #543329,0 8px 15px #4c314b4a;color:#fff8e9;font-size:17px;font-weight:bold;text-align:left;padding:15px 13px;min-height:56px;text-shadow:0 1px 3px #3b2830}.wood[aria-current="page"]{background:linear-gradient(140deg,#a85b9e,#763f83)}.account{background:#fff1e1e8;border:2px solid #d6a9a9;border-radius:14px;padding:13px;box-shadow:0 6px 20px #593a5b22;text-align:center}.account span{display:block;margin:8px 0;font-weight:bold}.account button,.primary,.small{border:1px solid #693b69;border-radius:11px;background:linear-gradient(#af70a9,#784484);color:white;padding:10px 14px;font-weight:bold;box-shadow:0 3px 0 #654069}.account button{width:100%;margin:4px 0}.account .secondary,.subtle{background:linear-gradient(#b88c9f,#93687b)}.status{font-size:14px;min-height:0;overflow-wrap:anywhere}.book{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:12px solid #85513d;border-radius:18px 25px 25px 18px;box-shadow:0 0 0 4px #d4a17b,0 15px 30px #57364f70;overflow:hidden;background:#f6dfbd;min-height:650px}.book:after{content:'';position:absolute;top:0;bottom:0;left:calc(50% - 6px);width:12px;background:linear-gradient(90deg,#b98e75,#fff3d9 45%,#c69b81);pointer-events:none;z-index:1}.page{min-width:0;padding:28px clamp(18px,2.7vw,38px) 30px;background:radial-gradient(ellipse at 50% 20%,#fffaf0 0%,#fff0d9 62%,#eed0ae 100%);position:relative}.page:first-child{box-shadow:inset -14px 0 24px #a9795a24}.page:last-child{box-shadow:inset 14px 0 24px #a9795a20}.page:before{content:'';position:absolute;right:20px;top:10px;color:#c58ca0;font-size:25px;opacity:.7}.page h2{margin:0;font-size:clamp(22px,2.2vw,31px);font-style:italic;color:#783d68}.rule{height:12px;border-bottom:2px solid #c8869e;position:relative;margin:0 0 18px}.rule:after{content:'';position:absolute;right:4px;bottom:-12px;background:#fff2dc;color:#be7195;padding:0 8px}.intro{font-size:14px;font-style:italic;color:#966d77;margin:0 0 14px}.event{border-bottom:1px solid #d5a8a2;padding:13px 0 17px;margin-bottom:12px;overflow-wrap:anywhere}.event h3{font-size:21px;margin:0 0 10px}.event p{margin:7px 0;line-height:1.4}.muted{color:#946d78;font-size:14px}.registration{margin-top:12px;border-top:1px dashed #d9a4b5;padding-top:12px}.inline{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.inline input{flex:1 1 145px;min-width:0}.small{font-size:13px;padding:8px 11px;margin:3px}.danger{background:linear-gradient(#c26c88,#a34b69)}.mascot{display:block;max-width:310px;width:80%;height:auto;margin:8px auto 0}.empty{font-style:italic;text-align:center;color:#946b80;padding:24px 4px}label{display:block;margin:14px 0 6px;font-weight:bold;font-size:15px}input,textarea,select{width:100%;padding:11px;border:1.5px solid #d6a6aa;border-radius:9px;background:#fffaf4;color:#5c3854;min-width:0;font-size:16px}textarea{min-height:120px;resize:vertical}.fields{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}.full{grid-column:1/-1}.actions{margin-top:18px;text-align:center}.primary{font-size:16px;padding:13px 22px}.note{background:#fff9eccc;border:1px dashed #c88ca6;border-radius:12px;padding:17px;line-height:1.5;text-align:center}.footer{text-align:center;color:#fff8ec;text-shadow:0 1px 4px #67485e;padding:24px 15px;font-size:14px}#form-message{font-size:14px}#connexion-note{margin:15px 0}.page-inner{min-height:100%}@media(max-width:1060px){.layout{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.sidebar .account{grid-column:1/-1;display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap}.account button{width:auto}.sidebar .status{grid-column:1/-1}.wood{text-align:center}}@media(max-width:720px){.hero{min-height:155px}.layout{margin:15px auto 0;padding:0 12px}.book{grid-template-columns:1fr;border-width:8px;min-height:0}.book:after{display:none}.page{padding:25px 20px 30px}.page+.page{border-top:8px solid #b98a70}.sidebar{gap:7px}.wood{font-size:13px;padding:10px 6px;min-height:52px}.fields{grid-template-columns:1fr}.hero-title{padding:10px 20px}.mascot{width:75%;max-width:260px}}@media(max-width:390px){.page{padding:20px 14px}.wood{font-size:12px}}
+
+/* Bannière originale visible, sans panneau de titre superposé */
+.hero{min-height:clamp(160px,18vw,270px);background-image:url('/le-refuge/refuge_banniere_legere.webp');background-position:center 43%;background-size:cover;box-shadow:none}
+/* Panneaux en bois sculpté avec relief et clous décoratifs */
+.wood{position:relative;isolation:isolate;border:4px solid #c28b60;border-radius:8px 12px 10px 7px;background:repeating-linear-gradient(0deg,transparent 0 17px,#46271d18 18px 20px),linear-gradient(165deg,#b17a50 0%,#8d533b 46%,#653926 100%);box-shadow:inset 0 2px 1px #f2bd8c,inset 0 -5px 7px #46241775,0 5px 0 #4e3028,0 9px 13px #422c3870;text-shadow:0 2px 2px #3c1f1d;letter-spacing:.01em;padding:17px 18px 17px 25px;transform:rotate(-.6deg);transition:filter .15s,transform .15s}
+.wood:nth-child(2){transform:rotate(.6deg)}.wood:nth-child(3){transform:rotate(-.35deg)}
+.wood:before,.wood:after{content:'';position:absolute;top:50%;width:7px;height:7px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff1be,#a96f43 55%,#503020);box-shadow:0 1px 1px #36241e;transform:translateY(-50%)}
+.wood:before{left:7px}.wood:after{right:7px}
+.wood[aria-current="page"]{background:repeating-linear-gradient(0deg,transparent 0 17px,#46271d18 18px 20px),linear-gradient(160deg,#aa6a73,#7a466e 50%,#603653);border-color:#e5b17d}
+.wood:hover{filter:brightness(1.09)}.wood:active{transform:translateY(3px)}
+@media(max-width:720px){.hero{min-height:150px;background-position:center 43%}.wood{padding:12px 11px 12px 17px}.wood:before{left:4px}.wood:after{right:4px}}
+
+/* Patine légère du papier : aucun visuel supplémentaire à télécharger. */
+.page{
+ background:
+  radial-gradient(ellipse at 8% 7%,#9d66301a 0%,transparent 32%),
+  radial-gradient(ellipse at 92% 91%,#8d532b22 0%,transparent 35%),
+  radial-gradient(ellipse at 3% 70%,#b67c3b12 0%,transparent 28%),
+  repeating-linear-gradient(115deg,transparent 0 47px,#986b3210 48px,transparent 50px,transparent 108px),
+  radial-gradient(ellipse at 48% 30%,#fff7e8 0%,#f8e6c9 66%,#e4bf91 100%);
+}
+.page:first-child{
+ box-shadow:inset 14px 0 25px #86512d23,inset -20px 0 27px #8c57301c,inset 0 12px 20px #aa70351c,inset 0 -15px 24px #91592e25;
+}
+.page:last-child{
+ box-shadow:inset -14px 0 25px #86512d23,inset 20px 0 27px #8c57301c,inset 0 12px 20px #aa70351c,inset 0 -15px 24px #91592e25;
+}
+/* Conserve la lisibilité des vrais champs et boutons. */
+.rule:after{background:#f9e7cb}
+@media(max-width:720px){
+ .page:first-child,.page:last-child{box-shadow:inset 0 0 25px #8b552b25,inset 0 12px 17px #a86a3022,inset 0 -14px 20px #8e5a3025}
+}
+.cuisine-join{display:inline-block;text-decoration:none;background:linear-gradient(#af70a9,#784484);color:white;border-radius:11px;margin-top:10px;border:1px solid #693b69;box-shadow:0 3px 0 #654069;font-weight:bold}
+/* Navigation en panneaux directionnels et livre parchemin — sans images lourdes */
+.sidebar .wood{display:block;width:100%;clip-path:polygon(0 0,85% 0,100% 50%,85% 100%,0 100%,5% 50%);border:0;border-radius:0;transform:none!important;text-align:center;text-decoration:none;min-height:62px;padding:17px 29px 17px 20px;color:#fff3d5;background:repeating-linear-gradient(0deg,#ffffff08 0 3px,#28120718 4px 6px),linear-gradient(165deg,#c28a56 0%,#875036 46%,#60351f 100%);box-shadow:inset 0 3px 5px #f5d39a, inset 0 -5px 6px #402012;filter:drop-shadow(2px 5px 2px #442a3266);font-size:15px;line-height:1.25;letter-spacing:.02em;white-space:normal}
+.sidebar .wood:nth-child(even){background:repeating-linear-gradient(0deg,#ffffff08 0 3px,#28120718 4px 6px),linear-gradient(165deg,#bc8051,#764329 70%,#5e331e)}
+.sidebar .wood[aria-current="page"]{background:linear-gradient(165deg,#c58d68,#905674 70%,#613b56);color:#fff7dc}
+.sidebar .wood:before,.sidebar .wood:after{display:none}
+.sidebar .wood:hover{filter:brightness(1.12) drop-shadow(2px 5px 2px #442a3266)}
+.book{grid-template-columns:minmax(0,1fr);min-height:520px;border-color:#7c4b30;box-shadow:0 0 0 4px #cfa477,0 13px 26px #4a293c70}
+.book:after{display:none}
+.book .page{background:radial-gradient(ellipse at 12% 15%,#ac723524,transparent 35%),radial-gradient(ellipse at 95% 83%,#8850212e,transparent 40%),repeating-linear-gradient(13deg,transparent 0 24px,#8b5a2910 25px,transparent 27px,transparent 72px),radial-gradient(ellipse at 52% 38%,#fff4d9 0%,#f2d9ab 68%,#d4aa73 100%);box-shadow:inset 0 0 36px #74431d4a,inset 0 0 6px #6d381a35;min-height:520px}
+.book .page[hidden]{display:none!important}
+.book .page:before{content:'';font-size:35px;color:#a46e48}
+.book .page h2{color:#70452f}
+.book .rule{border-bottom-color:#b48b57}
+.book .rule:after{background:#f3dfb7;color:#976b3e}
+@media(max-width:1060px){.sidebar{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){.sidebar{grid-template-columns:repeat(2,minmax(0,1fr))}.sidebar .wood{font-size:12px;min-height:57px;padding:12px 22px 12px 12px}.book .page{min-height:380px}}
+@media(max-width:360px){.sidebar{grid-template-columns:1fr 1fr}}
+
+/* Patine ancienne : taches, plis, auréoles et bordures usées, sans image externe. */
+.book .page{
+ background:
+  radial-gradient(ellipse 32% 21% at 12% 12%,#79502727,transparent 85%),
+  radial-gradient(ellipse 16% 28% at 86% 25%,#86532b1c,transparent 90%),
+  radial-gradient(ellipse 26% 13% at 43% 81%,#9b653024,transparent 88%),
+  radial-gradient(circle at 23% 48%,transparent 0 29px,#93612d17 31px 34px,transparent 37px),
+  radial-gradient(circle at 79% 67%,transparent 0 18px,#81502418 20px 22px,transparent 25px),
+  repeating-linear-gradient(101deg,transparent 0 76px,#74461c0b 77px,transparent 79px,transparent 156px),
+  repeating-linear-gradient(9deg,transparent 0 135px,#a06e3510 136px,transparent 138px,transparent 211px),
+  radial-gradient(ellipse at 49% 42%,#f7e8c7 0%,#e8c99b 66%,#c99966 100%);
+ box-shadow:inset 0 0 24px #70431d72,inset 0 0 58px #8e542a4d,inset 0 0 4px #56311b8c;
+}
+.book .page:after{content:'';position:absolute;inset:8px;border:1px solid #8a572c29;border-radius:2px 11px 4px 9px;pointer-events:none;box-shadow:inset 0 0 11px #70451e16}
+.book .page h2,.book .page .intro,.book .page .event{position:relative;z-index:1}
+/* Bois plus réaliste : veinures et clous, couleurs du Refuge conservées. */
+.sidebar .wood{
+ position:relative;isolation:isolate;
+ background:
+  radial-gradient(ellipse at 12% 23%,#f6cf8c33,transparent 40%),
+  repeating-linear-gradient(174deg,transparent 0 5px,#34180728 6px 7px,transparent 8px 17px,#e4b2741c 18px 19px,transparent 20px 31px),
+  linear-gradient(166deg,#c08a5d 0%,#a16a43 28%,#865038 55%,#643a29 100%);
+ text-shadow:0 2px 3px #341e1c;
+ box-shadow:inset 0 3px 2px #e9ba83,inset 0 -5px 6px #3c221b,0 5px 8px #3e292a75;
+}
+.sidebar .wood:nth-child(even){background:repeating-linear-gradient(176deg,transparent 0 6px,#34180725 7px 8px,transparent 9px 24px,#e4b27419 25px 26px,transparent 27px 37px),linear-gradient(165deg,#bc8051,#764329 70%,#5e331e)}
+.sidebar .wood[aria-current="page"]{background:repeating-linear-gradient(176deg,transparent 0 8px,#381b2d2a 9px 10px,transparent 11px 25px),linear-gradient(165deg,#c58d68,#905674 70%,#613b56)}
+.sidebar .wood:before,.sidebar .wood:after{display:block;content:'';position:absolute;top:50%;height:8px;width:8px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ffe1a5,#9a6b43 58%,#4b2b1d);box-shadow:0 1px 2px #321b17;transform:translateY(-50%);pointer-events:none}
+.sidebar .wood:before{left:9px}.sidebar .wood:after{right:18%}
+@media(max-width:720px){.sidebar .wood:before{left:5px}.sidebar .wood:after{right:17%}.book .page{box-shadow:inset 0 0 21px #70431d66,inset 0 0 38px #8e542a40}}
+
+/* Refuge — harmonisation parchemin légère, sans ressource graphique supplémentaire */
+:root{--refuge-ink:#69432e;--refuge-paper:#f3dfb7;--refuge-edge:#ad7950}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+
+.book{border-color:#7b4c30;box-shadow:0 0 0 3px #d0a272,0 12px 26px #4d302e54}
+.book .page{
+ background:radial-gradient(ellipse 34% 22% at 12% 11%,#85542c20,transparent 88%),
+ radial-gradient(ellipse 27% 20% at 89% 87%,#86512a25,transparent 90%),
+ repeating-linear-gradient(105deg,transparent 0 77px,#87572509 78px,transparent 80px,transparent 159px),
+ radial-gradient(ellipse at 48% 37%,#f9edcf 0%,#eed5a9 67%,#d8af7e 100%);
+ box-shadow:inset 0 0 26px #6e421e55,inset 0 0 55px #8c55252b;
+}
+.book .page h2{color:#70462e}
+.book .page:after{content:'';position:absolute;inset:9px;border:1px solid #9360382a;border-radius:8px;pointer-events:none}
+.book .page .event,.book .page .intro{position:relative;z-index:1}
+@media(max-width:720px){.book .page{box-shadow:inset 0 0 20px #6e421e48,inset 0 0 35px #8c552525}}
+
+/* REFUGE — GRIMOIRE FÉERIQUE, FEUILLES VÉCUES (CSS léger, aucune image nouvelle) */
+:root{--refuge-ink:#684332;--refuge-flower:#9b587f}
+body{background:radial-gradient(ellipse at 4% 20%,#dfb9cb,transparent 48%),radial-gradient(ellipse at 95% 82%,#b99ec7,transparent 48%),#d9b6bd!important}
+.paper,.book .page{
+ background:
+  radial-gradient(ellipse 18% 12% at 2% 2%,#74411e8a,transparent 85%),
+  radial-gradient(ellipse 13% 20% at 99% 4%,#70402083,transparent 95%),
+  radial-gradient(ellipse 20% 12% at 0% 99%,#6c391b8f,transparent 90%),
+  radial-gradient(ellipse 16% 15% at 100% 98%,#71431d80,transparent 90%),
+  radial-gradient(ellipse 23% 9% at 53% 0%,#a56b3459,transparent 90%),
+  radial-gradient(ellipse 13% 20% at 0% 51%,#93592955,transparent 92%),
+  radial-gradient(ellipse 13% 20% at 100% 53%,#9359295c,transparent 92%),
+  radial-gradient(circle at 28% 35%,transparent 0 28px,#8c56212a 30px 33px,transparent 37px),
+  radial-gradient(ellipse at 77% 76%,#aa733c3b,transparent 34%),
+  repeating-linear-gradient(102deg,transparent 0 56px,#8051250b 57px,transparent 60px,transparent 124px),
+  radial-gradient(ellipse at 50% 47%,#fff2d3,#efd4a3 69%,#b57d4c 100%)!important;
+ box-shadow:inset 0 0 34px #74421f99,inset 0 0 105px #8d512e78,0 8px 16px #49302028!important;
+ border:0!important;border-radius:0!important;
+ clip-path:polygon(0.9% 1.4%,5% .4%,10% 1.3%,17% .3%,24% 1.1%,31% .2%,39% 1.2%,47% .2%,55% 1.2%,63% .2%,71% 1.1%,79% .3%,87% 1.3%,94% .3%,99% 1.2%,99.4% 8%,98.9% 17%,99.5% 26%,99% 35%,99.5% 44%,99% 53%,99.5% 62%,99% 71%,99.5% 80%,99% 89%,99.2% 98.8%,94% 99.4%,86% 98.9%,78% 99.6%,70% 98.9%,62% 99.5%,54% 99%,46% 99.6%,38% 99%,30% 99.6%,22% 99%,14% 99.6%,6% 99%,.8% 99.2%,1.2% 90%,.6% 81%,1.1% 72%,.6% 63%,1.2% 54%,.6% 45%,1.2% 36%,.6% 27%,1.2% 18%,.6% 9%)!important;
+}
+.paper{padding:55px clamp(25px,6vw,75px) 70px!important}
+.paper:before{border:0!important;box-shadow:none!important}
+.book{background:#70462f!important;border:12px solid #895538!important;border-radius:23px!important;box-shadow:0 0 0 4px #c89468,0 18px 33px #4b2c3260!important;overflow:visible!important}
+.book .page{padding:clamp(44px,5vw,72px) clamp(24px,5vw,68px)!important}
+.book .page h2,.paper h1{color:#77445c!important}
+.book .page .event{border-bottom:1px dashed #a77769!important}
+@media(max-width:720px){
+ .book{border-width:7px!important}
+ .book .page{padding:40px 20px!important}
+ .paper{padding:44px 20px 54px!important}
+}
+
+/* Illustration finale du Refuge : gravures SVG locales, pas de police emoji. */
+.vicon{width:1.22em;height:1.22em;display:inline-block;vertical-align:-.19em;flex:none;stroke-width:1.65}
+.sign .vicon,.wood .vicon{width:1.65em;height:1.65em;color:#f4d7a7;filter:drop-shadow(0 1px 1px #492c22)}
+.floral-svg{width:100%;height:100%;stroke-width:1.3}
+.ornament{width:clamp(32px,5vw,62px);height:clamp(32px,5vw,62px);font-size:0!important;color:#b26b87!important}
+.ornament.top-right,.ornament.bottom-left{color:#997c60!important}
+.flourish{font-size:0!important;margin:18px auto 24px!important;display:flex;justify-content:center;gap:15px;color:#a76b8b}
+.flourish .floral-svg{width:30px;height:30px}
+.sign .emoji{display:none}
+.book .page::before{content:""!important;font-size:26px!important;color:#aa748a!important}
+.book .page::after{content:""!important;font-size:24px!important;color:#aa748a!important}
+.sign,.sidebar .wood{transition:filter .16s ease}
+@media(max-width:700px){.sign .vicon,.wood .vicon{width:1.4em;height:1.4em}.ornament{width:32px;height:32px}}
+
+.illustrated-corner{position:absolute;pointer-events:none;width:42px;height:42px;opacity:.55;color:#a35c7f;z-index:2}
+.illustrated-corner.tl{left:23px;top:20px}.illustrated-corner.tr{right:23px;top:20px;transform:scaleX(-1)}
+.illustrated-corner.bl{left:23px;bottom:20px;transform:scaleY(-1)}
+.illustrated-corner.br{right:23px;bottom:20px;transform:scale(-1)}
+@media(max-width:700px){.illustrated-corner{width:25px;height:25px}.illustrated-corner.tl,.illustrated-corner.bl{left:10px}.illustrated-corner.tr,.illustrated-corner.br{right:10px}}
+
+/* Parchemin patiné : usure douce, sans zigzags géométriques. */
+.paper,.book .page{
+ clip-path:none!important;
+ border-radius:14px 19px 13px 20px!important;
+ background:
+ radial-gradient(ellipse 10% 19% at 0% 2%,#96623c65,transparent 100%),
+ radial-gradient(ellipse 14% 10% at 99% 0%,#99643c5b,transparent 100%),
+ radial-gradient(ellipse 13% 14% at 0% 100%,#93603968,transparent 100%),
+ radial-gradient(ellipse 16% 15% at 100% 100%,#8f5c365a,transparent 100%),
+ radial-gradient(ellipse at 80% 68%,#c99c6540,transparent 38%),
+ radial-gradient(ellipse at 32% 26%,#fff6e3,#f3dfbd 68%,#dfbd8c)!important;
+ box-shadow:inset 0 0 23px #80532f4a,inset 0 0 75px #a4713b30!important;
+}
+.book{border:5px solid #9d765d!important;background:#a77d60!important;box-shadow:0 0 0 2px #d5a17e,0 12px 28px #5d354044!important}
+.paper{border:1px solid #b58c6a!important}
+.book .page{outline:1px solid #c29a73;outline-offset:-7px}
+@media(max-width:720px){.book{border-width:3px!important}}
+
+/* VRAI PARCHEMIN ILLUSTRÉ — neuf tranches pour les pages longues */
+.paper,.book .page{
+  background:#f5dfb3!important;
+  background-image:none!important;
+  border:solid transparent!important;
+  border-width:clamp(38px,5vw,72px)!important;
+  border-image-source:url("/le-refuge/test-fusion/parchemin_refuge.webp")!important;
+  border-image-slice:210 175 205 175 fill!important;
+  border-image-width:clamp(38px,5vw,72px)!important;
+  border-image-outset:0!important;
+  border-image-repeat:stretch!important;
+  border-radius:0!important;
+  clip-path:none!important;
+  outline:0!important;
+  box-shadow:0 12px 26px #6a3d4650!important;
+  min-width:0;
+  position:relative;
+}
+.paper{padding:clamp(12px,2.5vw,30px)!important}
+.book .page{padding:clamp(10px,2.4vw,26px)!important;min-height:380px!important}
+.book,.book-shell{background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important}
+.book .page::before,.book .page::after,.paper::before,.paper::after{display:none!important}
+.illustrated-corner,.ornament{display:none!important}
+.book .page h2,.paper h1{color:#76455b!important}
+.page-number{color:#886d65!important}
+@media(max-width:700px){
+ .paper,.book .page{border-width:30px!important;border-image-width:30px!important}
+ .paper,.book .page{padding:8px!important}
+}
+
+/* Ajustements mobiles : illustration lisible et contenu tenu à distance des bords */
+.paper,.book .page{overflow:visible!important}
+.paper > *, .book .page > *{max-width:100%;min-width:0}
+.paper .scene,.book .page .welcome{padding:12px 0!important}
+.paper .mascot{max-width:min(42vw,170px)!important;height:auto!important;object-fit:contain!important;mask-image:radial-gradient(ellipse 67% 67% at 50% 50%,#000 70%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 67% 67% at 50% 50%,#000 70%,transparent 100%)}
+.book .page img:not(.avatar){max-width:100%!important;object-fit:contain!important}
+.book .page .sashimi-illustration,.book .page .poke-illustration{width:min(100%,660px)!important;margin:12px auto 20px!important;display:block!important}
+.book .page .welcome .flower{font-size:22px!important;letter-spacing:0!important}
+@media(max-width:700px){
+ .paper,.book .page{border-width:38px!important;border-image-width:38px!important;padding:10px 6px!important}
+ .paper .scene-text{max-width:100%!important}
+ .book .page .welcome{min-height:350px!important;gap:10px!important}
+ .book .page h2{font-size:clamp(20px,5vw,28px)!important}
+ .book .page p{overflow-wrap:anywhere}
+}
+
+/* CORRECTION DES PROPORTIONS : les illustrations ne sont JAMAIS étirées en hauteur.
+   Haut et bas à ratio constant; seule une bande de papier neutre se répète. */
+.paper,.book .page{
+ border:0!important;border-image:none!important;border-radius:0!important;
+ clip-path:none!important;outline:none!important;
+ background-color:#f6dfad!important;
+ background-image:url("/le-refuge/test-fusion/parchemin_haut.webp"),url("/le-refuge/test-fusion/parchemin_bas.webp"),url("/le-refuge/test-fusion/parchemin_milieu.webp")!important;
+ background-position:center top,center bottom,center top!important;
+ background-size:100% auto,100% auto,100% auto!important;
+ background-repeat:no-repeat,no-repeat,repeat-y!important;
+ box-shadow:0 12px 25px #57332b38!important;
+ padding:clamp(90px,16vw,170px) clamp(24px,8vw,110px)!important;
+ min-width:0;overflow:visible!important;
+}
+.book,.book-shell{background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important}
+.paper::before,.paper::after,.book .page::before,.book .page::after{display:none!important}
+@media(max-width:700px){
+ .paper,.book .page{padding:clamp(70px,18vw,125px) clamp(29px,8.5vw,65px)!important}
+ .book .page p{overflow-wrap:break-word!important}
+}
+
+/* LABORATOIRE REFUGE 05-11 — harmonisation légère, sans changer la logique. */
+:root { --refuge-test-ink:#684633; --refuge-test-paper:#f3d7a5; }
+body { background:radial-gradient(ellipse at 7% 15%,#e4bfd0,transparent 48%),radial-gradient(ellipse at 92% 85%,#bba1c8,transparent 48%),#d8b5c3 !important; }
+/* Papier chaud et patiné, sans répétition de bordure illustrée. */
+.book .page { border:0 !important; border-image:none !important; border-radius:10px !important; background:radial-gradient(ellipse 26% 19% at 4% 6%,#9e632d38,transparent 95%),radial-gradient(ellipse 24% 20% at 96% 95%,#8b502b30,transparent 95%),radial-gradient(ellipse 60% 50% at 50% 45%,#f8e5bd 0%,#efd2a0 75%,#dbb17c 100%) !important; box-shadow:inset 0 0 24px #80502f48,inset 0 0 65px #a06b3b25,0 8px 18px #4c302c26 !important; padding:clamp(30px,5vw,65px) clamp(20px,5vw,62px) !important; }
+.book { background:transparent !important; border:5px solid #986948 !important; border-radius:14px !important; overflow:visible !important; box-shadow:0 0 0 2px #d7a875,0 14px 25px #51312950 !important; }
+@media(max-width:700px){.book .page{padding:30px 19px !important}.book{border-width:4px !important}}
+.book .page[hidden]{display:none!important} .sidebar .wood{color:#fff3df}
+</style></head><body><header class="hero" aria-label="Le Refuge — Espace Événements"></header><div class="layout"><aside class="sidebar"><a class="wood" href="accueil.html"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 9-8 9 8v10H3V11Z"/><path d="M9 21v-7h6v7"/></svg> Accueil du Refuge</a><button class="wood" id="nav-evenements" aria-current="page"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-13 4h2m4 0h2m-8 4h2"/></svg> Événements</button><button class="wood" id="nav-mes-evenements"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10C6 2 3 8 9 12c-8-4-9 4-1 4-3 7 4 9 5 2 5 6 10 0 4-4 8-3 5-10-3-8-1-7-7-9-5-1Z"/><circle cx="12" cy="13" r="1.8"/></svg> Mes événements</button><button class="wood" id="nav-cuisine"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13a4 4 0 0 1-1-7 4 4 0 0 1 7-2 4 4 0 0 1 7 2 4 4 0 0 1-1 7"/><path d="M6 13v7h12v-7M9 16v2m6-2v2"/></svg> La Cuisine enchantée</button><button class="wood" id="nav-aide"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 1 1 5 2.4c-1.3.9-2 1.4-2 3.1m0 3h.01"/></svg> Aide</button><a class="wood" id="nav-surprise" href="surprise.html"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2Z"/></svg> Surprise en préparation</a><div id="account" class="account"><button id="connexion">Connexion Discord</button><span id="profil"></span><button id="deconnexion" class="secondary" hidden>Se déconnecter</button></div><p id="message" class="status" role="status"></p></aside><main class="book" id="espace-evenements"><section class="page" id="page-evenements"><span class="illustrated-corner tl" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"/></svg></span><span class="illustrated-corner tr" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"/></svg></span><span class="illustrated-corner bl" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"/></svg></span><span class="illustrated-corner br" aria-hidden="true"><svg class="floral-svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"/></svg></span><h2 id="events-title"> Les prochains événements</h2><div class="rule"></div><p class="intro" id="events-intro">Les soirées cuisine du Refuge, page après page…</p><div id="connexion-note" class="note">Connecte-toi avec Discord pour organiser une soirée cuisine et retrouver les rendez-vous du Refuge. </div><div id="contenu-prive" hidden><div id="liste-evenements" aria-live="polite"></div></div><img id="event-mascot" class="mascot" src="/le-refuge/mascotte_originale_refuge.webp" alt="Notre petite mascotte violette endormie" loading="lazy" width="410" height="240"></section><section class="page" id="page-cuisine" hidden><h2 id="form-title"> Organiser une soirée cuisine</h2><div class="rule"></div><p class="intro">Prépare ta prochaine soirée gourmande, puis retrouve les recettes et les postes dans notre livre de cuisine.</p><form id="formulaire-evenement"><div class="fields"><div class="full"><label for="recette"> Recette *</label><select id="recette" required><option>Sashimi</option><option>Poké Bowl</option><option>Gâteau de fête</option><option>Hamburger de haricots</option><option>Chili végétarien</option><option>Bahari de Muujin</option></select></div><div><label for="date-evenement"> Date et heure *</label><input id="date-evenement" type="datetime-local" required></div><div><label for="quantite"> Nombre de préparations *</label><input id="quantite" type="number" min="1" step="1" value="1" required></div><div class="full"><label for="description-evenement"> Petit mot (facultatif)</label><textarea id="description-evenement" maxlength="1000" placeholder="Une soirée gourmande entre amis…"></textarea></div></div><div class="actions"><button id="save-event" class="primary" type="submit"> Créer ma soirée cuisine</button><button id="cancel-edit" class="small subtle" type="button" hidden>Annuler la modification</button></div></form><p id="form-message" role="status"></p></section></main></div><footer class="footer"> Le Refuge — De jolis moments à partager 
+
+Site communautaire indépendant, créé par des fans de Palia pour les membres du Refuge. Ce site n'est ni officiel, ni affilié, ni approuvé ou sponsorisé par Singularity 6, le studio à l'origine de Palia. Palia et ses éléments associés appartiennent à leurs ayants droit respectifs.
+ 
+</footer><script>
+const SUPABASE_URL='https://kflrkclmznluxahxttgl.supabase.co';
+const SUPABASE_KEY='sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3';
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const $=id=>document.getElementById(id);
+let currentUser=null,allEvenings=[],ownOnly=false,editingId=null;
+const say=s=>{$("message").textContent=s};
+const formatDate=d=>new Date(d).toLocaleString('fr-FR',{dateStyle:'full',timeStyle:'short'});
+function addLine(parent,tag,value,cls){const el=document.createElement(tag);el.textContent=value;if(cls)el.className=cls;parent.append(el);return el;}
+function setView(own){
+ ownOnly=own;
+ $('nav-evenements').toggleAttribute('aria-current',!own);
+ $('nav-mes-evenements').toggleAttribute('aria-current',own);
+ $('events-title').textContent=own?' Mes événements':' Les prochains événements';
+ $('events-intro').textContent=own?'Les soirées cuisine que tu as organisées.':'Les soirées cuisine du Refuge, page après page…';
+}
+function cancelEdit(){
+ editingId=null;$('formulaire-evenement').reset();
+ $('form-title').textContent=' Organiser une soirée cuisine';
+ $('save-event').textContent=' Créer ma soirée cuisine';
+ $('cancel-edit').hidden=true;
+ $('form-message').textContent='';
+}
+$('cancel-edit').addEventListener('click',cancelEdit);
+function localDateTime(value){
+ const d=new Date(value),pad=n=>String(n).padStart(2,'0');
+ return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+async function loadEvents(){
+ const list=$("liste-evenements");list.textContent='Chargement des soirées…';
+ const {data,error}=await sb.from('evenements')
+  .select('id,titre,recette,date_evenement,nombre_preparations,description,statut,createur_id,createur_pseudo')
+  .order('date_evenement',{ascending:true}).limit(100);
+ if(error){list.textContent='Impossible de charger les soirées : '+error.message;return;}
+ allEvenings=(data||[]).filter(e=>e.recette && (e.statut===null||e.statut==='ouverte'));
+ const hasUpcoming=allEvenings.some(e=>e.date_evenement && new Date(e.date_evenement).getTime()>Date.now());
+ const mascot=$('event-mascot');
+ mascot.src=hasUpcoming?'./renarde%2B%20papillon.png':'/le-refuge/mascotte_originale_refuge.webp';
+ mascot.alt=hasUpcoming?'Notre renarde éveillée avec son papillon':'Notre petite mascotte violette endormie';
+ const entries=ownOnly?allEvenings.filter(e=>e.createur_id===currentUser?.id):allEvenings;
+ list.replaceChildren();
+ if(!entries.length){addLine(list,'p',ownOnly?'Tu n’as pas encore organisé de soirée cuisine. ':'Aucune soirée cuisine ouverte pour le moment. ','empty');return;}
+ for(const e of entries){
+  const card=document.createElement('article');card.className='event';
+  addLine(card,'h3',' '+(e.titre||'Soirée '+e.recette));
+  addLine(card,'p',' Recette : '+e.recette);
+  addLine(card,'p',' '+formatDate(e.date_evenement));
+  addLine(card,'p',' '+e.nombre_preparations+' préparation(s)');
+  if(e.description)addLine(card,'p',e.description);
+  if(ownOnly && e.createur_id===currentUser?.id){
+   const actions=document.createElement('div');actions.className='inline';
+   const edit=document.createElement('button');edit.type='button';edit.className='small';edit.textContent=' Modifier';
+   edit.addEventListener('click',()=>{
+    showArea('cuisine');editingId=e.id;$('recette').value=e.recette;
+    $('date-evenement').value=localDateTime(e.date_evenement);
+    $('quantite').value=e.nombre_preparations||1;
+    $('description-evenement').value=e.description||'';
+    $('form-title').textContent=' Modifier ma soirée cuisine';
+    $('save-event').textContent=' Enregistrer les modifications';
+    $('cancel-edit').hidden=false;$('form-message').textContent='';
+    $('formulaire-evenement').scrollIntoView({behavior:'smooth',block:'center'});
+   });
+   const del=document.createElement('button');del.type='button';del.className='small danger';del.textContent=' Supprimer';
+   del.addEventListener('click',async()=>{
+    if(!confirm('Supprimer définitivement cette soirée et ses inscriptions ?'))return;
+    del.disabled=true;
+    const {data,error}=await sb.from('evenements').delete().eq('id',e.id).eq('createur_id',currentUser.id).select('id');
+    if(error||!data?.length){say('Suppression impossible : '+(error?.message||'Autorisation refusée.'));del.disabled=false;return;}
+    if(editingId===e.id)cancelEdit();say('Soirée supprimée.');await loadEvents();
+   });
+   actions.append(edit,del);card.append(actions);
+  }else{
+   addLine(card,'p','Pour choisir un poste, ouvre cette recette dans la Cuisine Enchantée (connexion à venir).','muted');
+  }
+  const join=document.createElement('a');join.className='small cuisine-join';join.textContent=' Rejoindre la cuisine';join.href='cuisine.html?recette='+encodeURIComponent(e.recette)+'&soiree='+encodeURIComponent(e.id);card.append(join);
+  list.append(card);
+ }
+}
+
+async function refresh(){
+ const {data:{session},error}=await sb.auth.getSession();
+ if(error){say('Erreur de connexion : '+error.message);return;}
+ currentUser=session?.user||null;
+ $('connexion').hidden=!!currentUser;$('deconnexion').hidden=!currentUser;
+ $('connexion-note').hidden=!!currentUser;$('contenu-prive').hidden=!currentUser;
+ $('formulaire-evenement').querySelectorAll('input,select,textarea,button').forEach(el=>el.disabled=!currentUser);
+ if(!currentUser){$('profil').textContent='';return;}
+ const m=currentUser.user_metadata||{};
+ const pseudo=m.custom_claims?.global_name||m.full_name||m.name||m.user_name||'Membre du Refuge';
+ $('profil').textContent='Bienvenue '+pseudo+' ! ';
+ await loadEvents();
+}
+$('connexion').addEventListener('click',async()=>{
+ say('Connexion en cours…');
+ const {error}=await sb.auth.signInWithOAuth({provider:'discord',options:{scopes:'identify email guilds.members.read',redirectTo:window.location.origin+window.location.pathname}});
+ if(error)say('Connexion impossible : '+error.message);
+});
+$('deconnexion').addEventListener('click',async()=>{const {error}=await sb.auth.signOut();if(error){say('Déconnexion impossible : '+error.message);return;}say('Tu es déconnecté(e).');await refresh();});
+$('formulaire-evenement').addEventListener('submit',async ev=>{
+ ev.preventDefault();if(!currentUser)return;
+ const date=new Date($('date-evenement').value),quantite=Number($('quantite').value);
+ if(!Number.isFinite(date.getTime())||date.getTime()<=Date.now()||!Number.isSafeInteger(quantite)||quantite<1){$('form-message').textContent='Choisis une date future et un nombre de préparations valide.';return;}
+ const button=$('save-event');button.disabled=true;$('form-message').textContent='Création en cours…';
+ try{
+  const recette=$('recette').value;
+  const metadata=currentUser.user_metadata||{};
+  const pseudo=metadata.custom_claims?.global_name||metadata.full_name||metadata.name||metadata.user_name||'Membre du Refuge';
+  const payload={
+   titre:'Soirée '+recette,
+   recette:recette,
+   nombre_preparations:quantite,
+   date_evenement:date.toISOString(),
+   description:$('description-evenement').value.trim()||null,
+   statut:'ouverte'
+  };
+  if(editingId!==null){
+   const {data,error}=await sb.from('evenements').update(payload)
+    .eq('id',editingId).eq('createur_id',currentUser.id).select('id');
+   if(error)throw error;
+   if(!data?.length)throw new Error('Modification non autorisée ou soirée introuvable.');
+   cancelEdit();$('form-message').textContent=' Ta soirée a été modifiée !';
+  }else{
+   const {data,error}=await sb.from('evenements').insert({
+    ...payload,createur_id:currentUser.id,createur_pseudo:pseudo
+   }).select('id').single();
+   if(error)throw error;
+   $('formulaire-evenement').reset();
+   $('form-message').textContent=' Ta soirée cuisine a été créée ! Référence : '+data.id;
+  }
+  await loadEvents();
+ }catch(error){$('form-message').textContent='Création impossible : '+(error.message||error);}
+ finally{button.disabled=false;}
+});
+function showArea(area){
+ $('page-evenements').hidden=area==='cuisine';
+ $('page-cuisine').hidden=area!=='cuisine';
+ $('nav-cuisine').toggleAttribute('aria-current',area==='cuisine');
+ if(area!=='cuisine')cancelEdit();
+}
+$('nav-cuisine').addEventListener('click',()=>{showArea('cuisine');$('espace-evenements').scrollIntoView({behavior:'smooth'});});
+$('nav-evenements').addEventListener('click',async()=>{showArea('events');setView(false);if(currentUser)await loadEvents();});
+$('nav-mes-evenements').addEventListener('click',async()=>{showArea('events');setView(true);if(currentUser)await loadEvents();});
+$('nav-aide').addEventListener('click',()=>alert('Connecte-toi avec Discord, puis ouvre le panneau Cuisine enchantée pour organiser une soirée. Pour choisir un poste, utilise le bouton Rejoindre la cuisine sur la soirée.'));
+refresh();
+</script></body></html>
