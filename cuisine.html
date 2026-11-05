@@ -955,4 +955,7 @@ createForm.addEventListener('submit',async ev=>{
 load();sb.auth.onAuthStateChange(()=>{setTimeout(load,0)});
 // Met à jour automatiquement les soirées qui dépassent leur heure de fin.
 setInterval(()=>{if(!document.hidden)load();},30000);
+document.addEventListener('visibilitychange',()=>{
+ if(!document.hidden)load();
+});
 </script><footer class="refuge-disclaimer" aria-label="Informations sur le site"><p> Le Refuge — De jolis moments à partager </p><p>Site communautaire indépendant, créé par des fans de Palia pour les membres du Refuge.</p><p>Ce site n'est ni officiel, ni affilié, ni approuvé ou sponsorisé par Singularity 6, le studio à l'origine de Palia.</p><p>Palia et ses éléments associés appartiennent à leurs ayants droit respectifs.</p></footer></body></html>
