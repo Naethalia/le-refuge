@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bienvenue au Refuge</title>
+<title>TEST HARMONISATION — Bienvenue au Refuge</title>
 <style>
 :root{--ink:#694c42;--plum:#75466f;--wood:#865235}
 *{box-sizing:border-box}
@@ -316,6 +316,12 @@ body { background:radial-gradient(ellipse at 7% 15%,#e4bfd0,transparent 48%),rad
   .paper .refuge-arabesque {width:min(100%,360px);margin:12px auto 22px!important}
   .sign:after {display:none!important}
 }
+
+/* Statut de connexion du Refuge : affichage léger, sans nouvelle authentification. */
+.refuge-session{max-width:560px;margin:18px auto 24px;padding:15px 18px;background:#fff0d8e8;border:2px solid #b78690;border-radius:18px;box-shadow:0 5px 13px #6d3f4b22;text-align:center}
+.refuge-session p{margin:0 0 11px;line-height:1.4;color:#70465d;font-weight:bold}
+.refuge-session a{display:inline-block;padding:10px 18px;background:linear-gradient(#b17ba5,#7d4b80);color:#fffaf0;border-radius:12px;text-decoration:none;font-weight:bold;box-shadow:0 3px 0 #5b365d}
+.refuge-session a:focus-visible{outline:3px solid #a65a93;outline-offset:3px}
 </style>
 </head>
 <body>
@@ -330,6 +336,10 @@ body { background:radial-gradient(ellipse at 7% 15%,#e4bfd0,transparent 48%),rad
 <p class="lead">Un endroit chaleureux pour se retrouver, partager de belles aventures et cuisiner ensemble dans Palia.</p>
 <div class="flourish refuge-arabesque" aria-hidden="true"><svg viewBox="0 0 600 70" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#a75c81" stroke-width="2.4" stroke-linecap="round"><path d="M10 35 Q65 5 112 35 T214 35 Q244 35 266 35 M590 35 Q535 5 488 35 T386 35 Q356 35 334 35"/><path d="M120 34 Q107 7 89 15 Q94 36 120 34 M155 35 Q144 57 126 51 Q130 34 155 35 M195 35 Q184 12 166 18 Q172 36 195 35 M480 34 Q493 7 511 15 Q506 36 480 34 M445 35 Q456 57 474 51 Q470 34 445 35 M405 35 Q416 12 434 18 Q428 36 405 35"/><path d="M300 27 C278 6 265 31 291 37 C267 41 284 64 300 46 C316 64 333 41 309 37 C335 31 322 6 300 27Z" fill="#b96b91" stroke="none"/><circle cx="300" cy="36" r="6" fill="#f6d4a0" stroke="none"/></svg></div>
 <div class="scene"><p class="scene-text">Installe-toi confortablement… Notre petit Refuge t'ouvre ses portes. Choisis un chemin pour commencer ta visite !</p></div>
+<section class="refuge-session" aria-live="polite" aria-label="Connexion au Refuge">
+<p id="refuge-session-text">🦊 Vérification de ta connexion…</p>
+<a id="refuge-session-action" href="carnet.html">Ouvrir le Carnet</a>
+</section>
 <nav class="signs" aria-label="Explorer le Refuge">
 <a class="sign" href="carnet.html"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Z"/><path d="M12 6v14"/></svg><span class="name">Carnet des événements</span></a>
 <a class="sign" href="cuisine.html"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13a4 4 0 0 1-1-7 4 4 0 0 1 7-2 4 4 0 0 1 7 2 4 4 0 0 1-1 7"/><path d="M6 13v7h12v-7M9 16v2m6-2v2"/></svg><span class="name">La Cuisine du Refuge</span></a>
@@ -355,4 +365,41 @@ body { background:radial-gradient(ellipse at 7% 15%,#e4bfd0,transparent 48%),rad
     }
   }catch(_){/* En cas d'accès restreint, conserver la renarde endormie. */}
 })();
-</script></body></html>
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// La session est la même que celle du Carnet et de la Cuisine (même origine et projet).
+// L'accueil affiche son état, mais ne crée pas de deuxième système de connexion.
+(async()=>{
+ const label=document.getElementById('refuge-session-text');
+ const action=document.getElementById('refuge-session-action');
+ if(!label||!action)return;
+ try{
+  const sb=window.supabase.createClient(
+   'https://kflrkclmznluxahxttgl.supabase.co',
+   'sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3'
+  );
+  const {data:{session},error}=await sb.auth.getSession();
+  if(error)throw error;
+  if(!session?.user){
+   label.textContent='🦊 Tu n’es pas connecté(e) au Refuge.';
+   action.textContent='Se connecter avec Discord';
+   return;
+  }
+  const m=session.user.user_metadata||{};
+  const pseudo=m.custom_claims?.global_name||m.full_name||m.name||m.user_name||'membre du Refuge';
+  const {data:verified,error:verifyError}=await sb.rpc('est_membre_refuge_verifie');
+  if(!verifyError&&verified===true){
+   label.textContent='🦊 Bienvenue '+pseudo+' ! Tu es connecté(e) au Refuge.';
+   action.textContent='Accéder au Carnet';
+  }else{
+   label.textContent='🦊 Bonjour '+pseudo+' ! Ta session est présente, mais ton accès Discord doit être vérifié.';
+   action.textContent='Vérifier mon accès dans le Carnet';
+  }
+ }catch(_error){
+  label.textContent='🦊 Impossible de vérifier la connexion pour le moment.';
+  action.textContent='Ouvrir le Carnet';
+ }
+})();
+</script>
+</body></html>
