@@ -35,8 +35,20 @@ body{background:radial-gradient(circle at 15% 12%,#f1d7e8,transparent 38%),radia
 .admin-remove{background:linear-gradient(135deg,#8d527e,#70416d);color:#fff;border:1px solid #c99aaf;border-radius:10px;padding:9px 13px;box-shadow:0 3px 0 #553650;cursor:pointer}
 .admin-remove:hover{filter:brightness(1.12)}.admin-remove:disabled{opacity:.55;cursor:wait}
 .admin-empty{font-style:italic;color:#796778;margin:6px 0}
+
+/* Gestion des lots de la Roue Mystère */
+.admin-panel[hidden]{display:none!important}.wheel-form{display:grid;gap:13px;max-width:650px;margin-top:18px}.wheel-form label{display:grid;gap:5px;font-weight:bold;color:#704275}.wheel-form input{font:inherit;padding:11px;border:1px solid #b995ac;border-radius:9px;background:#fffdf9;color:#50364f}.wheel-actions{display:flex;gap:12px;flex-wrap:wrap}.wheel-actions button{padding:11px 16px;border-radius:10px;background:#75496e;color:white;border:1px solid #d9b88d}.wheel-actions button:disabled{opacity:.55;cursor:not-allowed}.wheel-preview{max-width:240px;max-height:220px;object-fit:contain;border-radius:12px;border:1px solid #d5b3c4}.wheel-note{font-size:14px;color:#70576e}.wheel-status{min-height:24px;font-weight:bold}
+/* Registre privé des tirages */
+.wheel-register{margin-top:28px;padding-top:22px;border-top:1px solid #d5b3c4}
+.wheel-register h3{color:#704275;font-size:23px;margin:0 0 8px}
+.wheel-register-list{display:grid;gap:13px;margin-top:14px}
+.wheel-draw{padding:17px;background:#fffcf5;border:1px solid #d5b3c4;border-left:5px solid #a77ba7;border-radius:13px;overflow-wrap:anywhere}
+.wheel-draw h4{color:#704275;margin:0 0 8px;font-size:19px}
+.wheel-draw p{margin:5px 0}
+.wheel-register button{background:linear-gradient(180deg,#9b66a1,#704174);border:1px solid #d9b88d;border-radius:10px;color:#fff9ee;padding:10px 16px;cursor:pointer}
+.wheel-register button:disabled{opacity:.6;cursor:wait}
 </style><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script></head><body>
-<section id="access-gate" class="gate" role="status" aria-live="polite"><h1>🔐 Le Bureau privé</h1><p id="gate-message">Vérification de ton accès Discord…</p><button id="gate-login" hidden>Se connecter avec Discord</button><p><a href="carnet.html">← Retour au Carnet</a></p></section><div id="private-content" hidden><header class="top"><strong>✦ Le Refuge · Coulisses</strong><a href="carnet.html">← Retour au Carnet</a></header><main class="shell"><section class="room"><div class="window" aria-hidden="true"></div><div class="desk" aria-hidden="true"></div><div class="lamp" aria-hidden="true"></div><div class="room-copy"><div class="eyebrow">Le petit coin privé de l'administratrice</div><h1>Le Bureau de Naethalia</h1><p>Bienvenue dans les coulisses du Refuge. Ici, chaque soirée, chaque surprise et chaque nouvelle idée trouvera sa place.</p></div><div class="sign">Assistante en chef<br>Ne pas déranger 💤</div><div class="fox-spot" role="img" aria-label="Petite renarde endormie sur un coussin lavande dans son panier en osier"><div class="basket"></div><div class="pillow"></div><div class="tail"></div><div class="fox"><div class="fox-face"></div></div></div></section><section class="intro"><h2>Les clés du Refuge</h2><p>Un seul endroit pour tout organiser, sans courir entre les différentes pages.</p></section><section class="modules"><article class="module"><div class="symbol">🍳</div><h3>La Cuisine enchantée</h3><p>Retrouver les soirées, consulter les inscriptions et préparer les futurs outils de gestion.</p><a class="pill" href="cuisine.html">Voir la Cuisine</a> <span class="small">Gestion en préparation</span></article><article class="module"><div class="symbol">🎡</div><h3>La Roue Mystère</h3><p>Préparer le lot mensuel, suivre les participations et retrouver les tirages.</p><span class="pill soon">À venir</span></article><article class="module"><div class="symbol">🎶</div><h3>La Guinguette</h3><p>Organiser les blind tests et les futures soirées festives.</p><span class="pill soon">À venir</span></article><article class="module"><div class="symbol">🗝️</div><h3>Le Refuge</h3><p>Les paramètres généraux et les futurs outils réservés à l'administration.</p><span class="pill soon">À venir</span></article></section><section class="admin-panel" aria-labelledby="admin-events-title"><h2 id="admin-events-title">🍳 Les soirées de la Cuisine</h2><p>Gestion des soirées : annulation sans suppression définitive. Les inscriptions sont conservées.</p><div class="admin-tools"><button id="admin-refresh" type="button">Actualiser les soirées</button><span id="admin-events-status" role="status" aria-live="polite">Chargement après vérification…</span></div><div id="admin-events-list" class="admin-list"></div><p class="admin-muted">Chaque retrait concerne une seule inscription et nécessite une confirmation. Les autorisations restent contrôlées par Supabase (RLS).</p></section><aside class="status"><strong>Bureau secret — espace d’administration.</strong> Accès vérifié avec est_admin() ; les autorisations de gestion sont contrôlées par Supabase (RLS).</aside></main><footer class="footer">Le Refuge · Une petite renarde veille sur les coulisses… en dormant. 🦊</footer></div><script>
+<section id="access-gate" class="gate" role="status" aria-live="polite"><h1>🔐 Le Bureau privé</h1><p id="gate-message">Vérification de ton accès Discord…</p><button id="gate-login" hidden>Se connecter avec Discord</button><p><a href="carnet.html">← Retour au Carnet</a></p></section><div id="private-content" hidden><header class="top"><strong>✦ Le Refuge · Coulisses</strong><a href="carnet.html">← Retour au Carnet</a></header><main class="shell"><section class="room"><div class="window" aria-hidden="true"></div><div class="desk" aria-hidden="true"></div><div class="lamp" aria-hidden="true"></div><div class="room-copy"><div class="eyebrow">Le petit coin privé de l'administratrice</div><h1>Le Bureau de Naethalia</h1><p>Bienvenue dans les coulisses du Refuge. Ici, chaque soirée, chaque surprise et chaque nouvelle idée trouvera sa place.</p></div><div class="sign">Assistante en chef<br>Ne pas déranger 💤</div><div class="fox-spot" role="img" aria-label="Petite renarde endormie sur un coussin lavande dans son panier en osier"><div class="basket"></div><div class="pillow"></div><div class="tail"></div><div class="fox"><div class="fox-face"></div></div></div></section><section class="intro"><h2>Les clés du Refuge</h2><p>Un seul endroit pour tout organiser, sans courir entre les différentes pages.</p></section><section class="modules"><article class="module"><div class="symbol">🍳</div><h3>La Cuisine enchantée</h3><p>Retrouver les soirées, consulter les inscriptions et préparer les futurs outils de gestion.</p><a class="pill" href="cuisine.html">Voir la Cuisine</a> <button type="button" class="pill" id="open-cuisine" aria-expanded="false" aria-controls="cuisine-admin">Gérer les soirées</button></article><article class="module"><div class="symbol">🎡</div><h3>La Roue Mystère</h3><p>Préparer le lot mensuel, suivre les participations et retrouver les tirages.</p><a class="pill" href="#wheel-admin" id="open-wheel" aria-expanded="false" aria-controls="wheel-admin">Gérer les lots</a></article><article class="module"><div class="symbol">🎶</div><h3>La Guinguette</h3><p>Organiser les blind tests et les futures soirées festives.</p><span class="pill soon">À venir</span></article><article class="module"><div class="symbol">🗝️</div><h3>Le Refuge</h3><p>Les paramètres généraux et les futurs outils réservés à l'administration.</p><span class="pill soon">À venir</span></article></section><section class="admin-panel" id="wheel-admin" hidden aria-labelledby="wheel-admin-title"><h2 id="wheel-admin-title">🎡 La Roue Mystère · Gestion des lots</h2><p>Prépare le lot du mois depuis ton Bureau secret. Son nom reste réservé à l’administration.</p><form id="wheel-form" class="wheel-form"><label for="wheel-month">Mois du tirage<input type="month" id="wheel-month" required></label><label for="wheel-prize">Nom du lot mystère<input id="wheel-prize" type="text" maxlength="200" placeholder="Ex. : Coffret surprise de Palia" required></label><div class="wheel-actions"><button type="submit" id="wheel-save">Enregistrer le lot</button></div><p id="wheel-status" class="wheel-status" role="status" aria-live="polite"></p><label for="wheel-image">Image du lot (JPG, PNG ou WebP, 5 Mo maximum)<input type="file" id="wheel-image" accept="image/png,image/jpeg,image/webp"></label><div class="wheel-actions"><button type="button" id="wheel-clear" hidden>Annuler l’image sélectionnée</button><button type="button" id="wheel-unlink">Supprimer définitivement l’image du lot</button></div><img id="wheel-preview" class="wheel-preview" alt="Aperçu de l’image du lot" hidden><p class="wheel-note">Enregistre d’abord le nom du lot. Si tu sélectionnes une image, elle sera envoyée dans le coffre privé et associée au même mois. Les images enregistrées sont privées. La suppression efface le fichier du stockage et son association au lot.</p></form><section class="wheel-register" aria-labelledby="wheel-register-title"><h3 id="wheel-register-title">📖 Registre privé des tirages</h3><p class="wheel-note">Les résultats restent confidentiels. Cette consultation ne publie aucune annonce.</p><button type="button" id="wheel-register-refresh">Actualiser les tirages</button><p id="wheel-register-status" class="wheel-status" role="status" aria-live="polite">Ouvre ce panneau pour consulter les tirages.</p><div id="wheel-register-list" class="wheel-register-list"></div></section></section><section class="admin-panel" id="cuisine-admin" hidden aria-labelledby="admin-events-title"><h2 id="admin-events-title">🍳 Les soirées de la Cuisine</h2><p>Gestion des soirées : annulation sans suppression définitive. Les inscriptions sont conservées.</p><div class="admin-tools"><button id="admin-refresh" type="button">Actualiser les soirées</button><span id="admin-events-status" role="status" aria-live="polite">Chargement après vérification…</span></div><div id="admin-events-list" class="admin-list"></div><p class="admin-muted">Chaque retrait concerne une seule inscription et nécessite une confirmation. Les autorisations restent contrôlées par Supabase (RLS).</p></section><aside class="status"><strong>Bureau secret — espace d’administration.</strong> Accès vérifié avec est_admin() ; les autorisations de gestion sont contrôlées par Supabase (RLS).</aside></main><footer class="footer">Le Refuge · Une petite renarde veille sur les coulisses… en dormant. 🦊</footer></div><script>
 (() => {
  'use strict';
  const url='https://kflrkclmznluxahxttgl.supabase.co';
@@ -50,6 +62,156 @@ body{background:radial-gradient(circle at 15% 12%,#f1d7e8,transparent 38%),radia
  const list=document.getElementById('admin-events-list');
  const eventStatus=document.getElementById('admin-events-status');
  const refresh=document.getElementById('admin-refresh');
+ const wheelForm=document.getElementById('wheel-form');
+ const wheelMonth=document.getElementById('wheel-month');
+ const wheelPrize=document.getElementById('wheel-prize');
+ const wheelImage=document.getElementById('wheel-image');
+ const wheelPreview=document.getElementById('wheel-preview');
+ const wheelStatus=document.getElementById('wheel-status');
+ const wheelSave=document.getElementById('wheel-save');
+ const wheelClear=document.getElementById('wheel-clear');
+ const wheelUnlink=document.getElementById('wheel-unlink');
+  const registerRefresh=document.getElementById('wheel-register-refresh');
+  const registerStatus=document.getElementById('wheel-register-status');
+  const registerList=document.getElementById('wheel-register-list');
+ const cuisinePanel=document.getElementById('cuisine-admin');
+ const wheelPanel=document.getElementById('wheel-admin');
+ const openCuisine=document.getElementById('open-cuisine');
+ const openWheel=document.getElementById('open-wheel');
+ function showPanel(which){
+   const opening=which.hidden;
+   cuisinePanel.hidden=true;wheelPanel.hidden=true;
+   if(opening){which.hidden=false;which.scrollIntoView({behavior:'smooth',block:'start'});}
+   openCuisine.setAttribute('aria-expanded',String(!cuisinePanel.hidden));
+   openWheel.setAttribute('aria-expanded',String(!wheelPanel.hidden));
+ }
+ openCuisine.addEventListener('click',()=>showPanel(cuisinePanel));
+  openWheel.addEventListener('click',e=>{e.preventDefault();const opening=wheelPanel.hidden;showPanel(wheelPanel);if(opening)loadWheelRegister();});
+ function clearSelectedImage(){
+   wheelImage.value='';
+   if(previewUrl){URL.revokeObjectURL(previewUrl);previewUrl=null;}
+   wheelPreview.hidden=true;wheelPreview.removeAttribute('src');wheelClear.hidden=true;
+ }
+ wheelClear.addEventListener('click',()=>{clearSelectedImage();wheelStatus.textContent='Sélection annulée. Aucune image enregistrée n’a été modifiée.';});
+ wheelUnlink.addEventListener('click',async()=>{
+   const month=wheelMonth.value;
+   if(!/^\d{4}-(0[1-9]|1[0-2])$/.test(month)||month<parisMonth()){
+     wheelStatus.textContent='Choisis un mois valide.';return;
+   }
+   wheelUnlink.disabled=true;
+   try{
+     const {data:userData,error:userError}=await client.auth.getUser();
+     if(userError||!userData?.user)throw new Error('Connexion Discord requise.');
+     const {data:admin,error:adminError}=await client.rpc('est_admin');
+     if(adminError||admin!==true)throw new Error('Accès administrateur requis.');
+     const {data:path,error:pathError}=await client.rpc('lire_image_lot_roue',{p_mois:month+'-01'});
+     if(pathError)throw pathError;
+     if(!path){wheelStatus.textContent='Aucune image enregistrée pour ce mois.';return;}
+     if(!path.startsWith(month+'/'))throw new Error('Chemin du fichier inattendu. Suppression annulée.');
+     if(!confirm('Supprimer DÉFINITIVEMENT l’image du lot de '+month+' ?\n\nLe fichier sera effacé de Supabase Storage. Cette opération est irréversible.'))return;
+     wheelStatus.textContent='Suppression définitive du fichier…';
+     const {data:removed,error:removeError}=await client.storage.from('lots-roue').remove([path]);
+     if(removeError)throw removeError;
+     if(!removed?.some(item=>item.name===path||item.name===path.split('/').pop())){
+       throw new Error('Suppression du fichier non confirmée par Supabase. Association conservée.');
+     }
+     const {error:unlinkError}=await client.rpc('gerer_image_lot_roue',{p_mois:month+'-01',p_image_path:null});
+     if(unlinkError)throw new Error('Fichier supprimé, mais association non retirée : '+unlinkError.message+' Réessaie le bouton.');
+     clearSelectedImage();wheelStatus.textContent='Image définitivement supprimée du stockage et du lot. 🗑️';
+   }catch(err){wheelStatus.textContent='Suppression impossible : '+(err.message||'Erreur inconnue');}
+   finally{wheelUnlink.disabled=false;}
+ });
+ let previewUrl=null;
+ function parisMonth(){
+   const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Paris',year:'numeric',month:'2-digit'}).formatToParts(new Date());
+   const y=parts.find(p=>p.type==='year').value;
+   const m=parts.find(p=>p.type==='month').value;
+   return `${y}-${m}`;
+ }
+ wheelMonth.min=parisMonth();
+ wheelMonth.value=parisMonth();
+ wheelImage.addEventListener('change',()=>{
+   if(previewUrl){URL.revokeObjectURL(previewUrl);previewUrl=null;}
+   const file=wheelImage.files?.[0];
+   wheelPreview.hidden=true;wheelPreview.removeAttribute('src');wheelClear.hidden=!file;
+   if(!file)return;
+   if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>5*1024*1024){
+     wheelImage.value='';wheelClear.hidden=true;wheelStatus.textContent='Choisis une image JPG, PNG ou WebP de 5 Mo maximum.';return;
+   }
+   previewUrl=URL.createObjectURL(file);
+   wheelPreview.src=previewUrl;wheelPreview.hidden=false;
+   wheelStatus.textContent='Image prête à être enregistrée.';
+ });
+ wheelForm.addEventListener('submit',async(event)=>{
+   event.preventDefault();
+   const month=wheelMonth.value;
+   const name=wheelPrize.value.trim();
+   const file=wheelImage.files?.[0];
+   if(!/^\d{4}-(0[1-9]|1[0-2])$/.test(month)||month<parisMonth()){
+     wheelStatus.textContent='Choisis un mois valide, à partir du mois en cours.';return;
+   }
+   if(!name||name.length>200){wheelStatus.textContent='Indique le nom du lot (200 caractères maximum).';return;}
+   if(file&&(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>5*1024*1024)){
+     wheelStatus.textContent='Image invalide : JPG, PNG ou WebP, 5 Mo maximum.';return;
+   }
+   wheelSave.disabled=true;
+   wheelStatus.textContent='Enregistrement du lot…';
+   let uploadedPath=null;
+   try{
+     const {data:userData,error:userError}=await client.auth.getUser();
+     if(userError||!userData?.user)throw new Error('Connexion Discord requise.');
+     const {data:admin,error:adminError}=await client.rpc('est_admin');
+     if(adminError||admin!==true)throw new Error('Accès administrateur requis.');
+     const {error:lotError}=await client.rpc('gerer_lot_roue',{p_mois:month+'-01',p_lot:name});
+     if(lotError)throw lotError;
+     if(file){
+       wheelStatus.textContent='Envoi de l’image dans le coffre privé…';
+       const ext=({'image/jpeg':'jpg','image/png':'png','image/webp':'webp'})[file.type];
+       const path=month+'/'+crypto.randomUUID()+'.'+ext;
+       const {error:uploadError}=await client.storage.from('lots-roue').upload(path,file,{contentType:file.type,upsert:false});
+       if(uploadError)throw uploadError;
+       uploadedPath=path;
+       const {error:pathError}=await client.rpc('gerer_image_lot_roue',{p_mois:month+'-01',p_image_path:path});
+       if(pathError)throw pathError;
+       uploadedPath=null;
+       clearSelectedImage();
+       wheelStatus.textContent='Lot et image enregistrés dans Supabase ! 🎁';
+     }else{
+       wheelStatus.textContent='Nom du lot enregistré ! Aucune image modifiée.';
+     }
+   }catch(err){
+     if(uploadedPath){await client.storage.from('lots-roue').remove([uploadedPath]);}
+     wheelStatus.textContent='Enregistrement incomplet : '+(err.message||'Erreur inconnue');
+   }finally{wheelSave.disabled=false;}
+ });
+  async function loadWheelRegister(){
+    if(content.hidden||wheelPanel.hidden)return;
+    registerRefresh.disabled=true;
+    registerStatus.textContent='Consultation du registre privé…';
+    registerList.replaceChildren();
+    try{
+      const {data,error}=await client.rpc('consulter_tirages_roue');
+      if(error)throw error;
+      const rows=data||[];
+      registerStatus.textContent=rows.length?`${rows.length} mois enregistré(s).`:'Aucun tirage enregistré pour le moment.';
+      for(const draw of rows){
+        const card=document.createElement('article');card.className='wheel-draw';
+        const heading=document.createElement('h4');
+        const parsed=/^(\d{4})-(\d{2})-\d{2}$/.exec(draw.mois||'');
+        const monthName=parsed?new Intl.DateTimeFormat('fr-FR',{month:'long',year:'numeric',timeZone:'UTC'}).format(new Date(Date.UTC(Number(parsed[1]),Number(parsed[2])-1,1))):draw.mois;
+        heading.textContent='🎡 '+monthName;card.append(heading);
+        line(card,'Statut : ',draw.statut==='termine'?'Tirage effectué':draw.statut==='sans_participant'?'Clôturé sans participant':'En attente');
+        line(card,'Participants : ',draw.nombre_participants);
+        line(card,'Date du tirage : ',draw.date_tirage?dateLabel(draw.date_tirage):'Pas encore effectué');
+        line(card,'Gagnant (identifiant privé) : ',draw.gagnant_id||'Aucun pour le moment');
+        line(card,'Lot mystère : ',draw.lot_mystere||'Non renseigné');
+        line(card,'Image privée : ',draw.image_lot_path?'Associée au lot':'Aucune');
+        registerList.append(card);
+      }
+    }catch(err){registerStatus.textContent='Registre indisponible : '+(err.message||'Erreur inconnue');}
+    finally{registerRefresh.disabled=false;}
+  }
+  registerRefresh.addEventListener('click',loadWheelRegister);
  function line(parent,label,value){const p=document.createElement('p');const b=document.createElement('strong');b.textContent=label; p.append(b,document.createTextNode(String(value??'—')));parent.append(p);}
  function dateLabel(value){if(!value)return 'Non renseignée';const d=new Date(value);return Number.isNaN(d.getTime())?String(value):new Intl.DateTimeFormat('fr-FR',{dateStyle:'full',timeStyle:'short'}).format(d);}
  async function loadAdminEvents(){
