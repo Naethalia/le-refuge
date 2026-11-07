@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>La Roue Mystère du Refuge</title>
+<style>
+:root{color-scheme:dark;--gold:#f6d68a;--cream:#fff2d9;--plum:#2b153d}*{box-sizing:border-box}html{overflow-x:hidden}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#5b326e,#1b1029 72%);color:var(--cream);font-family:Georgia,'Times New Roman',serif;min-height:100vh;overflow-x:hidden}.wrap{width:min(1180px,94%);margin:auto;padding:20px 0 60px}.hero{position:relative;overflow:hidden;border:3px solid #bd8e58;border-radius:24px;box-shadow:0 16px 60px #0008}.hero img{display:block;width:100%;height:auto}.intro{text-align:center;padding:25px 15px 8px}.intro h1{font-size:clamp(1.7rem,4vw,2.7rem);margin:0 0 8px;color:var(--gold);text-shadow:0 3px 12px #000}.intro p{line-height:1.55;margin:8px auto;max-width:740px}.stage{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);align-items:center;gap:clamp(16px,3vw,34px);margin-top:22px;padding:clamp(15px,2.5vw,32px);border:2px solid #ad7b51;border-radius:28px;background:radial-gradient(ellipse at 18% 20%,#65416b,#3b214d 48%,#22132f 100%);box-shadow:0 14px 40px #0005,inset 0 0 0 5px #e4b97512;min-width:0}.wheel-scene{min-width:0;position:relative;padding:20px 8px 0;isolation:isolate}.wheel-scene:before{content:'✧   ✦   ✧';position:absolute;top:0;left:0;right:0;text-align:center;letter-spacing:1.4em;color:#ffe4a7;font-size:14px;text-shadow:0 0 12px #ffdc8c;pointer-events:none}.wheelbox{position:relative;aspect-ratio:1;width:min(100%,510px);margin:auto;border-radius:50%;padding:clamp(12px,2.5vw,19px);background:repeating-conic-gradient(#e7bc68 0deg 4deg,#8a4a2c 4deg 8deg,#c99551 8deg 16deg,#6d392b 16deg 19deg);border:clamp(5px,1vw,9px) ridge #bd8047;box-shadow:0 0 0 3px #f1c877,0 0 0 7px #59304d,0 0 0 10px #d5a464,0 0 34px #f5c87966,0 20px 30px #10071f99}.wheelbox:before{content:'';position:absolute;inset:6px;border-radius:50%;border:2px dotted #fff2b5;opacity:.85;pointer-events:none}.wheel{position:relative;width:100%;height:100%;border-radius:50%;overflow:hidden;border:3px solid #f6d58d;background:conic-gradient(from -22.5deg,#4c275c 0 45deg,#7d4c86 45deg 90deg,#492452 90deg 135deg,#8a5083 135deg 180deg,#52235d 180deg 225deg,#85518a 225deg 270deg,#492755 270deg 315deg,#77417d 315deg 360deg);box-shadow:inset 0 0 25px #12071d;transition:transform 5.8s cubic-bezier(.12,.72,.13,1);will-change:transform}.wheel:before{content:'';position:absolute;inset:0;border-radius:50%;background:repeating-conic-gradient(from -22.5deg,transparent 0deg 44deg,#f4d28d 44deg 45deg);pointer-events:none}.wheel:after{content:'';position:absolute;inset:7%;border-radius:50%;border:2px solid #e7bb72a8;box-shadow:inset 0 0 0 3px #25122c66,0 0 0 3px #a76b9b77;pointer-events:none}.inner-ring{position:absolute;inset:16%;border:1px dashed #ffe6aa7a;border-radius:50%;pointer-events:none}.symbol{position:absolute;z-index:2;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:15%;aspect-ratio:1;display:grid;place-items:center;border-radius:36% 36% 42% 42%;background:radial-gradient(circle at 35% 25%,#9a6a9c,#42214f 78%);border:2px solid #edc984;box-shadow:inset 0 2px 7px #ffecb04d,0 3px 10px #0008,0 0 12px #dba6fa66;font-size:clamp(16px,2.5vw,30px);line-height:1;text-shadow:0 2px 6px #0008}.center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3;width:22%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 38% 30%,#fff0b1,#d99a42 52%,#76402a 85%);border:5px double #fff0b2;color:#693b8c;font-size:clamp(30px,5vw,65px);box-shadow:0 0 0 4px #65354d,0 0 22px #ffe19a}.center span{text-shadow:0 0 9px #fff0bc}.pointer{position:absolute;z-index:5;left:50%;top:-23px;transform:translateX(-50%);color:#fff0af;font-size:clamp(25px,4vw,43px);text-shadow:0 3px 0 #8d512e,0 0 15px #ffe18b;filter:drop-shadow(0 3px 2px #000)}.pedestal{height:clamp(42px,8vw,85px);width:48%;margin:-4px auto 0;background:linear-gradient(90deg,#58301f,#bb844e 17%,#6f3c2b 36%,#a96a41 65%,#512c24);border:3px solid #d6a363;border-radius:12px 12px 28px 28px;box-shadow:0 8px 0 #3a1d26,0 15px 24px #12091e88;display:grid;place-items:center}.pedestal span{font-size:clamp(22px,4vw,42px);color:#f1cb83;text-shadow:0 0 10px #f1c983}.floral{position:absolute;bottom:12px;z-index:1;color:#e6a6f0;text-shadow:0 0 10px #f9c3f5,0 3px 5px #1b1028;font-size:clamp(14px,2vw,26px);pointer-events:none}.floral-left{left:0;transform:rotate(-18deg)}.floral-right{right:0;transform:rotate(18deg)}.panel{min-width:0;text-align:center;padding:8px 0}.panel h2{color:var(--gold);font-size:clamp(1.4rem,2.6vw,1.9rem);margin:0 0 14px}.panel p{line-height:1.6}.button{font:700 clamp(1rem,2vw,1.2rem) Georgia,serif;border:2px solid #ffdf98;color:#31183d;background:linear-gradient(#ffeab2,#d99a48);padding:16px 20px;border-radius:999px;cursor:pointer;max-width:100%;box-shadow:0 5px 0 #825025,0 0 20px #f5bf6c44;transition:transform .15s}.button:hover:not(:disabled){transform:translateY(-2px)}.button:disabled{opacity:.6;cursor:wait}.message{min-height:75px;margin:24px 0 8px;padding:16px;border-radius:15px;background:#2b173e;border:1px solid #8865a0;line-height:1.5;overflow-wrap:anywhere}.small{font-size:.91rem;opacity:.86}.note{margin:20px auto 0;max-width:850px;text-align:center;font-size:.95rem;color:#ead7f4;line-height:1.6}@media(max-width:780px){.stage{grid-template-columns:1fr;padding:16px;gap:26px}.wheel-scene{width:min(100%,540px);margin:auto}.symbol{font-size:clamp(16px,5vw,30px)}.hero{border-radius:15px}}@media(prefers-reduced-motion:reduce){.wheel{transition-duration:.1s}}
+.session-box{margin:12px auto 20px;max-width:660px;text-align:center;padding:13px 18px;border:1px solid #b99068;border-radius:14px;background:#372043;color:#fff0d7}.session-box a{color:#ffe0a2}.button:disabled{cursor:not-allowed}.button:focus-visible{outline:3px solid #fff0bc;outline-offset:4px}</style>
+</head>
+<body><main class="wrap"><nav style="margin:0 0 18px"><a href="carnet.html" style="color:#ffe0a2">← Retour au Carnet du Refuge</a></nav><div class="hero"><img src="roue_mystere_refuge_finale.png" alt="La Roue Mystère du Refuge, Zéki, la petite renarde violette et le papillon arc-en-ciel"></div><section class="intro"><h1>✨ À toi de jouer ! ✨</h1><p>La magie de la Roue Mystère t'invite à participer au tirage du Refuge.</p></section><div class="session-box" id="session-state" role="status" aria-live="polite">Vérification de ta connexion Discord…</div><section class="stage"><div class="wheel-scene"><div class="floral floral-left" aria-hidden="true">✿ ❀ ✿</div><div class="wheelbox" aria-label="Roue enchantée du Refuge"><div class="pointer" aria-hidden="true">◆</div><div class="wheel" id="wheel"><div class="inner-ring"></div><span class="symbol" style="--x:64.4%;--y:15.6%">🎁</span><span class="symbol" style="--x:84.4%;--y:35.6%">🧪</span><span class="symbol" style="--x:84.4%;--y:64.4%">❔</span><span class="symbol" style="--x:64.4%;--y:84.4%">🐾</span><span class="symbol" style="--x:35.6%;--y:84.4%">💎</span><span class="symbol" style="--x:15.6%;--y:64.4%">🌸</span><span class="symbol" style="--x:15.6%;--y:35.6%">🌙</span><span class="symbol" style="--x:35.6%;--y:15.6%">🌿</span></div><div class="center" aria-hidden="true"><span>✧</span></div></div><div class="pedestal" aria-hidden="true"><span>✿</span></div><div class="floral floral-right" aria-hidden="true">✿ ❀ ✿</div></div><div class="panel"><h2>La Roue Mystère</h2><p>Fais tourner la roue pour enregistrer ta participation au tirage du mois.</p><button class="button" id="spin" disabled>🎡 Faire tourner la roue</button><div class="message" id="message" role="status" aria-live="polite">Connexion en cours… 🦊💜</div><p class="small">Une participation par membre et par mois. Les symboles sont décoratifs : le gagnant sera désigné lors du tirage mensuel.</p></div></section><p class="note">🔒 Une seule participation par mois. La roue confirme ton inscription ; le gagnant est désigné séparément lors du tirage mensuel.</p></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+const wheel=document.getElementById('wheel');
+const button=document.getElementById('spin');
+const message=document.getElementById('message');
+const sessionState=document.getElementById('session-state');
+const sb=window.supabase.createClient('https://kflrkclmznluxahxttgl.supabase.co','sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3');
+let angle=0,spinning=false,ready=false;
+function state(text){sessionState.textContent=text;}
+async function init(){
+ try{
+  const {data:{user},error}=await sb.auth.getUser();
+  if(error)throw error;
+  if(!user){state('🔒 Connexion Discord nécessaire. Ouvre le Carnet pour te connecter.');message.textContent='Connecte-toi au Refuge pour participer.';return;}
+  const {data:verified,error:verifyError}=await sb.rpc('est_membre_refuge_verifie');
+  if(verifyError||verified!==true){state('🔒 Ton accès au Refuge doit être vérifié depuis le Carnet.');message.textContent='Participation indisponible tant que ton accès Discord n’est pas vérifié.';return;}
+  const m=user.user_metadata||{};
+  const pseudo=m.custom_claims?.global_name||m.full_name||m.name||m.user_name||'membre du Refuge';
+  state('🦊 Bienvenue '+pseudo+' ! Tu peux tenter ta participation mensuelle.');
+  ready=true;button.disabled=false;
+  message.textContent='La roue t’attend… Une seule participation par mois ! 💜';
+ }catch(e){state('⚠️ Impossible de vérifier la connexion pour le moment.');message.textContent='Réessaie plus tard.';}
+}
+button.addEventListener('click',async()=>{
+ if(spinning||!ready)return;
+ spinning=true;button.disabled=true;message.textContent='🔒 Enregistrement de ta participation…';
+ try{
+  const {data,error}=await sb.rpc('participer_roue');
+  if(error)throw error;
+  if(data==='DEJA_INSCRIT'){
+   ready=false;message.textContent='💜 Tu as déjà participé ce mois-ci ! Rendez-vous au tirage mensuel.';
+   return;
+  }
+  if(data==='INSCRIPTIONS_FERMEES'){ready=false;message.textContent='🔒 Les inscriptions de ce mois sont terminées. Rendez-vous le mois prochain !';return;}
+  if(data==='REESSAYER_INSCRIPTION'){message.textContent='⏳ Un petit contretemps. Tu peux réessayer dans un instant.';ready=true;button.disabled=false;return;}
+  if(data!=='INSCRIPTION_OK')throw new Error('Réponse inattendue');
+  ready=false;
+  message.textContent='✨ Participation enregistrée ! La roue tourne…';
+  const rand=new Uint32Array(1);crypto.getRandomValues(rand);
+  angle+=6*360+(rand[0]%360);
+  const done=()=>{
+   wheel.removeEventListener('transitionend',done);
+   message.textContent='🎉 Ta participation au tirage mensuel est enregistrée ! Bonne chance ! 🦊💜';
+  };
+  wheel.addEventListener('transitionend',done,{once:true});
+  wheel.style.transform=`rotate(${angle}deg)`;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)setTimeout(done,200);
+ }catch(e){
+  message.textContent='⚠️ Inscription non confirmée. Vérifie ta connexion et réessaie. ('+(e.message||'Erreur')+')';
+  ready=true;button.disabled=false;
+ }finally{spinning=false;}
+});
+init();
+</script></body></html>
