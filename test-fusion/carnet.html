@@ -405,7 +405,15 @@ img#event-mascot.mascot {
 #refuge-access p{max-width:580px;margin:14px auto}
 #refuge-access button{margin:12px auto}
 body:not(.refuge-authorized) .sidebar .wood:not([href="index.html"]){pointer-events:none;opacity:.55}
-</style></head><body><header class="hero" aria-label="Le Refuge — Espace Événements"></header><div class="layout"><aside class="sidebar"><a class="wood" href="index.html"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 9-8 9 8v10H3V11Z"/><path d="M9 21v-7h6v7"/></svg> Accueil du Refuge</a><button class="wood" id="nav-evenements" aria-current="page"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-13 4h2m4 0h2m-8 4h2"/></svg> Événements</button><button class="wood" id="nav-mes-evenements"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10C6 2 3 8 9 12c-8-4-9 4-1 4-3 7 4 9 5 2 5 6 10 0 4-4 8-3 5-10-3-8-1-7-7-9-5-1Z"/><circle cx="12" cy="13" r="1.8"/></svg> Mes événements</button><button class="wood" id="nav-cuisine"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13a4 4 0 0 1-1-7 4 4 0 0 1 7-2 4 4 0 0 1 7 2 4 4 0 0 1-1 7"/><path d="M6 13v7h12v-7M9 16v2m6-2v2"/></svg> La Cuisine enchantée</button><button class="wood" id="nav-aide"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 1 1 5 2.4c-1.3.9-2 1.4-2 3.1m0 3h.01"/></svg> Aide</button><a class="wood" id="nav-surprise" href="surprise.html"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2Z"/></svg> Surprise en préparation</a><div id="account" class="account"><button id="connexion">Connexion Discord</button><span id="profil"></span><button id="deconnexion" class="secondary" hidden>Se déconnecter</button></div><p id="message" class="status" role="status"></p></aside><section id="refuge-access" class="paper" role="status" aria-live="polite">
+
+/* Le panneau personnel de Naethalia : sans parchemin, discret et lumineux. */
+.sidebar .wood.admin-secret{display:flex;align-items:center;justify-content:center;gap:8px;min-height:78px;color:#fff4d4;background:radial-gradient(ellipse at 50% 0%,#e2b5d255,transparent 65%),repeating-linear-gradient(174deg,transparent 0 9px,#32152b24 10px 11px,transparent 12px 24px),linear-gradient(155deg,#a16a8f 0%,#784b79 48%,#4e2e56 100%)!important;box-shadow:inset 0 2px 2px #f7d4b6,inset 0 -5px 8px #321d38,0 6px 12px #3c243a77!important;border:1px solid #e9bc92!important;clip-path:polygon(0 0,87% 0,100% 50%,87% 100%,0 100%,5% 50%);text-decoration:none;text-align:center;line-height:1.2}
+.sidebar .wood.admin-secret .vicon{width:1.8em;height:1.8em;color:#ffe0a0;filter:drop-shadow(0 0 4px #f5d69c77)}
+.sidebar .wood.admin-secret small{display:block;margin-top:5px;font-size:11px;font-weight:normal;letter-spacing:.05em;color:#ffe4b8}
+.sidebar .wood.admin-secret:hover{filter:brightness(1.16) drop-shadow(0 3px 5px #6c4270aa)!important}
+.sidebar .wood.admin-secret[hidden]{display:none!important}
+@media(max-width:720px){.sidebar .wood.admin-secret{min-height:64px;padding:9px 18px 9px 10px;font-size:12px}.sidebar .wood.admin-secret small{font-size:9px}}
+</style></head><body><header class="hero" aria-label="Le Refuge — Espace Événements"></header><div class="layout"><aside class="sidebar"><a class="wood" href="index.html"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 9-8 9 8v10H3V11Z"/><path d="M9 21v-7h6v7"/></svg> Accueil du Refuge</a><button class="wood" id="nav-evenements" aria-current="page"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-13 4h2m4 0h2m-8 4h2"/></svg> Événements</button><button class="wood" id="nav-mes-evenements"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10C6 2 3 8 9 12c-8-4-9 4-1 4-3 7 4 9 5 2 5 6 10 0 4-4 8-3 5-10-3-8-1-7-7-9-5-1Z"/><circle cx="12" cy="13" r="1.8"/></svg> Mes événements</button><button class="wood" id="nav-cuisine"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13a4 4 0 0 1-1-7 4 4 0 0 1 7-2 4 4 0 0 1 7 2 4 4 0 0 1-1 7"/><path d="M6 13v7h12v-7M9 16v2m6-2v2"/></svg> La Cuisine enchantée</button><button class="wood" id="nav-aide"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 1 1 5 2.4c-1.3.9-2 1.4-2 3.1m0 3h.01"/></svg> Aide</button><a class="wood" id="nav-surprise" href="surprise.html"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2Z"/></svg> Surprise en préparation</a><a class="wood admin-secret" id="nav-administration" href="bureau_cuisine_lecture_test.html" hidden aria-label="Ouvrir le Bureau de Naethalia"><svg class="vicon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m3 8 4 4 5-7 5 7 4-4-2 11H5L3 8Z"/><path d="M5 22h14"/><circle cx="3" cy="7" r="1"/><circle cx="12" cy="4" r="1"/><circle cx="21" cy="7" r="1"/></svg><span>Mon Bureau secret<small>✦ Administration ✦</small></span></a><div id="account" class="account"><button id="connexion">Connexion Discord</button><span id="profil"></span><button id="deconnexion" class="secondary" hidden>Se déconnecter</button></div><p id="message" class="status" role="status"></p></aside><section id="refuge-access" class="paper" role="status" aria-live="polite">
 <h2 id="refuge-access-title">🦊 Le Refuge sommeille pour les visiteurs…</h2>
 <img class="mascot" src="/le-refuge/mascotte_originale_refuge.webp" alt="La petite renarde du Refuge" width="270" height="220">
 <p id="refuge-access-message">Ce petit coin enchanté de Palia est réservé aux membres de notre communauté Discord.</p>
@@ -498,6 +506,7 @@ async function loadEvents(){
 
 let accessVerified=false;
 function accessScreen(title,message,showLogin=true){
+ $('nav-administration').hidden=true;
  accessVerified=false;
  document.body.classList.remove('refuge-authorized');
  $('refuge-main').hidden=true;
@@ -543,7 +552,19 @@ async function verifyRefuge(session){
   return false;
  }
 }
+async function actualiserBoutonAdministration(userId){
+ const panneau=$('nav-administration');
+ panneau.hidden=true; // Refus par défaut, y compris en cas d'erreur réseau.
+ if(!userId || !accessVerified)return;
+ try{
+  const {data,error}=await sb.rpc('est_admin');
+  if(!error && data===true && accessVerified && currentUser?.id===userId){
+   panneau.hidden=false;
+  }
+ }catch(_error){panneau.hidden=true;}
+}
 async function refresh(){
+ $('nav-administration').hidden=true;
  accessScreen('🦊 Vérification du Refuge…','Nous vérifions ton accès au carnet enchanté.',false);
  const {data:{session},error}=await sb.auth.getSession();
  if(error){accessScreen('🦊 Connexion indisponible','Erreur de connexion : '+error.message,true);return;}
@@ -563,6 +584,7 @@ async function refresh(){
  const m=currentUser.user_metadata||{};
  const pseudo=m.custom_claims?.global_name||m.full_name||m.name||m.user_name||'Membre du Refuge';
  $('profil').textContent='Bienvenue '+pseudo+' ! ';
+ await actualiserBoutonAdministration(currentUser.id);
  await loadEvents();
 }
 $('refuge-access-login').addEventListener('click',()=>{$('connexion').click();});
@@ -635,7 +657,8 @@ async function controlerAccesRefuge(){
    accessScreen('🦊 Connexion à renouveler','Reconnecte-toi au Refuge avec Discord.',true);
    return;
   }
-  await verifyRefuge(session);
+  const valide=await verifyRefuge(session);
+  if(valide)await actualiserBoutonAdministration(session.user.id);
  }finally{refugeControlEnCours=false;}
 }
 setInterval(controlerAccesRefuge,5*60*1000);
