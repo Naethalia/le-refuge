@@ -399,23 +399,60 @@ body { background:radial-gradient(ellipse at 7% 15%,#e4bfd0,transparent 48%),rad
  const pseudo=user=>{const m=user?.user_metadata||{};return m.custom_claims?.global_name||m.full_name||m.name||m.user_name||'membre du Refuge'};
  const add=(parent,tag,text)=>{const el=document.createElement(tag);el.textContent=text;parent.append(el);return el};
  const dateLocal=value=>{const d=new Date(value),pad=n=>String(n).padStart(2,'0');return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`};
- async function auth(){
-  const result=await sb.auth.getSession();if(result.error)throw result.error;
-  session=result.data.session;
-  verified=false;
-  if(!session?.user){label.textContent='🦊 Tu n’es pas connecté(e) au Refuge.';action.textContent='Se connecter avec Discord';action.dataset.login='true';return;}
-  action.dataset.login='false';
-  const check=await sb.rpc('est_membre_refuge_verifie');
-  verified=!check.error&&check.data===true;
-  label.textContent=verified?'🦊 Bienvenue '+pseudo(session.user)+' ! Tu es connecté(e) au Refuge.':'🦊 Bonjour '+pseudo(session.user)+' ! Ton accès Discord doit être vérifié.';
-  action.textContent=verified?'Voir les événements':'Vérifier mon accès';
-  try{const r=await sb.rpc('est_admin');isAdmin=!r.error&&r.data===true;const link=$('admin-secret-link');if(link)link.hidden=!isAdmin;}catch(_e){}
- }
+  // Une session Supabase ne prouve pas à elle seule l'appartenance au serveur Discord.
+  // Le contrôle serveur reste obligatoire; on renouvelle uniquement via l'Edge Function.
+  let accessMessage='',authPromise=null;
+  async function auth(){
+   if(authPromise)return authPromise;
+   authPromise=(async()=>{
+    const result=await sb.auth.getSession();if(result.error)throw result.error;
+    session=result.data.session;
+    verified=false;accessMessage='';
+    if(!session?.user){
+     label.textContent='🦊 Tu n’es pas connecté(e) au Refuge.';
+     action.textContent='Se connecter avec Discord';action.dataset.login='true';
+     isAdmin=false;const link=$('admin-secret-link');if(link)link.hidden=true;
+     return;
+    }
+    action.dataset.login='false';
+    const check=await sb.rpc('est_membre_refuge_verifie');
+    verified=!check.error&&check.data===true;
+    if(!verified){
+     if(check.error){
+      accessMessage='Vérification momentanément indisponible. Réessaie dans un instant.';
+     }else if(session.provider_token){
+      // Le token Discord est envoyé à la fonction serveur, jamais stocké dans la page.
+      const renewal=await sb.functions.invoke('verifier_membre_refuge',{
+       body:{discord_provider_token:session.provider_token}
+      });
+      if(!renewal.error&&renewal.data?.membre===true){
+       const confirmation=await sb.rpc('est_membre_refuge_verifie');
+       verified=!confirmation.error&&confirmation.data===true;
+       if(!verified)accessMessage='Vérification Discord effectuée, mais accès non confirmé. Réessaie.';
+      }else{
+       const reason=renewal.data?.message||renewal.data?.error||'';
+       accessMessage=reason||'Impossible de renouveler la vérification Discord.';
+      }
+     }else{
+      accessMessage='Autorisation Discord à renouveler. Reconnecte-toi avec Discord.';
+     }
+    }
+    label.textContent=verified
+     ?'🦊 Bienvenue '+pseudo(session.user)+' ! Tu es connecté(e) au Refuge.'
+     :'🦊 Bonjour '+pseudo(session.user)+' ! '+accessMessage;
+    action.textContent=verified?'Voir les événements':session.provider_token?'Réessayer la vérification':'Renouveler avec Discord';
+    // Le bureau secret reste conditionné au contrôle admin existant.
+    try{const r=await sb.rpc('est_admin');isAdmin=!r.error&&r.data===true;
+     const link=$('admin-secret-link');if(link)link.hidden=!isAdmin;
+    }catch(_e){isAdmin=false;const link=$('admin-secret-link');if(link)link.hidden=true;}
+   })();
+   try{return await authPromise}finally{authPromise=null}
+  }
  async function login(){const {error}=await sb.auth.signInWithOAuth({provider:'discord',options:{scopes:'identify email guilds.members.read',redirectTo:new URL('index.html',location.href).href}});if(error)notify('Connexion impossible : '+error.message)}
  async function ensureAccess(){
   await auth();
   if(!session?.user){notify('Connecte-toi avec Discord depuis l’Accueil pour consulter les événements.');return false;}
-  if(!verified){notify('Ta session est présente, mais l’accès aux événements n’a pas été confirmé. Réessaie après vérification de ton accès Discord.');return false;}
+  if(!verified){notify(accessMessage||'Ton accès Discord n’a pas encore été confirmé. Utilise le bouton de vérification sur l’accueil.');return false;}
   return true;
  }
  async function load(){
@@ -456,7 +493,19 @@ body { background:radial-gradient(ellipse at 7% 15%,#e4bfd0,transparent 48%),rad
  });
  function goHome(){panel.hidden=true;home.hidden=false;cancelEdit();history.replaceState(null,'',location.pathname+location.search);window.scrollTo({top:0,behavior:'smooth'})}
  async function show(which){view=which;home.hidden=true;panel.hidden=false;cancelEdit();$('refuge-events-heading').textContent=which==='mine'?'Mes événements':'Les prochains événements';history.replaceState(null,'','#refuge-evenements');panel.scrollIntoView({behavior:'smooth',block:'start'});await load()}
- document.querySelectorAll('[data-refuge-view]').forEach(link=>link.addEventListener('click',e=>{if(link===action&&action.dataset.login==='true'){e.preventDefault();login();return;}e.preventDefault();show(link.dataset.refugeView)}));
+ document.querySelectorAll('[data-refuge-view]').forEach(link=>link.addEventListener('click',async e=>{
+   e.preventDefault();
+   if(link===action){
+    if(action.dataset.login==='true'){await login();return;}
+    if(!verified){
+     if(!session?.provider_token){await login();return;}
+     label.textContent='🦊 Vérification de ton accès Discord en cours…';
+     try{await auth();if(verified)await show('events')}catch(err){label.textContent='🦊 Vérification indisponible : '+(err.message||'réessaie plus tard')}
+     return;
+    }
+   }
+   await show(link.dataset.refugeView);
+  }));
  $('refuge-back-home').addEventListener('click',goHome);
  async function init(){try{await auth();if(location.hash==='#refuge-evenements')await show('events')}catch(err){label.textContent='🦊 Impossible de vérifier la connexion pour le moment.';action.textContent='Réessayer';notify(err.message||'Erreur de connexion')}}
  sb.auth.onAuthStateChange(event=>{if(['SIGNED_IN','SIGNED_OUT','TOKEN_REFRESHED'].includes(event))setTimeout(()=>{auth().then(()=>{if(!panel.hidden)load()}).catch(console.error)},0)});
