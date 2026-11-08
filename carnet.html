@@ -566,23 +566,9 @@ async function refresh(){
  $('profil').textContent='Bienvenue '+pseudo+' ! ';
  await loadEvents();
 }
-$('refuge-access-login').addEventListener('click',async()=>{
- const button=$('refuge-access-login');
- button.disabled=true;
- $('refuge-access-message').textContent='Ouverture de Discord…';
- try {
-  const {error}=await sb.auth.signInWithOAuth({provider:'discord',options:{scopes:'identify email guilds.members.read',redirectTo:window.location.origin+window.location.pathname}});
-  if(error)throw error;
- } catch(error){
-  $('refuge-access-message').textContent='Connexion impossible : '+(error.message||'Erreur inconnue');
-  button.disabled=false;
- }
-});
-$('connexion').addEventListener('click',async()=>{
- say('Connexion en cours…');
- const {error}=await sb.auth.signInWithOAuth({provider:'discord',options:{scopes:'identify email guilds.members.read',redirectTo:window.location.origin+window.location.pathname}});
- if(error)say('Connexion impossible : '+error.message);
-});
+$('refuge-access-login').textContent='Se connecter depuis l’Accueil';
+$('refuge-access-login').addEventListener('click',()=>{window.location.href='index.html';});
+$('connexion').addEventListener('click',()=>{window.location.href='index.html';});
 $('deconnexion').addEventListener('click',async()=>{const {error}=await sb.auth.signOut();if(error){say('Déconnexion impossible : '+error.message);return;}say('Tu es déconnecté(e).');await refresh();});
 $('formulaire-evenement').addEventListener('submit',async ev=>{
  ev.preventDefault();if(!currentUser||!accessVerified)return;
