@@ -330,10 +330,14 @@ body { background:radial-gradient(ellipse at 7% 15%,#e4bfd0,transparent 48%),rad
 .admin-secret-link a:hover{filter:brightness(1.12)}
 .admin-secret-link a:focus-visible{outline:3px solid #a65a93;outline-offset:4px}
 </style>
-</head>
+<style>
+#refuge-home-paper[hidden],#refuge-evenements[hidden],#refuge-events-editor[hidden]{display:none!important}
+.refuge-events-panel{max-width:100%;padding:clamp(30px,6vw,70px);background:#f3d7a5 url('/le-refuge/test-fusion/refuge_finition_haut.webp') center top/100% auto no-repeat;box-shadow:0 12px 25px #57332b38;color:#684332;border-radius:12px}
+.refuge-events-top{display:flex;flex-wrap:wrap;align-items:center;gap:15px;justify-content:space-between}.refuge-events-panel h2{font-size:clamp(25px,4vw,38px);color:#77445c;font-style:italic;font-weight:normal}.refuge-events-panel button{background:#865235;color:#fff5e7;border:1px solid #5b3527;border-radius:9px;padding:10px 14px;cursor:pointer;font:inherit}.refuge-events-panel button:disabled{opacity:.55;cursor:wait}.refuge-events-panel button:focus-visible{outline:3px solid #9c5aa0;outline-offset:3px}.refuge-event-card{background:#fff5df;border:1px solid #c99d79;border-radius:12px;padding:18px;margin:15px 0;text-align:left;overflow-wrap:anywhere}.refuge-event-card h3{color:#77445c;margin:0 0 12px}.refuge-event-card p{margin:8px 0}.refuge-event-card a{color:#743d79;font-weight:bold}.refuge-event-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.refuge-event-actions .danger{background:#9b4964}.refuge-events-panel label{display:block;margin:12px 0 5px;font-weight:bold}.refuge-events-panel input,.refuge-events-panel select,.refuge-events-panel textarea{width:100%;padding:10px;border:1px solid #a77988;border-radius:8px;font:inherit;background:#fffaf2}.refuge-events-panel textarea{min-height:85px}.refuge-edit-actions{display:flex;gap:12px;margin-top:15px}.refuge-events-panel #refuge-events-status{font-style:italic}.refuge-events-panel #refuge-events-editor{padding:15px;background:#fff1d4;border-radius:12px;margin-top:20px}@media(max-width:650px){.refuge-events-panel{padding:24px 16px}.refuge-events-top{display:block}}
+</style></head>
 <body>
 <header aria-label="Bannière du Refuge" class="banner"></header>
-<main class="wrap"><div class="paper"><span aria-hidden="true" class="illustrated-corner tl"><svg aria-hidden="true" class="floral-svg" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"></path></svg></span><span aria-hidden="true" class="illustrated-corner tr"><svg aria-hidden="true" class="floral-svg" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"></path></svg></span><span aria-hidden="true" class="illustrated-corner bl"><svg aria-hidden="true" class="floral-svg" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"></path></svg></span><span aria-hidden="true" class="illustrated-corner br"><svg aria-hidden="true" class="floral-svg" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"></path></svg></span>
+<main class="wrap"><div class="paper" id="refuge-home-paper"><span aria-hidden="true" class="illustrated-corner tl"><svg aria-hidden="true" class="floral-svg" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"></path></svg></span><span aria-hidden="true" class="illustrated-corner tr"><svg aria-hidden="true" class="floral-svg" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"></path></svg></span><span aria-hidden="true" class="illustrated-corner bl"><svg aria-hidden="true" class="floral-svg" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"></path></svg></span><span aria-hidden="true" class="illustrated-corner br"><svg aria-hidden="true" class="floral-svg" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"></path></svg></span>
 <span aria-hidden="true" class="ornament top-left"><svg aria-hidden="true" class="floral-svg" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><path d="M12 10C6 2 3 8 9 12c-8-4-9 4-1 4-3 7 4 9 5 2 5 6 10 0 4-4 8-3 5-10-3-8-1-7-7-9-5-1Z"></path><circle cx="12" cy="13" r="1.8"></circle></svg></span>
 <span aria-hidden="true" class="ornament top-right"><svg aria-hidden="true" class="floral-svg" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><path d="M12 13C7 3 2 4 3 10c0 3 4 4 9 3Zm0 0c5-10 10-9 9-3 0 3-4 4-9 3Zm0 0c-5 2-8 7-5 8 3 1 5-3 5-8Zm0 0c5 2 8 7 5 8-3 1-5-3-5-8Z"></path><path d="M12 9v10"></path></svg></span>
 <span aria-hidden="true" class="ornament bottom-left"><svg aria-hidden="true" class="floral-svg" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><path d="M21 3C10 3 3 7 3 17c0 4 4 4 7 3 9-3 11-11 11-17ZM3 21c4-6 8-9 14-12"></path></svg></span>
@@ -345,18 +349,18 @@ body { background:radial-gradient(ellipse at 7% 15%,#e4bfd0,transparent 48%),rad
 <div class="scene"><p class="scene-text">Installe-toi confortablement… Notre petit Refuge t'ouvre ses portes. Choisis un chemin pour commencer ta visite !</p></div>
 <section aria-label="Connexion au Refuge" aria-live="polite" class="refuge-session">
 <p id="refuge-session-text">🦊 Vérification de ta connexion…</p>
-<a href="carnet.html" id="refuge-session-action">Ouvrir le Carnet</a>
+<a data-refuge-view="events" href="#refuge-evenements" id="refuge-session-action">Voir les événements</a>
 </section>
 <nav aria-label="Explorer le Refuge" class="signs">
-<a class="sign" href="carnet.html"><svg aria-hidden="true" class="vicon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Z"></path><path d="M12 6v14"></path></svg><span class="name">Carnet des événements</span></a>
+<a class="sign" data-refuge-view="events" href="#refuge-evenements"><svg aria-hidden="true" class="vicon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><path d="M12 6c-3-2-6-2-9-1v14c3-1 6-1 9 1 3-2 6-2 9-1V5c-3-1-6-1-9 1Z"></path><path d="M12 6v14"></path></svg><span class="name">Événements</span></a>
 <a class="sign" href="cuisine.html"><svg aria-hidden="true" class="vicon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><path d="M6 13a4 4 0 0 1-1-7 4 4 0 0 1 7-2 4 4 0 0 1 7 2 4 4 0 0 1-1 7"></path><path d="M6 13v7h12v-7M9 16v2m6-2v2"></path></svg><span class="name">La Cuisine du Refuge</span></a>
-<a class="sign" href="carnet.html"><svg aria-hidden="true" class="vicon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="5"></rect><path d="M7 3v4m10-4v4M3 10h18m-13 4h2m4 0h2m-8 4h2"></path></svg><span class="name">Mes événements</span></a>
+<a class="sign" data-refuge-view="mine" href="#refuge-evenements"><svg aria-hidden="true" class="vicon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="5"></rect><path d="M7 3v4m10-4v4M3 10h18m-13 4h2m4 0h2m-8 4h2"></path></svg><span class="name">Mes événements</span></a>
 <a class="sign" href="surprise.html" title="Surprise en préparation"><svg aria-hidden="true" class="vicon" fill="none" focusable="false" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.65" viewbox="0 0 24 24"><path d="m12 2 2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2Z"></path></svg><span class="name">Surprise en préparation</span></a>
 <a class="sign" href="jeux.html"><span class="emoji">🎲</span><span class="name">Ludothèque</span></a><a class="sign" href="roue.html"><span class="emoji">🎡</span><span class="name">La Roue Mystère</span></a></nav>
 <div class="admin-secret-link" hidden="" id="admin-secret-link"><a aria-label="Accéder au Bureau secret, réservé à l’administration" href="bureau.html">🗝️ Le Bureau secret</a></div>
 <p class="smallnote"> Un lieu créé avec douceur pour la communauté du Refuge.</p>
 <div class="renarde-bas"><img alt="Notre petite renarde du Refuge, paisiblement endormie" class="mascot" height="205" src="/le-refuge/mascotte_originale_refuge.webp" width="205"/></div>
-</div></main>
+</div><section aria-label="Événements du Refuge" class="refuge-events-panel" hidden="" id="refuge-evenements"><div class="refuge-events-top"><button id="refuge-back-home" type="button">← Retour à l’Accueil</button><h2 id="refuge-events-heading">Les événements</h2></div><p aria-live="polite" id="refuge-events-status" role="status"></p><div id="refuge-events-list"></div><div hidden="" id="refuge-events-editor"><h3>Modifier ma soirée</h3><form id="refuge-edit-form"><label for="refuge-edit-recipe">Recette</label><select id="refuge-edit-recipe" required=""><option>Sashimi</option><option>Poké Bowl</option><option>Gâteau de fête</option><option>Hamburger de haricots</option><option>Chili végétarien</option><option>Bahari de Muujin</option></select><label for="refuge-edit-date">Date et heure</label><input id="refuge-edit-date" required="" type="datetime-local"/><label for="refuge-edit-quantity">Nombre de préparations</label><input id="refuge-edit-quantity" min="1" required="" type="number"/><label for="refuge-edit-description">Description (facultative)</label><textarea id="refuge-edit-description"></textarea><div class="refuge-edit-actions"><button type="submit">Enregistrer</button><button id="refuge-edit-cancel" type="button">Annuler</button></div></form></div></section></main>
 <footer class="footer"> Le Refuge — Site communautaire indépendant de fans de Palia </footer>
 <script>
 (async()=>{
@@ -375,55 +379,82 @@ body { background:radial-gradient(ellipse at 7% 15%,#e4bfd0,transparent 48%),rad
 })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
-// La session est la même que celle du Carnet et de la Cuisine (même origine et projet).
-// L'accueil affiche son état, mais ne crée pas de deuxième système de connexion.
-(async()=>{
- const label=document.getElementById('refuge-session-text');
- const action=document.getElementById('refuge-session-action');
- if(!label||!action)return;
- let sb=null;
- action.addEventListener('click',async e=>{
-  if(action.dataset.login!=='true')return;
-  e.preventDefault();
-  if(!sb)return;
-  const {error}=await sb.auth.signInWithOAuth({provider:'discord',options:{scopes:'identify email guilds.members.read',redirectTo:new URL('carnet.html',window.location.href).href}});
-  if(error)label.textContent='Connexion impossible : '+error.message;
- });
- try{
-  sb=window.supabase.createClient(
-   'https://kflrkclmznluxahxttgl.supabase.co',
-   'sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3'
-  );
-  const {data:{session},error}=await sb.auth.getSession();
-  if(error)throw error;
-  if(!session?.user){
-   label.textContent='🦊 Tu n’es pas connecté(e) au Refuge.';
-   action.textContent='Se connecter avec Discord';
-   action.dataset.login='true';
-   return;
-  }
-  const m=session.user.user_metadata||{};
-  const pseudo=m.custom_claims?.global_name||m.full_name||m.name||m.user_name||'membre du Refuge';
-  const {data:verified,error:verifyError}=await sb.rpc('est_membre_refuge_verifie');
-   // Le lien n'est affiché que si le serveur confirme explicitement le rôle admin.
-   try{
-     const {data:isAdmin,error:adminError}=await sb.rpc('est_admin');
-     if(!adminError&&isAdmin===true){
-       document.getElementById('admin-secret-link').hidden=false;
-     }
-   }catch(_adminError){/* Ne jamais afficher le lien si la vérification échoue. */}
-  if(!verifyError&&verified===true){
-   label.textContent='🦊 Bienvenue '+pseudo+' ! Tu es connecté(e) au Refuge.';
-   action.textContent='Accéder au Carnet';
-  }else{
-   label.textContent='🦊 Bonjour '+pseudo+' ! Ta session est présente, mais ton accès Discord doit être vérifié.';
-   action.textContent='Vérifier mon accès dans le Carnet';
-  }
- }catch(_error){
-  label.textContent='🦊 Impossible de vérifier la connexion pour le moment.';
-  action.textContent='Ouvrir le Carnet';
+(()=>{
+ const $=id=>document.getElementById(id);
+ const label=$('refuge-session-text'),action=$('refuge-session-action');
+ const home=$('refuge-home-paper'),panel=$('refuge-evenements'),list=$('refuge-events-list'),status=$('refuge-events-status');
+ const SB_URL='https://kflrkclmznluxahxttgl.supabase.co';
+ const SB_KEY='sb_publishable_jlnA8997jDcKMdJYzyw--A_7csvsml3';
+ const sb=window.supabase.createClient(SB_URL,SB_KEY);
+ let session=null,verified=false,isAdmin=false,view='events',editId=null,events=[];
+ const notify=message=>{status.textContent=message};
+ const fmt=d=>new Date(d).toLocaleString('fr-FR',{dateStyle:'full',timeStyle:'short'});
+ const pseudo=user=>{const m=user?.user_metadata||{};return m.custom_claims?.global_name||m.full_name||m.name||m.user_name||'membre du Refuge'};
+ const add=(parent,tag,text)=>{const el=document.createElement(tag);el.textContent=text;parent.append(el);return el};
+ const dateLocal=value=>{const d=new Date(value),pad=n=>String(n).padStart(2,'0');return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`};
+ async function auth(){
+  const result=await sb.auth.getSession();if(result.error)throw result.error;
+  session=result.data.session;
+  verified=false;
+  if(!session?.user){label.textContent='🦊 Tu n’es pas connecté(e) au Refuge.';action.textContent='Se connecter avec Discord';action.dataset.login='true';return;}
+  action.dataset.login='false';
+  const check=await sb.rpc('est_membre_refuge_verifie');
+  verified=!check.error&&check.data===true;
+  label.textContent=verified?'🦊 Bienvenue '+pseudo(session.user)+' ! Tu es connecté(e) au Refuge.':'🦊 Bonjour '+pseudo(session.user)+' ! Ton accès Discord doit être vérifié.';
+  action.textContent=verified?'Voir les événements':'Vérifier mon accès';
+  try{const r=await sb.rpc('est_admin');isAdmin=!r.error&&r.data===true;const link=$('admin-secret-link');if(link)link.hidden=!isAdmin;}catch(_e){}
  }
+ async function login(){const {error}=await sb.auth.signInWithOAuth({provider:'discord',options:{scopes:'identify email guilds.members.read',redirectTo:new URL('index.html',location.href).href}});if(error)notify('Connexion impossible : '+error.message)}
+ async function ensureAccess(){
+  await auth();
+  if(!session?.user){notify('Connecte-toi avec Discord depuis l’Accueil pour consulter les événements.');return false;}
+  if(!verified){notify('Ta session est présente, mais l’accès aux événements n’a pas été confirmé. Réessaie après vérification de ton accès Discord.');return false;}
+  return true;
+ }
+ async function load(){
+  list.replaceChildren();notify('Chargement des soirées…');
+  if(!await ensureAccess())return;
+  const {data,error}=await sb.from('evenements').select('id,titre,recette,date_evenement,nombre_preparations,description,statut,createur_id,createur_pseudo').order('date_evenement',{ascending:true}).limit(100);
+  if(error){notify('Impossible de charger les soirées : '+error.message);return;}
+  events=(data||[]).filter(e=>e.recette&&(e.statut==null||e.statut==='ouverte')&&Date.now()<new Date(e.date_evenement).getTime()+3600000);
+  const shown=view==='mine'?events.filter(e=>e.createur_id===session.user.id):events;
+  notify(shown.length?'':view==='mine'?'Tu n’as pas de soirée cuisine ouverte pour le moment.':'Aucune soirée cuisine ouverte pour le moment.');
+  for(const e of shown){
+   const card=document.createElement('article');card.className='refuge-event-card';
+   add(card,'h3',e.titre||'Soirée '+e.recette);add(card,'p','Recette : '+e.recette);add(card,'p',fmt(e.date_evenement));add(card,'p',e.nombre_preparations+' préparation(s)');
+   if(e.description)add(card,'p',e.description);
+   if(view==='mine'){
+    const actions=document.createElement('div');actions.className='refuge-event-actions';
+    const edit=add(actions,'button','Modifier');edit.type='button';edit.addEventListener('click',()=>openEdit(e));
+    const del=add(actions,'button','Supprimer');del.type='button';del.className='danger';del.addEventListener('click',()=>remove(e,del));card.append(actions);
+   }
+   const join=add(card,'a','Rejoindre la Cuisine enchantée');join.href='cuisine.html?recette='+encodeURIComponent(e.recette)+'&soiree='+encodeURIComponent(e.id);join.style.display='inline-block';join.style.marginTop='12px';
+   list.append(card);
+  }
+ }
+ function openEdit(e){editId=e.id;$('refuge-edit-recipe').value=e.recette;$('refuge-edit-date').value=dateLocal(e.date_evenement);$('refuge-edit-quantity').value=e.nombre_preparations;$('refuge-edit-description').value=e.description||'';$('refuge-events-editor').hidden=false;$('refuge-events-editor').scrollIntoView({behavior:'smooth',block:'start'})}
+ function cancelEdit(){editId=null;$('refuge-events-editor').hidden=true;$('refuge-edit-form').reset()}
+ async function remove(e,button){if(!confirm('Supprimer définitivement cette soirée et ses inscriptions ?'))return;if(!await ensureAccess())return;button.disabled=true;const {data,error}=await sb.from('evenements').delete().eq('id',e.id).eq('createur_id',session.user.id).select('id');if(error||!data?.length){notify('Suppression impossible : '+(error?.message||'Autorisation refusée.'));button.disabled=false;return;}cancelEdit();await load();notify('Soirée supprimée.')}
+ $('refuge-edit-cancel').addEventListener('click',cancelEdit);
+ $('refuge-edit-form').addEventListener('submit',async ev=>{
+  ev.preventDefault();if(!editId||!await ensureAccess())return;
+  const date=new Date($('refuge-edit-date').value),qty=Number($('refuge-edit-quantity').value);
+  if(!Number.isFinite(date.getTime())||date.getTime()<=Date.now()||!Number.isSafeInteger(qty)||qty<1){notify('Choisis une date future et un nombre de préparations valide.');return;}
+  const button=ev.currentTarget.querySelector('[type="submit"]');button.disabled=true;
+  const recette=$('refuge-edit-recipe').value;
+  const payload={titre:'Soirée '+recette,recette,nombre_preparations:qty,date_evenement:date.toISOString(),description:$('refuge-edit-description').value.trim()||null,statut:'ouverte'};
+  const {data,error}=await sb.from('evenements').update(payload).eq('id',editId).eq('createur_id',session.user.id).select('id');button.disabled=false;
+  if(error||!data?.length){notify('Modification impossible : '+(error?.message||'Autorisation refusée.'));return;}
+  cancelEdit();await load();notify('Ta soirée a été modifiée !');
+ });
+ function goHome(){panel.hidden=true;home.hidden=false;cancelEdit();history.replaceState(null,'',location.pathname+location.search);window.scrollTo({top:0,behavior:'smooth'})}
+ async function show(which){view=which;home.hidden=true;panel.hidden=false;cancelEdit();$('refuge-events-heading').textContent=which==='mine'?'Mes événements':'Les prochains événements';history.replaceState(null,'','#refuge-evenements');panel.scrollIntoView({behavior:'smooth',block:'start'});await load()}
+ document.querySelectorAll('[data-refuge-view]').forEach(link=>link.addEventListener('click',e=>{if(link===action&&action.dataset.login==='true'){e.preventDefault();login();return;}e.preventDefault();show(link.dataset.refugeView)}));
+ $('refuge-back-home').addEventListener('click',goHome);
+ async function init(){try{await auth();if(location.hash==='#refuge-evenements')await show('events')}catch(err){label.textContent='🦊 Impossible de vérifier la connexion pour le moment.';action.textContent='Réessayer';notify(err.message||'Erreur de connexion')}}
+ sb.auth.onAuthStateChange(event=>{if(['SIGNED_IN','SIGNED_OUT','TOKEN_REFRESHED'].includes(event))setTimeout(()=>{auth().then(()=>{if(!panel.hidden)load()}).catch(console.error)},0)});
+ init();
 })();
-</script>
-</body></html>
+</script></body></html>
