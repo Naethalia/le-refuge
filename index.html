@@ -361,7 +361,12 @@ body { background:radial-gradient(ellipse at 7% 15%,#e4bfd0,transparent 48%),rad
 <p class="smallnote"> Un lieu créé avec douceur pour la communauté du Refuge.</p>
 <div class="renarde-bas"><img alt="Notre petite renarde du Refuge, paisiblement endormie" class="mascot" height="205" src="/le-refuge/mascotte_originale_refuge.webp" width="205"/></div>
 </div><section aria-label="Événements du Refuge" class="refuge-events-panel" hidden="" id="refuge-evenements"><div class="refuge-events-top"><button id="refuge-back-home" type="button">← Retour à l’Accueil</button><h2 id="refuge-events-heading">Les événements</h2></div><p aria-live="polite" id="refuge-events-status" role="status"></p><div id="refuge-events-list"></div><div hidden="" id="refuge-events-editor"><h3>Modifier ma soirée</h3><form id="refuge-edit-form"><label for="refuge-edit-recipe">Recette</label><select id="refuge-edit-recipe" required=""><option>Sashimi</option><option>Poké Bowl</option><option>Gâteau de fête</option><option>Hamburger de haricots</option><option>Chili végétarien</option><option>Bahari de Muujin</option></select><label for="refuge-edit-date">Date et heure</label><input id="refuge-edit-date" required="" type="datetime-local"/><label for="refuge-edit-quantity">Nombre de préparations</label><input id="refuge-edit-quantity" min="1" required="" type="number"/><label for="refuge-edit-description">Description (facultative)</label><textarea id="refuge-edit-description"></textarea><div class="refuge-edit-actions"><button type="submit">Enregistrer</button><button id="refuge-edit-cancel" type="button">Annuler</button></div></form></div></section></main>
-<footer class="footer"> Le Refuge — Site communautaire indépendant de fans de Palia </footer>
+<footer class="footer" aria-label="Informations sur le site" style="max-width:850px;margin:28px auto 22px;padding:18px 22px;line-height:1.65">
+  <strong>Le Refuge — De jolis moments à partager</strong>
+  <p>Site communautaire indépendant, créé par des fans de Palia pour les membres du Refuge.</p>
+  <p>Ce site n'est ni officiel, ni affilié, ni approuvé ou sponsorisé par Singularity 6, le studio à l'origine de Palia.</p>
+  <p>Palia et ses éléments associés appartiennent à leurs ayants droit respectifs.</p>
+</footer>
 <script>
 (async()=>{
   const fox=document.querySelector('.renarde-bas .mascot');
