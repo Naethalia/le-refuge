@@ -615,7 +615,20 @@ $('nav-cuisine').addEventListener('click',()=>{if(accessVerified)window.location
 $('nav-evenements').addEventListener('click',async()=>{showArea('events');setView(false);if(accessVerified)await loadEvents();});
 $('nav-mes-evenements').addEventListener('click',async()=>{showArea('events');setView(true);if(accessVerified)await loadEvents();});
 $('nav-aide').addEventListener('click',()=>alert('Connecte-toi avec Discord, puis ouvre le panneau Cuisine enchantée pour organiser une soirée. Pour choisir un poste, utilise le bouton Rejoindre la cuisine sur la soirée.'));
-refresh();
+// Attendre aussi la fin du retour OAuth Discord : la session peut arriver
+// après le premier affichage du Carnet.
+let refugeRefreshTimer=null;
+function planifierRefresh(){
+ clearTimeout(refugeRefreshTimer);
+ refugeRefreshTimer=setTimeout(()=>{refresh().catch(err=>{
+  console.error('Refuge: chargement de session',err);
+  accessScreen('🦊 Vérification indisponible','Le Carnet n’a pas pu terminer sa vérification. Recharge la page.',true);
+ });},150);
+}
+sb.auth.onAuthStateChange((event)=>{
+ if(event==='INITIAL_SESSION'||event==='SIGNED_IN'||event==='TOKEN_REFRESHED')planifierRefresh();
+});
+planifierRefresh();
 
 // Actualise les listes sans supprimer les soirées enregistrées.
 setInterval(()=>{if(accessVerified&&!document.hidden)loadEvents();},30000);
