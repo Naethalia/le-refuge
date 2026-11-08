@@ -566,7 +566,18 @@ async function refresh(){
  $('profil').textContent='Bienvenue '+pseudo+' ! ';
  await loadEvents();
 }
-$('refuge-access-login').addEventListener('click',()=>{$('connexion').click();});
+$('refuge-access-login').addEventListener('click',async()=>{
+ const button=$('refuge-access-login');
+ button.disabled=true;
+ $('refuge-access-message').textContent='Ouverture de Discord…';
+ try {
+  const {error}=await sb.auth.signInWithOAuth({provider:'discord',options:{scopes:'identify email guilds.members.read',redirectTo:window.location.origin+window.location.pathname}});
+  if(error)throw error;
+ } catch(error){
+  $('refuge-access-message').textContent='Connexion impossible : '+(error.message||'Erreur inconnue');
+  button.disabled=false;
+ }
+});
 $('connexion').addEventListener('click',async()=>{
  say('Connexion en cours…');
  const {error}=await sb.auth.signInWithOAuth({provider:'discord',options:{scopes:'identify email guilds.members.read',redirectTo:window.location.origin+window.location.pathname}});
